@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "NODE_PATH=src/ node webpack.server.js",
     "build": "NODE_PATH=src/ rimraf www && webpack --config webpack.config.prod.js",
-    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi"
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "imports-loader": "^0.6.5",
     "lodash": "^3.10.1",
     "node-sass": "^3.4.2",
+    "node-static": "^0.7.7",
     "pouchdb": "^5.1.0",
     "raw-loader": "^0.5.1",
     "react": "^0.14.3",
