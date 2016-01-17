@@ -1,0 +1,40 @@
+.add-plan-button {
+	text-align: center;
+}
+
+.add-plan-button__link {
+	@include reset-link;
+	display: inline-block;
+}
+
+.add-plan-button__circle {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	width: 3.4rem;
+	height: 3.4rem;
+	border: 1px solid $border-color;
+	border-radius: 50%;
+
+	.add-plan-button__link:hover & {
+		border-color: $color-green;
+	}
+}
+
+.add-plan-button .icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	font-size: 1.6rem;
+}
+
+.add-plan-button__label {
+	text-transform: uppercase;
+	font-size: 0.7rem;
+}
+
+.add-plan-button__link:hover .icon,
+.add-plan-button__link:hover .add-plan-button__label {
+	color: $color-green;
+}

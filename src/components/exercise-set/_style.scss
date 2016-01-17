@@ -1,0 +1,32 @@
+.exercise-set {
+	display: flex;
+	border-bottom: 1px solid #cecece;
+
+	&:last-child {
+		border-bottom-width: 0;
+	}
+}
+
+.exercise-set__weight-label,
+.exercise-set__reps-label {
+	padding: 8px 12px;
+	color: lighten( $font-color-body, 20% );
+}
+
+.exercise-set__weight-label {
+	flex: 3;
+	border-right: 1px solid #cecece;
+}
+
+.exercise-set__reps-label {
+	flex: 2;
+}
+
+.exercise-set__weight,
+.exercise-set__reps {
+	margin-right: 2px;
+	font-weight: bold;
+	color: $font-color-body;
+}
+
+

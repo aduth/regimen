@@ -1,0 +1,36 @@
+.popover-menu {
+	display: none;
+	position: relative;
+
+	&.is-visible {
+		display: inline;
+	}
+}
+
+.popover-menu__list {
+	@include reset-list;
+	position: absolute;
+	background-color: white;
+	border: 1px solid $border-color;
+	border-radius: $border-radius;
+}
+
+.popover-menu.is-top-left .popover-menu__list,
+.popover-menu.is-bottom-right .popover-menu__list {
+	bottom: 100%;
+}
+
+.popover-menu.is-bottom-left .popover-menu__list,
+.popover-menu.is-bottom-right .popover-menu__list {
+	top: 100%;
+}
+
+.popover-menu.is-top-left .popover-menu__list,
+.popover-menu.is-bottom-left .popover-menu__list {
+	right: 50%;
+}
+
+.popover-menu.is-top-right .popover-menu__list,
+.popover-menu.is-bottom-right .popover-menu__list {
+	left: 50%;
+}

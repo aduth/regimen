@@ -1,0 +1,49 @@
+.accordion {
+	border: 1px solid #cecece;
+	border-radius: $border-radius;
+}
+
+.accordion__header {
+	position: relative;
+	background-color: #f3f3f3;
+}
+
+.accordion__header-button {
+	@include reset-button;
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.accordion__header,
+.accordion__header-button {
+	border-top-left-radius: $border-radius;
+	border-top-right-radius: $border-radius;
+}
+
+.accordion__content {
+	display: none;
+	border-top: 1px solid #cecece;
+}
+
+.accordion__header-button,
+.accordion__content {
+	padding: 8px 12px;
+}
+
+.accordion.is-expanded .accordion__content {
+	display: block;
+}
+
+.accordion__header .icon {
+	position: absolute;
+	top: 50%;
+	right: 12px;
+	transform: rotate( 0deg ) translateY( -50% );
+}
+
+.accordion.is-expanded .accordion__header .icon {
+	transform: rotate( 180deg ) translateY( 50% );
+}

@@ -1,0 +1,19 @@
+// Layout
+$content-width: 780px;
+$desktop-width: 768px;
+$border-radius: 3px;
+
+// Colors
+$font-color-body: #3b454d;
+$font-color-icon: lighten( $font-color-body, 10% );
+$font-color-headings: darken( $font-color-body, 5% );
+$font-color-links: #2b78a8;
+$border-color: #cecece;
+$loading-pulse-color: #f7f7f7;
+$brand-primary: #63bdd4;
+$color-gray: #f3f3f3;
+$color-green: #38bf63;
+$color-red: #da635d;
+
+// Animation
+$transition-duration: 0.3s;

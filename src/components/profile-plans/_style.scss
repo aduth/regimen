@@ -1,0 +1,23 @@
+.profile-plans__empty {
+	text-align: center;
+	font-style: italic;
+}
+
+.profile-plans__plan {
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 12px;
+	border-bottom: 1px solid $border-color;
+
+	&:last-child {
+		border-bottom-width: 0;
+	}
+}
+
+.profile-plans__plan-name {
+	padding: 4px 0;
+}
+
+.profile-plans__plan-actions .button {
+	margin-left: 8px;
+}

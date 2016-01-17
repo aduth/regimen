@@ -1,0 +1,19 @@
+.block {
+	border: 1px solid #cecece;
+	border-radius: $border-radius;
+	margin-bottom: 24px;
+}
+
+.block__header {
+	@include reset-button;
+	background-color: $color-gray;
+	border-bottom: 1px solid $border-color;
+	border-top-left-radius: $border-radius;
+	border-top-right-radius: $border-radius;
+	text-align: center;
+}
+
+.block__header,
+.block.is-padded .block__content {
+	padding: 8px 12px;
+}

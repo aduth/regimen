@@ -1,0 +1,59 @@
+@mixin desktop() {
+	@media ( min-width: #{ ( $desktop-width + 1px ) } ) {
+		@content;
+	}
+}
+
+@mixin screen-reader-text() {
+	position: absolute !important;
+	overflow: hidden;
+	clip: rect( 1px, 1px, 1px, 1px );
+	height: 1px;
+	width: 1px;
+}
+
+@mixin reset-list() {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+@mixin reset-button() {
+	padding: 0;
+	background: none;
+	border: none;
+	outline: 0;
+}
+
+@mixin reset-link() {
+	text-decoration: none;
+
+	&,
+	&:hover {
+		color: $font-color-body;
+	}
+}
+
+@mixin loading-pulse() {
+	background-color: $loading-pulse-color;
+	animation: loading-pulse 1.6s ease-in-out infinite;
+}
+
+@mixin loading-pulse-text() {
+	position: relative;
+	color: transparent !important;
+
+	&:before {
+		@include loading-pulse;
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	&:after {
+		content: 'Loading';
+	}
+}

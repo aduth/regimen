@@ -1,0 +1,33 @@
+.button {
+	@include reset-button;
+	@include reset-link;
+	background-color: $color-gray;
+	border: 1px solid $border-color;
+	border-radius: $border-radius;
+	padding: 4px 12px;
+	cursor: pointer;
+
+	&:hover {
+		border-color: darken( $border-color, 10% );
+	}
+
+	&.is-success {
+		background-color: $color-green;
+		border-color: $color-green;
+		color: white;
+
+		&:hover {
+			border-color: darken( $color-green, 10% );
+		}
+	}
+
+	&.is-danger {
+		background-color: $color-red;
+		border-color: $color-red;
+		color: white;
+
+		&:hover {
+			border-color: darken( $color-red, 10% );
+		}
+	}
+}

@@ -1,0 +1,52 @@
+.header {
+	display: flex;
+	border-bottom: 1px solid darken( $brand-primary, 10% );
+	background-color: $brand-primary;
+	text-align: center;
+	color: white;
+}
+
+.header,
+.header__options-button {
+	text-shadow: -1px -1px darken( $brand-primary, 10% );
+	font-weight: bold;
+}
+
+.header__home {
+	@include reset-link;
+}
+
+.header__home,
+.header__options {
+	flex: 1;
+	position: relative;
+}
+
+.header__brand {
+	flex: 5;
+	padding: 12px 0;
+}
+
+.header__options-button {
+	@include reset-button;
+	cursor: pointer;
+}
+
+.header__home .icon,
+.header__options .icon {
+	position: absolute;
+		left: 50%;
+		top: 50%;
+	transform: translate( -50%, -50% );
+	color: white;
+}
+
+.header__home,
+.header__options-button {
+	font-size: 1.6rem;
+	color: white;
+
+	&:hover {
+		color: mix( $brand-primary, white, 10% );
+	}
+}
