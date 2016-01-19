@@ -1,10 +1,4 @@
 /**
- * External dependencies
- */
-
-import without from 'lodash/array/without';
-
-/**
  * Internal dependencies
  */
 
@@ -65,7 +59,17 @@ export function addPlanToProfile( planId ) {
 		const db = getDatabase( 'profile' );
 		try {
 			let profile = await getProfileOrDefault();
-			profile.plans = [ planId ].concat( without( profile.plans, planId ) );
+
+			const existingIndex = profile.plans.indexOf( planId );
+			if ( 0 === existingIndex ) {
+				// Skip updating profile if plan is already most recent
+				return;
+			} else if ( -1 !== existingIndex ) {
+				// Remove existing entry before prepending to plans
+				profile.plans.splice( existingIndex, 1 );
+			}
+
+			profile.plans = [ planId ].concat( profile.plans );
 			await db.put( profile );
 			profile = await db.get( 'profile' );
 			dispatch( updateProfileSuccess( profile ) );
@@ -85,7 +89,14 @@ export function removePlanFromProfile( planId ) {
 		const db = getDatabase( 'profile' );
 		try {
 			let profile = await getProfileOrDefault();
-			profile.plans = without( profile.plans, planId );
+
+			const existingIndex = profile.plans.indexOf( planId );
+			if ( -1 === existingIndex ) {
+				// If plan not part of profile, abandon early
+				return;
+			}
+
+			profile.plans.splice( existingIndex, 1 );
 			await db.put( profile );
 			profile = await db.get( 'profile' );
 			dispatch( updateProfileSuccess( profile ) );
