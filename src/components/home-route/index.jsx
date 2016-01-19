@@ -15,7 +15,7 @@ import AddPlanButton from 'components/add-plan-button';
 
 export default function HomeRoute() {
 	return (
-		<Page title="Regimen">
+		<Page title="Home">
 			<Content>
 				<ProfilePlans />
 				<AddPlanButton />
