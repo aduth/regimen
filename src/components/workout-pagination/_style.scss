@@ -5,6 +5,17 @@
 	text-align: center;
 }
 
+.workout-pagination.is-loading .workout-name__title,
+.workout-pagination.is-loading .workout-name__subtitle {
+	@include loading-pulse-text;
+	width: 10rem;
+	margin: 0 auto;
+
+	&:before {
+		background-color: darken( $loading-pulse-color, 10% );
+	}
+}
+
 .workout-pagination__button {
 	@include reset-button;
 	position: relative;

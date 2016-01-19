@@ -5,19 +5,25 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 /**
  * Internal dependencies
  */
 
 import { setWorkoutRoute } from 'state/routing/actions';
+import { getPlan } from 'state/plans/selectors';
 import { getPlanId, getWorkout } from 'state/ui/selectors';
 import Icon from 'components/icon';
 import WorkoutName from 'components/workout-name';
 
-function WorkoutPagination( { planId, workout, setWorkoutRoute } ) {
+function WorkoutPagination( { planId, plan, workout, setWorkoutRoute } ) {
+	const classes = classNames( 'workout-pagination', {
+		'is-loading': ! plan
+	} );
+
 	return (
-		<nav className="workout-pagination">
+		<nav className={ classes }>
 			<button
 				onClick={ () => setWorkoutRoute( planId, workout - 1 ) }
 				className="workout-pagination__button is-previous">
@@ -43,6 +49,7 @@ function WorkoutPagination( { planId, workout, setWorkoutRoute } ) {
 
 WorkoutPagination.propTypes = {
 	planId: PropTypes.string,
+	plan: PropTypes.object,
 	workout: PropTypes.number,
 	setWorkoutRoute: PropTypes.func
 };
@@ -53,9 +60,11 @@ WorkoutPagination.defaultProps = {
 };
 
 export default connect( ( state ) => {
+	const planId = getPlanId( state );
 	return {
-		planId: getPlanId( state ),
-		workout: getWorkout( state )
+		plan: getPlan( state, planId ),
+		workout: getWorkout( state ),
+		planId
 	};
 }, ( dispatch ) => {
 	return bindActionCreators( { setWorkoutRoute }, dispatch );
