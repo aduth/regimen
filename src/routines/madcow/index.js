@@ -32,10 +32,6 @@ export const form = [
 	}
 ];
 
-export function beforeSave( plan ) {
-
-}
-
 export function exercises( workout ) {
 	workout = workout % weekdays.length;
 
