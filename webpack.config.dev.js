@@ -14,7 +14,7 @@ var common = require( './webpack.config.common' );
 module.exports = assign( {}, common, {
 	cache: true,
 	entry: [
-		'webpack-dev-server/client?http://localhost:3000/dist',
+		'webpack-dev-server/client?/',
 		'webpack/hot/only-dev-server',
 		__dirname + '/src/index.js'
 	],
