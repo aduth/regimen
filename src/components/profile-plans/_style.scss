@@ -1,21 +1,22 @@
 .profile-plans__empty {
+	margin: 8px 12px;
 	text-align: center;
 	font-style: italic;
+
+	.profile-plans.is-loading & {
+		@include loading-pulse-text;
+	}
 }
 
 .profile-plans__plan {
 	display: flex;
 	justify-content: space-between;
+	padding: 8px 12px;
 	border-bottom: 1px solid $border-color;
 
 	&:last-child {
 		border-bottom-width: 0;
 	}
-}
-
-.profile-plans__empty,
-.profile-plans__plan {
-	padding: 8px 12px;
 }
 
 .profile-plans__plan-name {

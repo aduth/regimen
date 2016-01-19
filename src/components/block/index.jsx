@@ -5,8 +5,8 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-function Block( { title, padded, children } ) {
-	const classes = classNames( 'block', {
+function Block( { title, className, padded, children } ) {
+	const classes = classNames( 'block', className, {
 		'is-padded': padded
 	} );
 
@@ -24,6 +24,7 @@ function Block( { title, padded, children } ) {
 
 Block.propTypes = {
 	title: PropTypes.node,
+	className: PropTypes.string,
 	padded: PropTypes.bool,
 	children: PropTypes.node
 };

@@ -4,6 +4,7 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 /**
  * Internal dependencies
@@ -13,15 +14,19 @@ import { getProfile } from 'state/profile/selectors';
 import Block from 'components/block';
 import ProfilePlan from './plan';
 
-function ProfilePlans( { plans } ) {
+function ProfilePlans( { profile } ) {
+	const classes = classNames( 'profile-plans', {
+		'is-loading': ! profile
+	} );
+
 	return (
-		<Block title="Your Plans" className="profile-plans">
-			{ ! plans && (
+		<Block title="Your Plans" className={ classes }>
+			{ ( ! profile || ! profile.plans.length ) && (
 				<div className="profile-plans__empty">
 					You don't have any plans yet!
 				</div>
 			) }
-			{ plans && plans.map( ( plan ) => {
+			{ profile && profile.plans.map( ( plan ) => {
 				return (
 					<ProfilePlan
 						key={ plan }
@@ -33,12 +38,11 @@ function ProfilePlans( { plans } ) {
 }
 
 ProfilePlans.propTypes = {
-	plans: PropTypes.array
+	profile: PropTypes.object
 };
 
 export default connect( ( state ) => {
-	const profile = getProfile( state );
 	return {
-		plans: profile ? profile.plans : null
+		profile: getProfile( state )
 	};
 } )( ProfilePlans );
