@@ -11,19 +11,11 @@ import { connect } from 'react-redux';
  */
 
 import { requestProfile } from 'state/profile/actions';
-import { getProfile, isRequestingProfile } from 'state/profile/selectors';
+import { isRequestingProfile } from 'state/profile/selectors';
 
 class QueryProfile extends Component {
-	componentDidMount() {
-		this.ensureHasProfile();
-	}
-
-	componentDidUpdate() {
-		this.ensureHasProfile();
-	}
-
-	ensureHasProfile() {
-		if ( ! this.props.profile && ! this.props.isRequestingProfile ) {
+	componentWillMount() {
+		if ( ! this.props.isRequestingProfile ) {
 			this.props.requestProfile();
 		}
 	}
@@ -35,7 +27,6 @@ class QueryProfile extends Component {
 
 export default connect( ( state ) => {
 	return {
-		profile: getProfile( state ),
 		isRequestingProfile: isRequestingProfile( state )
 	};
 }, ( dispatch ) => {

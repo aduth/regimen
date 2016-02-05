@@ -11,25 +11,28 @@ import { connect } from 'react-redux';
  */
 
 import { requestPlan } from 'state/plans/actions';
-import { getPlan, isRequestingPlan } from 'state/plans/selectors';
+import { isRequestingPlan } from 'state/plans/selectors';
 
 class QueryPlan extends Component {
 	static propTypes = {
 		planId: PropTypes.string.isRequired
 	};
 
-	componentDidMount() {
-		this.ensureHasPlan();
-	}
-
-	componentDidUpdate() {
-		this.ensureHasPlan();
-	}
-
-	ensureHasPlan() {
-		if ( ! this.props.plan && ! this.props.isRequestingPlan ) {
-			this.props.requestPlan( this.props.planId );
+	componentWillMount() {
+		if ( this.props.isRequestingPlan ) {
+			return;
 		}
+
+		this.props.requestPlan( this.props.planId );
+	}
+
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.isRequestingPlan ||
+				( this.props.planId === nextProps.planId ) ) {
+			return;
+		}
+
+		nextProps.requestPlan( nextProps.planId );
 	}
 
 	render() {
@@ -39,7 +42,6 @@ class QueryPlan extends Component {
 
 export default connect( ( state ) => {
 	return {
-		plan: getPlan( state ),
 		isRequestingPlan: isRequestingPlan( state )
 	};
 }, ( dispatch ) => {
