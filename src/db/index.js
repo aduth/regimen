@@ -54,15 +54,15 @@ export function sync() {
 			return;
 		}
 
-		database.sync( new PouchDB( remotes[ name ] ), {
-			live: true
-		} ).on( 'change', function( change ) {
-			if ( 'pull' !== change.direction ) {
-				return;
-			}
+		database
+			.sync( new PouchDB( remotes[ name ] ) )
+			.on( 'change', function( change ) {
+				if ( 'pull' !== change.direction ) {
+					return;
+				}
 
-			_store.dispatch( receiveDatabaseSyncChange( name, change.change ) );
-		} );
+				_store.dispatch( receiveDatabaseSyncChange( name, change.change ) );
+			} );
 
 		_store.dispatch( toggleDatabaseSyncing( name ) );
 	} );
