@@ -42,7 +42,7 @@ function Header( { title, toggleHeaderOptions } ) {
 }
 
 Header.propTypes = {
-	title: PropTypes.string
+	title: PropTypes.node
 };
 
 export default connect( null, ( dispatch ) => {

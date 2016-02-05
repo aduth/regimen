@@ -12,7 +12,9 @@ import { connect } from 'react-redux';
 
 import { addPlanToProfile } from 'state/profile/actions';
 import { setPlanId } from 'state/ui/actions';
-import { getPlan, isRequestingPlan, isPlanNotFound } from 'state/plans/selectors';
+import { getPlanId } from 'state/ui/selectors';
+import { getPlan } from 'state/plans/selectors';
+import PlanPageHeader from 'components/plan-page-header';
 import QueryPlan from 'components/query-plan';
 import Page from 'components/page';
 
@@ -52,19 +54,10 @@ class PlanRoute extends Component {
 	}
 
 	render() {
-		const { params, plan, planNotFound, requestingPlan, children } = this.props;
-
-		let title;
-		if ( plan ) {
-			title = plan.title;
-		} else if ( planNotFound ) {
-			title = 'Not Found';
-		} else if ( requestingPlan ) {
-			title = 'Loading';
-		}
+		const { params, children } = this.props;
 
 		return (
-			<Page title={ title }>
+			<Page title="Plan" header={ <PlanPageHeader /> }>
 				<QueryPlan planId={ params.planId } />
 				{ children }
 			</Page>
@@ -72,11 +65,9 @@ class PlanRoute extends Component {
 	}
 }
 
-export default connect( ( state, ownProps ) => {
+export default connect( ( state ) => {
 	return {
-		plan: getPlan( state, ownProps.params.planId ),
-		notFoundPlan: isPlanNotFound( state, ownProps.params.planId ),
-		requestingPlan: isRequestingPlan( state, ownProps.params.planId )
+		plan: getPlan( state, getPlanId( state ) )
 	};
 }, ( dispatch ) => {
 	return bindActionCreators( {

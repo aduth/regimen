@@ -1,0 +1,3 @@
+.plan-page-header.is-loading {
+	@include loading-pulse-text( darken( $brand-primary, 5% ) );
+}

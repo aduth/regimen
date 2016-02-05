@@ -11,11 +11,11 @@ import Helmet from 'react-helmet';
 
 import Header from 'components/header';
 
-function Page( { title, children } ) {
+function Page( { title, header, children } ) {
 	return (
 		<div>
 			<Helmet title={ [ title, 'Regimen' ].filter( Boolean ).join( ' | ' ) } />
-			<Header title={ title } />
+			<Header title={ header || title } />
 			{ children }
 		</div>
 	);
@@ -23,6 +23,7 @@ function Page( { title, children } ) {
 
 Page.propTypes = {
 	title: PropTypes.string,
+	header: PropTypes.node,
 	children: PropTypes.node
 };
 
