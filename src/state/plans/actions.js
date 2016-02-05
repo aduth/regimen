@@ -28,7 +28,7 @@ export function requestPlan( id ) {
 			const plan = await getDatabase( 'plans' ).get( id );
 			dispatch( {
 				type: PLAN_REQUEST_SUCCESS,
-				payload: { plan }
+				payload: { id, plan }
 			} );
 		} catch ( error ) {
 			dispatch( {
