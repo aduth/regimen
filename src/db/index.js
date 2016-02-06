@@ -60,14 +60,13 @@ export function sync() {
 			return;
 		}
 
-		database
-			.sync( new PouchDB( remotes[ name ] ) )
-			.on( 'change', function( change ) {
-				if ( 'pull' !== change.direction ) {
-					return;
-				}
-
-				_store.dispatch( receiveDatabaseSyncChange( name, change.change ) );
+		const remote = new PouchDB( remotes[ name ] );
+		remote.replicate.to( database )
+			.on( 'change', ( change ) => {
+				_store.dispatch( receiveDatabaseSyncChange( name, change ) );
+			} )
+			.on( 'complete', () => {
+				database.replicate.to( remote, { live: true } );
 			} );
 
 		_store.dispatch( toggleDatabaseSyncing( name ) );
