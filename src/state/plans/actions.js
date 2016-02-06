@@ -66,7 +66,7 @@ export function editPlan( planId, attributes ) {
 		}
 
 		try {
-			await db.put( Object.assign( {}, originalPlan, attributes ) );
+			await db.validatingPut( Object.assign( {}, originalPlan, attributes ) );
 			dispatch( receivePlan( await db.get( planId ) ) );
 		} catch ( error ) {
 			dispatch( receivePlan( originalPlan ) );

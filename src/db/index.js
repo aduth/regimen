@@ -3,6 +3,7 @@
  */
 
 import PouchDB from 'pouchdb';
+import PouchDBValidation from 'pouchdb-validation';
 import each from 'lodash/collection/each';
 
 /**
@@ -34,6 +35,11 @@ const remotes = {
  */
 
 let _store;
+
+/**
+ * PouchDB plugins
+ */
+PouchDB.plugin( PouchDBValidation );
 
 /**
  * Development helpers

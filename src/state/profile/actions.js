@@ -67,7 +67,7 @@ export function setProfilePlanProgress( planId, workout ) {
 		try {
 			let profile = await getProfileOrDefault();
 			profile.progress[ planId ] = workout;
-			await db.put( profile );
+			await db.validatingPut( profile );
 			profile = await db.get( 'profile' );
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
@@ -91,7 +91,7 @@ export function addPlanToProfile( planId ) {
 			}
 
 			profile.plans = [ planId ].concat( without( profile.plans, planId ) );
-			await db.put( profile );
+			await db.validatingPut( profile );
 			profile = await db.get( 'profile' );
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
@@ -116,7 +116,7 @@ export function removePlanFromProfile( planId ) {
 
 			profile.plans = without( profile.plans, planId );
 			delete profile.progress[ planId ];
-			await db.put( profile );
+			await db.validatingPut( profile );
 			profile = await db.get( 'profile' );
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
