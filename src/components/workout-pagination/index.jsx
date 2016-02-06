@@ -25,6 +25,7 @@ function WorkoutPagination( { planId, plan, workout, setWorkoutRoute } ) {
 	return (
 		<nav className={ classes }>
 			<button
+				disabled={ 1 === workout }
 				onClick={ () => setWorkoutRoute( planId, workout - 1 ) }
 				className="workout-pagination__button is-previous">
 				<span className="workout-pagination__button-label">

@@ -25,7 +25,12 @@
 	border-color: $border-color;
 	cursor: pointer;
 
-	&:hover {
+	&:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	&:hover:not( :disabled ) {
 		background-color: darken( $color-gray, 2% );
 	}
 
