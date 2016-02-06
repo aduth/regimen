@@ -22,7 +22,7 @@ function ProfilePlan( { planId, workout, removePlanFromProfile } ) {
 				<PlanName planId={ planId } />
 			</span>
 			<nav className="profile-plans__plan-actions">
-				<Button success to={ `plan/${ planId }/workout/${ workout }` }>
+				<Button success to={ `/plan/${ planId }/workout/${ workout }` }>
 					Resume
 				</Button>
 				<Button danger onClick={ () => removePlanFromProfile( planId ) }>
