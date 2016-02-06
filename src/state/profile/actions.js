@@ -86,6 +86,10 @@ export function addPlanToProfile( planId ) {
 		const db = getDatabase( 'profile' );
 		try {
 			let profile = await getProfileOrDefault();
+			if ( planId === profile.plans[ 0 ] ) {
+				return;
+			}
+
 			profile.plans = [ planId ].concat( without( profile.plans, planId ) );
 			await db.put( profile );
 			profile = await db.get( 'profile' );

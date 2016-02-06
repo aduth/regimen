@@ -22,34 +22,30 @@ class PlanRoute extends Component {
 	static propTypes = {
 		params: PropTypes.object.isRequired,
 		plan: PropTypes.object,
-		notFoundPlan: PropTypes.bool,
-		requestingPlan: PropTypes.bool,
-		requestPlan: PropTypes.func,
-		setPlanWorkout: PropTypes.func
+		setPlanId: PropTypes.func,
+		addPlanToProfile: PropTypes.func
 	};
 
 	static defaultProps = {
-		notFoundPlan: false,
-		requestingPlan: false,
-		setPlanWorkout: () => {},
-		setPlanId: () => {}
+		setPlanId: () => {},
+		addPlanToProfile: () => {}
 	};
 
-	componentDidMount() {
-		this.setPlanState();
+	componentWillMount() {
+		this.props.setPlanId( this.props.params.planId );
+
+		if ( this.props.plan ) {
+			this.props.addPlanToProfile( this.props.params.planId );
+		}
 	}
 
-	componentDidUpdate() {
-		this.setPlanState();
-	}
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.params.planId !== this.props.planId ) {
+			nextProps.setPlanId( nextProps.params.planId );
+		}
 
-	setPlanState() {
-		const { setPlanId, params, addPlanToProfile, plan } = this.props;
-
-		setPlanId( params.planId );
-
-		if ( plan ) {
-			addPlanToProfile( params.planId );
+		if ( nextProps.plan ) {
+			nextProps.addPlanToProfile( nextProps.params.planId );
 		}
 	}
 
