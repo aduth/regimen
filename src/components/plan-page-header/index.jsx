@@ -12,16 +12,16 @@ import get from 'lodash/object/get';
  */
 
 import { getPlanId } from 'state/ui/selectors';
-import { getPlan, isRequestingPlan, isPlanNotFound } from 'state/plans/selectors';
+import { getPlan, isPlanNotFound } from 'state/plans/selectors';
 
-function PlanPageHeader( { title, requestingPlan, planNotFound } ) {
+function PlanPageHeader( { title, loading, notFound } ) {
 	const classes = classNames( 'plan-page-header', {
-		'is-loading': requestingPlan
+		'is-loading': loading
 	} );
 
-	if ( requestingPlan ) {
+	if ( loading ) {
 		title = 'Loading';
-	} else if ( planNotFound ) {
+	} else if ( notFound ) {
 		title = 'Not Found';
 	}
 
@@ -34,15 +34,16 @@ function PlanPageHeader( { title, requestingPlan, planNotFound } ) {
 
 PlanPageHeader.propTypes = {
 	title: PropTypes.string,
-	requestingPlan: PropTypes.bool,
-	planNotFound: PropTypes.bool
+	loading: PropTypes.bool,
+	notFound: PropTypes.bool
 }
 
 export default connect( ( state ) => {
 	const planId = getPlanId( state );
+	const plan = getPlan( state, planId );
 	return {
-		title: get( getPlan( state, planId ), 'title', '' ),
-		requestingPlan: isRequestingPlan( state, planId ),
-		planNotFound: isPlanNotFound( state, planId )
+		title: get( plan, 'title', '' ),
+		loading: ! plan,
+		notFound: isPlanNotFound( state, planId )
 	};
 } )( PlanPageHeader );

@@ -12,12 +12,11 @@ import get from 'lodash/object/get';
  */
 
 import QueryPlan from 'components/query-plan';
-import { isRequestingPlan } from 'state/plans/selectors';
 import { getPlan } from 'state/plans/selectors';
 
-function PlanName( { name, planId, requestingPlan } ) {
+function PlanName( { name, planId, loading } ) {
 	const classes = classNames( 'plan-name', {
-		'is-loading': requestingPlan
+		'is-loading': loading
 	} );
 
 	return (
@@ -31,12 +30,13 @@ function PlanName( { name, planId, requestingPlan } ) {
 PlanName.propTypes = {
 	name: PropTypes.string,
 	planId: PropTypes.string,
-	requestingPlan: PropTypes.bool
+	loading: PropTypes.bool
 };
 
 export default connect( ( state, ownProps ) => {
+	const plan = getPlan( state, ownProps.planId );
 	return {
-		name: get( getPlan( state, ownProps.planId ), 'title', '' ),
-		requestingPlan: isRequestingPlan( state, ownProps.planId )
+		name: get( plan, 'title', '' ),
+		loading: ! plan
 	}
 } )( PlanName );
