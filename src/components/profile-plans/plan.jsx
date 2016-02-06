@@ -10,18 +10,16 @@ import { connect } from 'react-redux';
  * Internal dependencies
  */
 
-import { getPlan } from 'state/plans/selectors';
 import { removePlanFromProfile } from 'state/profile/actions';
 import { getProfilePlanProgress } from 'state/profile/selectors';
-import QueryPlan from 'components/query-plan';
+import PlanName from 'components/plan-name';
 import Button from 'components/button';
 
-function ProfilePlan( { planId, workout, plan, removePlanFromProfile } ) {
+function ProfilePlan( { planId, workout, removePlanFromProfile } ) {
 	return (
 		<div className="profile-plans__plan">
-			<QueryPlan planId={ planId } />
 			<span className="profile-plans__plan-name">
-				{ plan ? plan.title : '' }
+				<PlanName planId={ planId } />
 			</span>
 			<nav className="profile-plans__plan-actions">
 				<Button success to={ `plan/${ planId }/workout/${ workout }` }>
@@ -36,13 +34,11 @@ function ProfilePlan( { planId, workout, plan, removePlanFromProfile } ) {
 }
 
 ProfilePlan.propTypes = {
-	planId: PropTypes.string.isRequired,
-	plan: PropTypes.object
+	planId: PropTypes.string.isRequired
 };
 
 export default connect( ( state, ownProps ) => {
 	return {
-		plan: getPlan( state, ownProps.planId ),
 		workout: getProfilePlanProgress( state, ownProps.planId )
 	};
 }, ( dispatch ) => {
