@@ -30,7 +30,8 @@ function ProfilePlans( { profile } ) {
 				return (
 					<ProfilePlan
 						key={ plan }
-						planId={ plan } />
+						planId={ plan }
+						workout={ profile.progress[ plan ] } />
 				);
 			} ) }
 		</Block>

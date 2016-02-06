@@ -15,7 +15,7 @@ import { removePlanFromProfile } from 'state/profile/actions';
 import QueryPlan from 'components/query-plan';
 import Button from 'components/button';
 
-function ProfilePlan( { planId, plan, removePlanFromProfile } ) {
+function ProfilePlan( { planId, workout, plan, removePlanFromProfile } ) {
 	return (
 		<div className="profile-plans__plan">
 			<QueryPlan planId={ planId } />
@@ -23,7 +23,7 @@ function ProfilePlan( { planId, plan, removePlanFromProfile } ) {
 				{ plan ? plan.title : '' }
 			</span>
 			<nav className="profile-plans__plan-actions">
-				<Button success to={ `plan/${ planId }` }>
+				<Button success to={ `plan/${ planId }/workout/${ workout }` }>
 					Resume
 				</Button>
 				<Button danger onClick={ () => removePlanFromProfile( planId ) }>

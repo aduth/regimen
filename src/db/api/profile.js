@@ -13,7 +13,8 @@ export async function getProfileOrDefault() {
 		if ( 404 === error.status ) {
 			return {
 				_id: 'profile',
-				plans: []
+				plans: [],
+				progress: {}
 			};
 		}
 

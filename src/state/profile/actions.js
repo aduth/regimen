@@ -6,6 +6,7 @@ import { getDatabase } from 'db';
 import { getProfileOrDefault } from 'db/api/profile';
 import {
 	PROFILE_ADD_PLAN,
+	PROFILE_PLAN_PROGRESS_SET,
 	PROFILE_REMOVE_PLAN,
 	PROFILE_REQUEST,
 	PROFILE_REQUEST_SUCCESS,
@@ -46,6 +47,26 @@ export function updateProfileFailure( error ) {
 	return {
 		type: PROFILE_UPDATE_FAILURE,
 		error
+	};
+}
+
+export function setProfilePlanProgress( planId, workout ) {
+	return async ( dispatch ) => {
+		dispatch( {
+			type: PROFILE_PLAN_PROGRESS_SET,
+			payload: { planId, workout }
+		} );
+
+		const db = getDatabase( 'profile' );
+		try {
+			let profile = await getProfileOrDefault();
+			profile.progress[ planId ] = workout;
+			await db.put( profile );
+			profile = await db.get( 'profile' );
+			dispatch( updateProfileSuccess( profile ) );
+		} catch ( error ) {
+			dispatch( updateProfileFailure( error ) );
+		}
 	};
 }
 

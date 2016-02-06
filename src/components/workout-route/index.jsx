@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
  */
 
 import { setWorkoutRoute } from 'state/routing/actions';
+import { setProfilePlanProgress } from 'state/profile/actions';
 import { setWorkout } from 'state/ui/actions';
 import Content from 'components/content';
 import Workout from 'components/workout';
@@ -30,10 +31,11 @@ class WorkoutRoute extends Component {
 	}
 
 	setWorkoutState() {
-		const { params, setWorkout, setWorkoutRoute } = this.props;
+		const { params, setWorkout, setProfilePlanProgress, setWorkoutRoute } = this.props;
 		const workout = parseInt( this.props.params.workout, 10 );
 
 		if ( workout > 0 ) {
+			setProfilePlanProgress( params.planId, workout );
 			setWorkout( workout );
 		} else {
 			setWorkoutRoute( params.planId, 1 );
@@ -54,6 +56,7 @@ class WorkoutRoute extends Component {
 
 export default connect( null, ( dispatch ) => {
 	return bindActionCreators( {
+		setProfilePlanProgress,
 		setWorkout,
 		setWorkoutRoute
 	}, dispatch );

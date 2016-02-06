@@ -11,6 +11,7 @@ import without from 'lodash/array/without';
 
 import {
 	PROFILE_ADD_PLAN,
+	PROFILE_PLAN_PROGRESS_SET,
 	PROFILE_REMOVE_PLAN,
 	PROFILE_REQUEST,
 	PROFILE_REQUEST_SUCCESS,
@@ -24,6 +25,24 @@ function fetching( state = false, action ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_REQUEST_FAILURE:
 			state = PROFILE_REQUEST === action.type;
+			break;
+	}
+
+	return state;
+}
+
+function progress( state = {}, action ) {
+	switch ( action.type ) {
+		case PROFILE_REQUEST_SUCCESS:
+		case PROFILE_UPDATE_SUCCESS:
+			state = action.payload.profile.progress;
+			break;
+
+		case PROFILE_PLAN_PROGRESS_SET:
+			const { planId, workout } = action;
+			state = Object.assign( {}, state, {
+				[ planId ]: workout
+			} );
 			break;
 	}
 
@@ -57,5 +76,6 @@ function profile( state = null, action ) {
 
 export default combineReducers( {
 	fetching,
+	progress,
 	profile
 } );
