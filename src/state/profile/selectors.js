@@ -2,6 +2,10 @@ export function isRequestingProfile( state ) {
 	return state.profile.fetching;
 }
 
-export function getProfile( state ) {
-	return state.profile.profile;
+export function getProfilePlans( state ) {
+	return state.profile.plans;
+}
+
+export function getProfilePlanProgress( state, planId ) {
+	return state.profile.progress[ planId ];
 }

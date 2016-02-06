@@ -10,28 +10,27 @@ import classNames from 'classnames';
  * Internal dependencies
  */
 
-import { getProfile } from 'state/profile/selectors';
+import { isRequestingProfile, getProfilePlans } from 'state/profile/selectors';
 import Block from 'components/block';
 import ProfilePlan from './plan';
 
-function ProfilePlans( { profile } ) {
+function ProfilePlans( { requestingProfile, profilePlans } ) {
 	const classes = classNames( 'profile-plans', {
-		'is-loading': ! profile
+		'is-loading': requestingProfile
 	} );
 
 	return (
 		<Block title="Your Plans" className={ classes }>
-			{ ( ! profile || ! profile.plans.length ) && (
+			{ ( ! profilePlans.length ) && (
 				<div className="profile-plans__empty">
 					You don't have any plans yet!
 				</div>
 			) }
-			{ profile && profile.plans.map( ( plan ) => {
+			{ profilePlans.map( ( plan ) => {
 				return (
 					<ProfilePlan
 						key={ plan }
-						planId={ plan }
-						workout={ profile.progress[ plan ] } />
+						planId={ plan } />
 				);
 			} ) }
 		</Block>
@@ -44,6 +43,7 @@ ProfilePlans.propTypes = {
 
 export default connect( ( state ) => {
 	return {
-		profile: getProfile( state )
+		requestingProfile: isRequestingProfile( state ),
+		profilePlans: getProfilePlans( state )
 	};
 } )( ProfilePlans );

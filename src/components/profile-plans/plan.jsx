@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 
 import { getPlan } from 'state/plans/selectors';
 import { removePlanFromProfile } from 'state/profile/actions';
+import { getProfilePlanProgress } from 'state/profile/selectors';
 import QueryPlan from 'components/query-plan';
 import Button from 'components/button';
 
@@ -41,7 +42,8 @@ ProfilePlan.propTypes = {
 
 export default connect( ( state, ownProps ) => {
 	return {
-		plan: getPlan( state, ownProps.planId )
+		plan: getPlan( state, ownProps.planId ),
+		workout: getProfilePlanProgress( state, ownProps.planId )
 	};
 }, ( dispatch ) => {
 	return bindActionCreators( {

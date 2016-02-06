@@ -54,25 +54,20 @@ function progress( state = {}, action ) {
 	return state;
 }
 
-function profile( state = null, action ) {
+function plans( state = [], action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
-			state = action.payload.profile;
+			state = action.payload.profile.plans;
 			break;
 
 		case PROFILE_PLAN_ADD:
-			if ( state ) {
-				const { planId } = action.payload;
-				state.plans = [ planId ].concat( without( state.plans, planId ) );
-			}
+			const { planId } = action.payload;
+			state.plans = [ planId ].concat( without( state.plans, planId ) );
 			break;
 
 		case PROFILE_PLAN_REMOVE:
-			if ( state ) {
-				const { planId } = action.payload;
-				state.plans = without( state.plans, planId );
-			}
+			state.plans = without( state.plans, action.payload.planId );
 			break;
 	}
 
@@ -82,5 +77,5 @@ function profile( state = null, action ) {
 export default combineReducers( {
 	fetching,
 	progress,
-	profile
+	plans
 } );
