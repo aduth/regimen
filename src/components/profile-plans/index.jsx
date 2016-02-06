@@ -14,19 +14,19 @@ import { isRequestingProfile, getProfilePlans } from 'state/profile/selectors';
 import Block from 'components/block';
 import ProfilePlan from './plan';
 
-function ProfilePlans( { requestingProfile, profilePlans } ) {
+function ProfilePlans( { requesting, plans } ) {
 	const classes = classNames( 'profile-plans', {
-		'is-loading': requestingProfile
+		'is-loading': requesting
 	} );
 
 	return (
 		<Block title="Your Plans" className={ classes }>
-			{ ( ! profilePlans.length ) && (
+			{ ( ! plans.length ) && (
 				<div className="profile-plans__empty">
 					You don't have any plans yet!
 				</div>
 			) }
-			{ profilePlans.map( ( plan ) => {
+			{ plans.map( ( plan ) => {
 				return (
 					<ProfilePlan
 						key={ plan }
@@ -38,12 +38,13 @@ function ProfilePlans( { requestingProfile, profilePlans } ) {
 }
 
 ProfilePlans.propTypes = {
-	profile: PropTypes.object
+	requesting: PropTypes.bool,
+	plans: PropTypes.arrayOf( PropTypes.string )
 };
 
 export default connect( ( state ) => {
 	return {
-		requestingProfile: isRequestingProfile( state ),
-		profilePlans: getProfilePlans( state )
+		requesting: isRequestingProfile( state ),
+		plans: getProfilePlans( state )
 	};
 } )( ProfilePlans );
