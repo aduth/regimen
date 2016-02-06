@@ -13,7 +13,7 @@ var common = require( './webpack.config.common' );
 
 module.exports = assign( {}, common, {
 	entry: __dirname + '/src/index.js',
-	module: {
+	module: assign( {}, common.module, {
 		loaders: [
 			{
 				test: /\.jsx?$/,
@@ -25,7 +25,7 @@ module.exports = assign( {}, common, {
 				loader: ExtractTextPlugin.extract( 'raw!autoprefixer!sass?outputStyle=compressed' )
 			}
 		]
-	},
+	} ),
 	plugins: common.plugins.concat( [
 		new webpack.optimize.UglifyJsPlugin( {
 			compress: {

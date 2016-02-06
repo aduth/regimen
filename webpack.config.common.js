@@ -15,6 +15,9 @@ module.exports = {
 			__dirname + '/src'
 		]
 	},
+	module: {
+		noParse: /lie\.js/
+	},
 	plugins: [
 		new HtmlWebpackPlugin( {
 			title: 'Regimen',

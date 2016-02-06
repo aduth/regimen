@@ -19,7 +19,7 @@ module.exports = assign( {}, common, {
 		__dirname + '/src/index.js'
 	],
 	devtool: 'source-map',
-	module: {
+	module: assign( {}, common.module, {
 		loaders: [
 			{
 				test: /\.jsx?$/,
@@ -31,7 +31,7 @@ module.exports = assign( {}, common, {
 				loaders: [ 'style', 'css', 'autoprefixer', 'sass' ]
 			}
 		]
-	},
+	} ),
 	plugins: common.plugins.concat( [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
