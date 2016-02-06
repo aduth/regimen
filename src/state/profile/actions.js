@@ -5,9 +5,9 @@
 import { getDatabase } from 'db';
 import { getProfileOrDefault } from 'db/api/profile';
 import {
-	PROFILE_ADD_PLAN,
+	PROFILE_PLAN_ADD,
 	PROFILE_PLAN_PROGRESS_SET,
-	PROFILE_REMOVE_PLAN,
+	PROFILE_PLAN_REMOVE,
 	PROFILE_REQUEST,
 	PROFILE_REQUEST_SUCCESS,
 	PROFILE_REQUEST_FAILURE,
@@ -73,7 +73,7 @@ export function setProfilePlanProgress( planId, workout ) {
 export function addPlanToProfile( planId ) {
 	return async ( dispatch ) => {
 		dispatch( {
-			type: PROFILE_ADD_PLAN,
+			type: PROFILE_PLAN_ADD,
 			payload: { planId }
 		} );
 
@@ -103,7 +103,7 @@ export function addPlanToProfile( planId ) {
 export function removePlanFromProfile( planId ) {
 	return async ( dispatch ) => {
 		dispatch( {
-			type: PROFILE_REMOVE_PLAN,
+			type: PROFILE_PLAN_REMOVE,
 			payload: { planId }
 		} );
 

@@ -10,9 +10,9 @@ import without from 'lodash/array/without';
  */
 
 import {
-	PROFILE_ADD_PLAN,
+	PROFILE_PLAN_ADD,
 	PROFILE_PLAN_PROGRESS_SET,
-	PROFILE_REMOVE_PLAN,
+	PROFILE_PLAN_REMOVE,
 	PROFILE_REQUEST,
 	PROFILE_REQUEST_SUCCESS,
 	PROFILE_REQUEST_FAILURE,
@@ -56,14 +56,14 @@ function profile( state = null, action ) {
 			state = action.payload.profile;
 			break;
 
-		case PROFILE_ADD_PLAN:
+		case PROFILE_PLAN_ADD:
 			if ( state ) {
 				const { planId } = action.payload;
 				state.plans = [ planId ].concat( without( state.plans, planId ) );
 			}
 			break;
 
-		case PROFILE_REMOVE_PLAN:
+		case PROFILE_PLAN_REMOVE:
 			if ( state ) {
 				const { planId } = action.payload;
 				state.plans = without( state.plans, planId );
