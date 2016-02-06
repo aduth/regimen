@@ -11,6 +11,8 @@ import indexBy from 'lodash/collection/indexBy';
 
 import {
 	DATABASES_RECEIVE_SYNC_CHANGE,
+	PLAN_EDIT,
+	PLAN_RECEIVE,
 	PLAN_REQUEST,
 	PLAN_REQUEST_SUCCESS,
 	PLAN_REQUEST_FAILURE
@@ -47,7 +49,7 @@ function errors( state = {}, action ) {
 
 function items( state = {}, action ) {
 	switch ( action.type ) {
-		case PLAN_REQUEST_SUCCESS:
+		case PLAN_RECEIVE:
 			const { plan } = action.payload;
 			state = {
 				...state,
@@ -64,6 +66,17 @@ function items( state = {}, action ) {
 			state = {
 				...state,
 				...indexBy( change.docs, '_id' )
+			};
+			break;
+
+		case PLAN_EDIT:
+			const { planId, attributes } = action.payload;
+			state = {
+				...state,
+				[ planId ]: {
+					...state[ planId ],
+					...attributes
+				}
 			};
 			break;
 	}

@@ -1,3 +1,13 @@
 .plan-page-header.is-loading {
 	@include loading-pulse-text( darken( $brand-primary, 5% ) );
 }
+
+.plan-page-header .editable-label__input {
+	&::selection {
+		background: rgba( white, 0.4 );
+	}
+
+	&::-moz-selection {
+		background: rgba( white, 0.4 );
+	}
+}
