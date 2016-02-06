@@ -13,6 +13,11 @@ var common = require( './webpack.config.common' );
 
 module.exports = assign( {}, common, {
 	entry: __dirname + '/src/index.js',
+	output: {
+		path: __dirname + '/www',
+		filename: 'app-[hash].js',
+		publicPath: '/'
+	},
 	module: assign( {}, common.module, {
 		loaders: [
 			{
@@ -32,7 +37,7 @@ module.exports = assign( {}, common, {
 				warnings: false
 			}
 		} ),
-		new ExtractTextPlugin( 'main.css', {
+		new ExtractTextPlugin( 'main-[hash].css', {
 			allChunks: true
 		} ),
 		new webpack.DefinePlugin( {
