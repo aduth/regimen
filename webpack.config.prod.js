@@ -3,6 +3,7 @@
  */
 var webpack = require( 'webpack' ),
 	ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
+	OfflinePlugin = require( 'offline-plugin' ),
 	assign = require( 'lodash/object/assign' );
 
 /**
@@ -43,6 +44,9 @@ module.exports = assign( {}, common, {
 		new webpack.DefinePlugin( {
 			__DEV__: false,
 			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
+		} ),
+		new OfflinePlugin( {
+			updateStrategy: 'hash'
 		} )
 	] )
 } );

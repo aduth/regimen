@@ -6,6 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import { createHistory } from 'history';
+import { install as installOfflineRuntime } from 'offline-plugin/runtime';
 
 /**
  * Internal dependencies
@@ -29,6 +30,12 @@ import 'assets/stylesheets/main.scss';
 const history = createHistory();
 const store = createReduxStore( history );
 initializeRemoteSync( store );
+
+/**
+ * Offline capability
+ */
+
+installOfflineRuntime();
 
 /**
  * Render
