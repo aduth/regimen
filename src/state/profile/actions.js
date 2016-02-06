@@ -118,6 +118,7 @@ export function removePlanFromProfile( planId ) {
 			}
 
 			profile.plans.splice( existingIndex, 1 );
+			delete profile.progress[ planId ];
 			await db.put( profile );
 			profile = await db.get( 'profile' );
 			dispatch( updateProfileSuccess( profile ) );

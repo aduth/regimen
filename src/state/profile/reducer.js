@@ -3,6 +3,7 @@
  */
 
 import { combineReducers } from 'redux';
+import omit from 'lodash/object/omit';
 import without from 'lodash/array/without';
 
 /**
@@ -43,6 +44,10 @@ function progress( state = {}, action ) {
 			state = Object.assign( {}, state, {
 				[ planId ]: workout
 			} );
+			break;
+
+		case PROFILE_PLAN_REMOVE:
+			state = omit( state, action.planId );
 			break;
 	}
 
