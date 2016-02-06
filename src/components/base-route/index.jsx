@@ -2,21 +2,10 @@
  * External dependencies
  */
 
-import React, { PropTypes } from 'react';
-
-/**
- * Internal dependencies
- */
-
-import QueryProfile from 'components/query-profile';
+import { PropTypes } from 'react';
 
 function BaseRoute( { children } ) {
-	return (
-		<div>
-			<QueryProfile />
-			{ children }
-		</div>
-	);
+	return children;
 }
 
 BaseRoute.propTypes = {
