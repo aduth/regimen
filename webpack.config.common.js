@@ -23,7 +23,7 @@ module.exports = {
 			title: 'Regimen',
 			templateContent: '' +
 				'<!DOCTYPE html>' +
-				'<html>' +
+				'<html manifest="/appcache/manifest.appcache">' +
 				'<head>' +
 				'	<meta name="viewport" content="width=device-width">' +
 				'	<title>Regimen</title>' +
