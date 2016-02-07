@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/aduth/regimen",
   "dependencies": {
-    "autoprefixer-loader": "^3.1.0",
+    "autoprefixer": "^6.3.1",
     "babel-core": "^6.3.26",
     "babel-eslint": "^5.0.0-beta6",
     "babel-loader": "^6.2.0",
@@ -48,6 +48,7 @@
     "lodash": "^4.2.1",
     "node-sass": "^3.4.2",
     "offline-plugin": "^2.0.3",
+    "postcss-loader": "^0.8.0",
     "pouchdb": "^5.1.0",
     "pouchdb-validation": "^1.2.1",
     "raw-loader": "^0.5.1",

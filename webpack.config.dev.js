@@ -28,7 +28,7 @@ module.exports = assign( {}, common, {
 			},
 			{
 				test: /\.scss$/,
-				loaders: [ 'style', 'css', 'autoprefixer', 'sass' ]
+				loaders: [ 'style', 'css', 'postcss', 'sass' ]
 			}
 		]
 	} ),

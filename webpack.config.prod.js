@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+
 var webpack = require( 'webpack' ),
 	ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
 	OfflinePlugin = require( 'offline-plugin' ),
@@ -23,7 +24,7 @@ module.exports = assign( {}, common, {
 			},
 			{
 				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract( 'raw!autoprefixer!sass?outputStyle=compressed' )
+				loader: ExtractTextPlugin.extract( 'raw!postcss!sass?outputStyle=compressed' )
 			}
 		]
 	} ),

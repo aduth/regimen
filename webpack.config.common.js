@@ -1,7 +1,9 @@
 /**
  * External dependencies
  */
-var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+
+var HtmlWebpackPlugin = require( 'html-webpack-plugin' ),
+	autoprefixer = require( 'autoprefixer' );
 
 module.exports = {
 	output: {
@@ -50,6 +52,9 @@ module.exports = {
 				'</html>'
 		} )
 	],
+	postcss: function() {
+		return [ autoprefixer ];
+	},
 	node: {
 		console: true,
 		fs: 'empty',
