@@ -6,7 +6,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import get from 'lodash/object/get';
+import get from 'lodash/get';
 
 /**
  * Internal dependencies

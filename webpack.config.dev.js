@@ -3,7 +3,7 @@
  */
 
 var webpack = require( 'webpack' ),
-	assign = require( 'lodash/object/assign' );
+	assign = require( 'lodash/assign' );
 
 /**
  * Internal dependencies

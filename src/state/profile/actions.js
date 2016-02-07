@@ -1,8 +1,8 @@
 /**
  * External dependencies
  */
-import includes from 'lodash/collection/includes';
-import without from 'lodash/array/without';
+import includes from 'lodash/includes';
+import without from 'lodash/without';
 
 /**
  * Internal dependencies

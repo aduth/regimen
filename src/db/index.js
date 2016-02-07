@@ -4,7 +4,7 @@
 
 import PouchDB from 'pouchdb';
 import PouchDBValidation from 'pouchdb-validation';
-import each from 'lodash/collection/each';
+import each from 'lodash/each';
 
 /**
  * Internal dependencies

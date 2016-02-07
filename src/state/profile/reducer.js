@@ -3,8 +3,8 @@
  */
 
 import { combineReducers } from 'redux';
-import omit from 'lodash/object/omit';
-import without from 'lodash/array/without';
+import omit from 'lodash/omit';
+import without from 'lodash/without';
 
 /**
  * Internal dependencies

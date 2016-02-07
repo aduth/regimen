@@ -3,7 +3,7 @@
  */
 
 import { combineReducers } from 'redux';
-import indexBy from 'lodash/collection/indexBy';
+import keyBy from 'lodash/keyBy';
 
 /**
  * Internal dependencies
@@ -65,7 +65,7 @@ function items( state = {}, action ) {
 
 			state = {
 				...state,
-				...indexBy( change.docs, '_id' )
+				...keyBy( change.docs, '_id' )
 			};
 			break;
 
