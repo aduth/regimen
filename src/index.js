@@ -35,7 +35,9 @@ initializeRemoteSync( store );
  * Offline capability
  */
 
-installOfflineRuntime();
+if ( ! __DEV__ ) {
+	installOfflineRuntime();
+}
 
 /**
  * Render
