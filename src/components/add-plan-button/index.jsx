@@ -14,7 +14,7 @@ import Icon from 'components/icon';
 function AddPlanButton() {
 	return (
 		<div className="add-plan-button">
-			<Link to="plan/new" className="add-plan-button__link">
+			<Link to="/plan/new" className="add-plan-button__link">
 				<span className="add-plan-button__circle">
 					<Icon icon="plus" />
 				</span>
