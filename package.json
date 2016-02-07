@@ -5,7 +5,7 @@
   "description": "A workout progression planning web app",
   "scripts": {
     "dev": "NODE_PATH=src/ node webpack.server.js",
-    "build": "NODE_PATH=src/ NODE_ENV=production rimraf www && webpack --config webpack.config.prod.js",
+    "build": "NODE_PATH=src/ NODE_ENV=production webpack --config webpack.config.prod.js",
     "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi",
     "start": "node server.js"
   },
@@ -61,7 +61,6 @@
     "redux-router": "^1.0.0-beta7",
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.3",
-    "rimraf": "^2.4.4",
     "sass-loader": "^3.1.2",
     "serve-static": "^1.10.1",
     "shortid": "^2.2.4",

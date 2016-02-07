@@ -26,10 +26,17 @@ module.exports = {
 				'<html manifest="/appcache/manifest.appcache">' +
 				'<head>' +
 				'	<meta name="viewport" content="width=device-width">' +
+				'	<meta name="theme-color" content="#63bdd4">' +
+				'	<meta name="apple-mobile-web-app-capable" content="yes">' +
 				'	<title>Regimen</title>' +
 				'	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic|Open+Sans:400,400italic,700,700italic">' +
 				'	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">' +
 				'	<link rel="dns-prefetch" href="https://regimenapp.cloudant.com">' +
+				'	<link rel="manifest" href="/manifest.json">' +
+				'	<link rel="icon" href="/favicon.ico" type="image/x-icon">' +
+				'	<link rel="apple-touch-icon" href="/images/icon-48.png">' +
+				'	<link rel="apple-touch-icon" sizes="96x96" href="/images/icon-96.png">' +
+				'	<link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png">' +
 				'	{% for ( var css in o.htmlWebpackPlugin.files.css ) { %}' +
 				'	<link rel="stylesheet" href="{%= o.htmlWebpackPlugin.files.css[ css ] %}">' +
 				'	{% } %}' +

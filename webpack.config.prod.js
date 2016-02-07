@@ -41,7 +41,26 @@ module.exports = assign( {}, common, {
 			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
 		} ),
 		new OfflinePlugin( {
-			updateStrategy: 'hash'
+			updateStrategy: 'hash',
+			caches: {
+				main: [ ':rest:' ],
+				additional: [
+					'/manifest.json',
+					'/favicon.ico',
+					'/images/icon-48.png',
+					'/images/icon-96.png',
+					'/images/icon-144.png',
+					'/images/icon-192.png'
+				]
+			},
+			externals: [
+				'/manifest.json',
+				'/favicon.ico',
+				'/images/icon-48.png',
+				'/images/icon-96.png',
+				'/images/icon-144.png',
+				'/images/icon-192.png'
+			]
 		} )
 	] )
 } );
