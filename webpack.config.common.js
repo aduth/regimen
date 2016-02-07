@@ -4,6 +4,11 @@
 var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
 module.exports = {
+	output: {
+		path: __dirname + '/www',
+		filename: 'app-[hash].js',
+		publicPath: '/'
+	},
 	resolve: {
 		extensions: [ '', '.json', '.js', '.jsx' ],
 		root: [

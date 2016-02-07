@@ -14,11 +14,6 @@ var common = require( './webpack.config.common' );
 
 module.exports = assign( {}, common, {
 	entry: __dirname + '/src/index.js',
-	output: {
-		path: __dirname + '/www',
-		filename: 'app-[hash].js',
-		publicPath: '/'
-	},
 	module: assign( {}, common.module, {
 		loaders: [
 			{
