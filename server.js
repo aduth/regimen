@@ -24,7 +24,23 @@ var port = process.env.PORT || 3000;
  */
 
 app.use( compression() );
-app.use( express.static( __dirname + '/www' ) );
+app.use( express.static( __dirname + '/www', {
+	setHeaders: function( response ) {
+		var maxAge;
+
+		if ( 0 === response.req.path.indexOf( '/dist/' ) ) {
+			maxAge = 31536000;
+		}
+
+		if ( /\/(favicon\.ico$|images\/)/.test( response.req.path ) ) {
+			maxAge = 86400;
+		}
+
+		if ( maxAge ) {
+			response.setHeader( 'Cache-Control', 'public, max-age=' + maxAge );
+		}
+	}
+} ) );
 
 /**
  * Routes

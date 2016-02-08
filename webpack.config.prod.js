@@ -34,7 +34,7 @@ module.exports = assign( {}, common, {
 				warnings: false
 			}
 		} ),
-		new ExtractTextPlugin( 'app-[hash].css', {
+		new ExtractTextPlugin( 'dist/app-[hash].css', {
 			allChunks: true
 		} ),
 		new webpack.DefinePlugin( {
