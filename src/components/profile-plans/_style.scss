@@ -23,6 +23,19 @@
 	padding: 4px 0;
 }
 
+.profile-plans__plan-actions {
+	flex-shrink: 0;
+}
+
 .profile-plans__plan-actions .button {
-	margin-left: 8px;
+	padding-left: 16px;
+	padding-right: 16px;
+
+	&:not( :first-child ) {
+		margin-left: 8px;
+	}
+}
+
+.profile-plans__plan-actions .button .icon {
+	color: white;
 }
