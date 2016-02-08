@@ -24,7 +24,7 @@ var port = process.env.PORT || 3000;
  */
 
 app.use( compression() );
-app.use( express.static( __dirname + '/www', {
+app.use( express.static( __dirname + '/public', {
 	setHeaders: function( response ) {
 		var maxAge;
 
@@ -47,7 +47,7 @@ app.use( express.static( __dirname + '/www', {
  */
 
 app.get( '*', function( request, response ) {
-	response.sendFile( __dirname + '/www/index.html' );
+	response.sendFile( __dirname + '/public/index.html' );
 } );
 
 /**

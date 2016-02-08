@@ -3,7 +3,7 @@ var webpack = require( 'webpack' ),
 	config = require( './webpack.config.dev' );
 
 new WebpackDevServer( webpack( config ), {
-	contentBase: __dirname + '/www',
+	contentBase: __dirname + '/public',
 	hot: true,
 	historyApiFallback: true,
 	stats: {

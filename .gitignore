@@ -5,8 +5,8 @@
 node_modules
 
 # Generated
-/www/appcache
-/www/dist
-/www/index.html
-/www/sw.js
+/public/appcache
+/public/dist
+/public/index.html
+/public/sw.js
 .sass-cache

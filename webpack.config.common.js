@@ -7,7 +7,7 @@ var HtmlWebpackPlugin = require( 'html-webpack-plugin' ),
 
 module.exports = {
 	output: {
-		path: __dirname + '/www',
+		path: __dirname + '/public',
 		filename: 'dist/app-[hash].js',
 		publicPath: '/'
 	},
