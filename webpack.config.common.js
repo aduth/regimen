@@ -25,7 +25,9 @@ module.exports = {
 			title: 'Regimen',
 			templateContent: '' +
 				'<!DOCTYPE html>' +
-				'<html manifest="/appcache/manifest.appcache">' +
+				( 'production' === process.env.NODE_ENV ?
+					'<html manifest="/appcache/manifest.appcache">' :
+					'<html>' ) +
 				'<head>' +
 				'	<meta name="viewport" content="width=device-width">' +
 				'	<meta name="description" content="Regimen helps with your workout progression planning. Supporting many popular routines, achieve your goals with a simple-to-use interface.">' +
