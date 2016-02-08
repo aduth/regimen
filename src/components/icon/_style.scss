@@ -1,3 +1,7 @@
 .icon {
 	color: $font-color-icon;
 }
+
+.icon__screen-reader-text {
+	@include screen-reader-text;
+}
