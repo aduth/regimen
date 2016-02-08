@@ -33,6 +33,7 @@ module.exports = {
 				'	<meta name="description" content="Regimen helps with your workout progression planning. Supporting many popular routines, achieve your goals with a simple-to-use interface.">' +
 				'	<meta name="theme-color" content="#63bdd4">' +
 				'	<meta name="apple-mobile-web-app-capable" content="yes">' +
+				'	<meta name="apple-mobile-web-app-title" content="Regimen">' +
 				'	<title>Regimen</title>' +
 				'	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic|Open+Sans:400,400italic,700,700italic">' +
 				'	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">' +
