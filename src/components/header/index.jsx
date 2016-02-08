@@ -18,7 +18,10 @@ import HeaderOptions from 'components/header-options';
 
 function Header( { title, toggleHeaderOptions } ) {
 	const classes = classNames( 'header', {
-		'is-ios': /(iPad|iPhone|iPod)/.test( navigator.userAgent )
+		'is-ios-standalone': (
+			navigator.standalone &&
+			/(iPad|iPhone|iPod)/.test( navigator.userAgent )
+		)
 	} );
 
 	return (
