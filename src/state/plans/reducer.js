@@ -4,6 +4,8 @@
 
 import { combineReducers } from 'redux';
 import keyBy from 'lodash/keyBy';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
 
 /**
  * Internal dependencies
@@ -41,6 +43,13 @@ function errors( state = {}, action ) {
 				...state,
 				[ id ]: [ ...( state[ id ] || [] ), action.error ]
 			};
+			break;
+
+		case DATABASES_RECEIVE_SYNC_CHANGE:
+			const { database, change } = action.payload;
+			if ( 'plans' === database ) {
+				state = omit( state, map( change.docs, '_id' ) );
+			}
 			break;
 	}
 
