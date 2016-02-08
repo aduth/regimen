@@ -4,6 +4,21 @@
 	background-color: $brand-primary;
 	text-align: center;
 	color: white;
+
+	&.is-ios {
+		position: relative;
+		padding-top: 20px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: 20px;
+			background-color: darken( $brand-primary, 20% );
+		}
+	}
 }
 
 .header,
