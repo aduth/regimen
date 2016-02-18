@@ -3,7 +3,6 @@
  */
 
 import React, { PropTypes } from 'react';
-import classNames from 'classnames';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,15 +16,8 @@ import Icon from 'components/icon';
 import HeaderOptions from 'components/header-options';
 
 function Header( { title, toggleHeaderOptions } ) {
-	const classes = classNames( 'header', {
-		'is-ios-standalone': (
-			navigator.standalone &&
-			/(iPad|iPhone|iPod)/.test( navigator.userAgent )
-		)
-	} );
-
 	return (
-		<header className={ classes }>
+		<header className="header">
 			<Link to="/" className="header__home">
 				<Icon icon="home" />
 			</Link>

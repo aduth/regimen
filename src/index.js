@@ -16,6 +16,7 @@ import { createReduxStore } from 'state';
 import routes from 'routes';
 import Root from 'components/root';
 import { initializeRemoteSync } from 'db';
+import iosStandalone from 'lib/ios-standalone';
 
 /**
  * Stylesheets
@@ -38,6 +39,12 @@ initializeRemoteSync( store );
 if ( ! __DEV__ ) {
 	installOfflineRuntime();
 }
+
+/**
+ * Preserve iOS history
+ */
+
+iosStandalone( store );
 
 /**
  * Render
