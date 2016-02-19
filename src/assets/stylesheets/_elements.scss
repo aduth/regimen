@@ -25,6 +25,7 @@ body {
 	line-height: 1.6;
 	color: $font-color-body;
 	-webkit-font-smoothing: antialiased;
+	touch-action: manipulation;
 }
 
 h1,
