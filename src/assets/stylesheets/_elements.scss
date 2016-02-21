@@ -78,3 +78,13 @@ button {
 	@include sans;
 	font-size: 1rem;
 }
+
+input:not( [type] ),
+input[type="text"],
+input[type="password"] {
+	@include reset-input;
+	font-size: 1rem;
+	padding: 2px 8px;
+	border-radius: $border-radius;
+	border: 1px solid $border-color;
+}

@@ -13,7 +13,14 @@
 	text-align: center;
 }
 
-.block__header,
-.block.is-padded .block__content {
+.block__header {
 	padding: 8px 12px;
+}
+
+.block.is-padded .block__content {
+	padding: 12px;
+}
+
+.block__content > p:first-child {
+	margin-top: 0;
 }

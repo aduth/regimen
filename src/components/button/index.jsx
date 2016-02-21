@@ -6,8 +6,8 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
 
-function Button( { success, danger, to, onClick, children } ) {
-	const classes = classNames( 'button', {
+function Button( { success, danger, type, to, onClick, className, children } ) {
+	const classes = classNames( 'button', className, {
 		'is-success': success,
 		'is-danger': danger
 	} );
@@ -19,8 +19,8 @@ function Button( { success, danger, to, onClick, children } ) {
 	} else {
 		element = 'button';
 		props = {
-			type: 'button',
 			className: classes,
+			type,
 			onClick
 		};
 	}
@@ -33,7 +33,12 @@ Button.propTypes = {
 	danger: PropTypes.bool,
 	to: PropTypes.string,
 	onClick: PropTypes.func,
+	className: PropTypes.string,
 	children: PropTypes.node
+};
+
+Button.defaultProps = {
+	type: 'button'
 };
 
 export default Button;
