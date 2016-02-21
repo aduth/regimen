@@ -59,7 +59,6 @@
     "react-redux": "^4.0.0",
     "react-router": "^1.0.3",
     "redux": "^3.0.4",
-    "redux-router": "^1.0.0-beta7",
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.3",
     "rimraf": "^2.5.1",
