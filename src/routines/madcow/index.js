@@ -1,4 +1,21 @@
+/**
+ * Internal dependencies
+ */
+
+import { roundToNearestPlate } from 'lib/weight';
 import { FocusTypes, ProgressionTypes, Weekdays, ParameterTypes, Exercises } from 'routines/constants';
+
+/**
+ * Program Utility
+ */
+
+function getMax( testWeight, testReps, week, prWeek ) {
+	return ( ( ( testWeight / ( 1.0278 - ( 0.0278 * testReps ) ) ) * ( 1.0278 - ( 0.0278 * 5 ) ) ) * Math.pow( 1 / 1.025, prWeek - 1 ) ) * Math.pow( 1.025, week - 1 );
+}
+
+/**
+ * Program Constants
+ */
 
 export const name = 'Madcow 5x5';
 
@@ -36,6 +53,10 @@ export const form = [
 	}
 ];
 
+/**
+ * Program Generators
+ */
+
 export function exercises( workout ) {
 	workout = workout % weekdays.length;
 
@@ -64,34 +85,36 @@ export function exercises( workout ) {
 }
 
 export function sets( plan, workout, exercise ) {
-	const { squat5rm, bench5rm, row5rm, press5rm, deadlift5rm, prWeek, setIncrement, minPlateWeight } = plan.form;
-	const week = Math.floor( workout / weekdays.length );
+	const { prWeek, setIncrement, minPlateWeight } = plan.form;
+	const week = Math.floor( ( workout - 1 ) / weekdays.length ) + 1;
 	const weekday = weekdays[ ( workout - 1 ) % weekdays.length ];
 
 	switch ( exercise ) {
 		case Exercises.SQUAT:
+			const { testSquatWeight, testSquatReps } = plan.form;
+			const squatMax = getMax( testSquatWeight, testSquatReps, week, prWeek );
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
 					return [
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 4 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - setIncrement ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax, minPlateWeight )
 						}
 					];
 
@@ -99,19 +122,19 @@ export function sets( plan, workout, exercise ) {
 					return [
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 4 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						}
 					];
 
@@ -119,54 +142,57 @@ export function sets( plan, workout, exercise ) {
 					return [
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 4 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
-						},
-						{
-							reps: 8,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( squatMax * ( 1 - setIncrement ), minPlateWeight )
 						},
 						{
 							reps: 3,
-							weight: Math.round( ( squat5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( getMax( testSquatWeight, testSquatReps, week + 1, prWeek ), minPlateWeight )
+						},
+						{
+							reps: 8,
+							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						}
 					];
 			}
 
 		case Exercises.BENCH_PRESS:
+			const { testBenchWeight, testBenchReps } = plan.form;
+			const benchMax = getMax( testBenchWeight, testBenchReps, week, prWeek );
+
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
 					return [
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 4 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - setIncrement ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax, minPlateWeight )
 						}
 					];
 
@@ -174,54 +200,57 @@ export function sets( plan, workout, exercise ) {
 					return [
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 4 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
-						},
-						{
-							reps: 8,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( benchMax * ( 1 - setIncrement ), minPlateWeight )
 						},
 						{
 							reps: 3,
-							weight: Math.round( ( bench5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( getMax( testBenchWeight, testBenchReps, week + 1, prWeek ), minPlateWeight )
+						},
+						{
+							reps: 8,
+							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						}
 					];
 			}
 
 		case Exercises.ROW:
+			const { testRowWeight, testRowReps } = plan.form;
+			const rowMax = getMax( testRowWeight, testRowReps, week, prWeek );
+
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
 					return [
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 4 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - setIncrement ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax, minPlateWeight )
 						}
 					];
 
@@ -229,68 +258,74 @@ export function sets( plan, workout, exercise ) {
 					return [
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 4 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						},
 						{
 							reps: 5,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
-						},
-						{
-							reps: 8,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( rowMax * ( 1 - setIncrement ), minPlateWeight )
 						},
 						{
 							reps: 3,
-							weight: Math.round( ( row5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+							weight: roundToNearestPlate( getMax( testRowWeight, testRowReps, week + 1, prWeek ), minPlateWeight )
+						},
+						{
+							reps: 8,
+							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 						}
 					];
 			}
 
 		case Exercises.OVERHEAD_PRESS:
+			const { testPressWeight, testPressReps } = plan.form;
+			const pressMax = getMax( testPressWeight, testPressReps, week, prWeek );
+
 			return [
 				{
 					reps: 5,
-					weight: Math.round( ( press5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( pressMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 				},
 				{
 					reps: 5,
-					weight: Math.round( ( press5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( pressMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 				},
 				{
 					reps: 5,
-					weight: Math.round( ( press5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( pressMax * ( 1 - setIncrement ), minPlateWeight )
 				},
 				{
 					reps: 5,
-					weight: Math.round( ( press5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( pressMax, minPlateWeight )
 				}
 			];
 
 		case Exercises.DEADLIFT:
+			const { testDeadliftMax, testDeadliftReps } = plan.form;
+			const deadliftMax = getMax( testDeadliftMax, testDeadliftReps, week, prWeek );
+
 			return [
 				{
 					reps: 5,
-					weight: Math.round( ( deadlift5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 3 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( deadliftMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
 				},
 				{
 					reps: 5,
-					weight: Math.round( ( deadlift5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - ( setIncrement * 2 ) ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( deadliftMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
 				},
 				{
 					reps: 5,
-					weight: Math.round( ( deadlift5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) * ( 1 - setIncrement ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( deadliftMax * ( 1 - setIncrement ), minPlateWeight )
 				},
 				{
 					reps: 5,
-					weight: Math.round( ( deadlift5rm * Math.pow( 1 / 1.025, prWeek - 1 ) * Math.pow( 1.025, week - 1 ) ) / ( minPlateWeight * 2 ) ) * ( minPlateWeight * 2 )
+					weight: roundToNearestPlate( deadliftMax, minPlateWeight )
 				}
 			];
 	}
