@@ -1,3 +1,9 @@
+export const FocusTypes = {
+	STRENGTH: 'STRENGTH',
+	HYPERTROPHY: 'HYPERTROPHY',
+	ENDURANCE: 'ENDURANCE'
+};
+
 export const ProgressionTypes = {
 	WEEKLY: 'WEEKLY',
 	DAILY: 'DAILY'

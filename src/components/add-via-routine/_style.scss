@@ -1,0 +1,117 @@
+.add-via-routine__options {
+	@include reset-list;
+}
+
+.add-via-routine__option {
+	position: relative;
+	display: block;
+	text-align: left;
+	cursor: pointer;
+}
+
+.add-via-routine__option-overview {
+	padding: 12px;
+}
+
+.button.add-via-routine__option-select {
+	display: block;
+	width: 100%;
+	max-width: 360px;
+	margin: 12px auto 0;
+}
+
+.add-via-routine__option-name,
+.add-via-routine__option-description {
+	margin: 0;
+}
+
+.add-via-routine__option-name {
+	font-size: 1.2rem;
+}
+
+.add-via-routine__option-detail {
+	display: flex;
+	width: 100%;
+	border-top: 1px solid $border-color;
+	background-color: $color-gray;
+
+	@include desktop() {
+		display: table;
+	}
+}
+
+.add-via-routine__option-detail thead {
+	flex: 2;
+	border-right: 1px solid $border-color;
+}
+
+.add-via-routine__option-detail tbody {
+	flex: 3;
+	background-color: white;
+	border-left: 1px solid $border-color;
+	margin-left: -1px;
+
+	@include desktop() {
+		border-left-width: 0;
+		margin-left: 0;
+	}
+}
+
+.add-via-routine__option-detail thead,
+.add-via-routine__option-detail tbody {
+	@include desktop() {
+		flex: none;
+	}
+}
+
+.add-via-routine__option-detail tr {
+	display: block;
+	width: 100%;
+
+	@include desktop() {
+		display: table-row;
+	}
+}
+
+.add-via-routine__option-detail {
+	border-bottom-left-radius: $border-radius;
+	border-bottom-right-radius: $border-radius;
+}
+
+.add-via-routine__option-detail th,
+.add-via-routine__option-detail td {
+	padding: 6px 12px;
+	display: block;
+	width: 100%;
+	border-bottom: 1px solid $border-color;
+
+	&:last-child {
+		border-bottom-width: 0;
+	}
+
+	@include desktop() {
+		display: table-cell;
+		width: 33.3%;
+		border-left: 1px solid $border-color;
+
+		&:first-child {
+			border-left-width: 0;
+		}
+
+		&:last-child {
+			border-bottom-width: 1px;
+		}
+	}
+}
+
+.add-via-routine__option-detail td {
+	@include desktop() {
+		border-bottom-left-radius: $border-radius;
+		border-bottom-right-radius: $border-radius;
+
+		&,
+		&:last-child {
+			border-bottom-width: 0;
+		}
+	}
+}

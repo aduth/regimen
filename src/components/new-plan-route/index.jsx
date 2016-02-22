@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 
 import Page from 'components/page';
 import Content from 'components/content';
+import AddViaRoutine from 'components/add-via-routine';
 import AddViaId from 'components/add-via-id';
 
 export default class NewPlanRoute extends Component {
@@ -17,6 +18,7 @@ export default class NewPlanRoute extends Component {
 		return (
 			<Page title="Create Plan">
 				<Content>
+					<AddViaRoutine />
 					<AddViaId />
 				</Content>
 			</Page>

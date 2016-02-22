@@ -1,6 +1,10 @@
-import { ProgressionTypes, Weekdays, ParameterTypes, Exercises } from 'routines/constants';
+import { FocusTypes, ProgressionTypes, Weekdays, ParameterTypes, Exercises } from 'routines/constants';
 
-export const description = 'Originally created by Bill Starr, the writer of the book “The Strongest Shall Survive” this program is great for adding muscle mass and increasing overall strength and fitness levels.';
+export const name = 'Madcow 5x5';
+
+export const description = 'Originally created by Bill Starr, the writer of the book "The Strongest Shall Survive" this program is great for adding muscle mass and increasing overall strength and fitness levels.';
+
+export const focus = FocusTypes.STRENGTH;
 
 export const progression = ProgressionTypes.WEEKLY;
 
