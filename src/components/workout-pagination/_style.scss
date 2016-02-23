@@ -1,8 +1,22 @@
 .workout-pagination {
+	padding-top: 3rem;
+}
+
+.workout-pagination__content {
+	position: fixed;
+	top: 3rem;
+	right: 0;
+	left: 0;
 	display: flex;
 	border-bottom: 1px solid $border-color;
 	background-color: $color-gray;
 	text-align: center;
+
+	@media screen and ( orientation: portrait ) {
+		html.is-ios-standalone & {
+			top: 4.25rem;
+		}
+	}
 }
 
 .workout-pagination.is-loading .workout-name__title,
@@ -65,7 +79,7 @@
 
 .workout-pagination__button,
 .workout-pagination__header {
-	padding: 8px 0;
+	padding: 0.5rem 0;
 }
 
 .workout-pagination__button-label {

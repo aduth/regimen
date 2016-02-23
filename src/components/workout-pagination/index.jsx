@@ -24,26 +24,28 @@ function WorkoutPagination( { planId, plan, workout, setWorkoutRoute } ) {
 
 	return (
 		<nav className={ classes }>
-			<button
-				disabled={ 1 === workout }
-				onClick={ () => setWorkoutRoute( planId, workout - 1 ) }
-				className="workout-pagination__button is-previous">
-				<span className="workout-pagination__button-label">
-					Previous
-				</span>
-				<Icon icon="caret-left" />
-			</button>
-			<header className="workout-pagination__header">
-				<WorkoutName />
-			</header>
-			<button
-				onClick={ () => setWorkoutRoute( planId, workout + 1 ) }
-				className="workout-pagination__button is-next">
-				<span className="workout-pagination__button-label">
-					Next
-				</span>
-				<Icon icon="caret-right" />
-			</button>
+			<div className="workout-pagination__content">
+				<button
+					disabled={ 1 === workout }
+					onClick={ () => setWorkoutRoute( planId, workout - 1 ) }
+					className="workout-pagination__button is-previous">
+					<span className="workout-pagination__button-label">
+						Previous
+					</span>
+					<Icon icon="caret-left" />
+				</button>
+				<header className="workout-pagination__header">
+					<WorkoutName />
+				</header>
+				<button
+					onClick={ () => setWorkoutRoute( planId, workout + 1 ) }
+					className="workout-pagination__button is-next">
+					<span className="workout-pagination__button-label">
+						Next
+					</span>
+					<Icon icon="caret-right" />
+				</button>
+			</div>
 		</nav>
 	);
 }

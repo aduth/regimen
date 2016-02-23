@@ -18,25 +18,27 @@ import HeaderOptions from 'components/header-options';
 function Header( { title, toggleHeaderOptions } ) {
 	return (
 		<header className="header">
-			<Link to="/" className="header__home">
-				<Icon icon="home" />
-			</Link>
-			<span className="header__brand">
-				{ title }
-			</span>
-			<span className="header__options">
-				<button
-					type="button"
-					onClick={ toggleHeaderOptions }
-					className="header__options-button">
-					<span className="screen-reader-text">
-						Options
-					</span>
-					<Icon icon="gear" />
-				</button>
-				<HeaderOptions
-					className="header__options-menu" />
-			</span>
+			<div className="header__content">
+				<Link to="/" className="header__home">
+					<Icon icon="home" />
+				</Link>
+				<span className="header__brand">
+					{ title }
+				</span>
+				<span className="header__options">
+					<button
+						type="button"
+						onClick={ toggleHeaderOptions }
+						className="header__options-button">
+						<span className="screen-reader-text">
+							Options
+						</span>
+						<Icon icon="gear" />
+					</button>
+					<HeaderOptions
+						className="header__options-menu" />
+				</span>
+			</div>
 		</header>
 	);
 }

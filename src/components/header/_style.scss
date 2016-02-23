@@ -1,4 +1,18 @@
 .header {
+	padding-top: 3rem;
+
+	@media screen and ( orientation: portrait ) {
+		html.is-ios-standalone & {
+			padding-top: 4.25rem;
+		}
+	}
+}
+
+.header__content {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
 	display: flex;
 	border-bottom: 1px solid darken( $brand-primary, 10% );
 	background-color: $brand-primary;
@@ -7,23 +21,22 @@
 
 	@media screen and ( orientation: portrait ) {
 		html.is-ios-standalone & {
-			position: relative;
-			padding-top: 20px;
+			margin-top: 1.25rem;
 
 			&::before {
 				content: '';
 				position: absolute;
-				top: 0;
+				top: -1.25rem;
 				right: 0;
 				left: 0;
-				height: 20px;
+				height: 1.25rem;
 				background-color: darken( $brand-primary, 20% );
 			}
 		}
 	}
 }
 
-.header,
+.header__content,
 .header__options-button {
 	text-shadow: -1px -1px darken( $brand-primary, 10% );
 	font-weight: bold;
@@ -41,7 +54,7 @@
 
 .header__brand {
 	flex: 5;
-	padding: 12px 0;
+	padding: 0.7222222rem 0;
 }
 
 .header__options-button {
