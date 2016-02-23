@@ -29,7 +29,7 @@ module.exports = {
 					'<html manifest="/appcache/manifest.appcache">' :
 					'<html>' ) +
 				'<head>' +
-				'	<meta name="viewport" content="width=device-width">' +
+				'	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">' +
 				'	<meta name="description" content="Regimen helps with your workout progression planning. Supporting many popular routines, achieve your goals with a simple-to-use interface.">' +
 				'	<meta name="theme-color" content="#63bdd4">' +
 				'	<meta name="apple-mobile-web-app-capable" content="yes">' +
