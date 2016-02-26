@@ -15,7 +15,10 @@ module.exports = {
 		extensions: [ '', '.json', '.js', '.jsx' ],
 		root: [
 			__dirname + '/src'
-		]
+		],
+		alias: {
+			'react-icons': 'react-icons/lib'
+		}
 	},
 	module: {
 		noParse: /lie\.js/
@@ -37,7 +40,6 @@ module.exports = {
 				'	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">' +
 				'	<title>Regimen</title>' +
 				'	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic|Open+Sans:400,400italic,700,700italic">' +
-				'	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">' +
 				'	<link rel="dns-prefetch" href="https://regimenapp.cloudant.com">' +
 				'	<link rel="manifest" href="/manifest.json">' +
 				'	<link rel="icon" href="/favicon.ico" type="image/x-icon">' +

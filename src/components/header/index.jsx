@@ -25,19 +25,17 @@ function Header( { title, toggleHeaderOptions } ) {
 				<span className="header__brand">
 					{ title }
 				</span>
-				<span className="header__options">
-					<button
-						type="button"
-						onClick={ toggleHeaderOptions }
-						className="header__options-button">
-						<span className="screen-reader-text">
-							Options
-						</span>
-						<Icon icon="gear" />
-					</button>
-					<HeaderOptions
-						className="header__options-menu" />
-				</span>
+				<button
+					type="button"
+					onClick={ toggleHeaderOptions }
+					className="header__options">
+					<span className="screen-reader-text">
+						Options
+					</span>
+					<Icon icon="gear" />
+				</button>
+				<HeaderOptions
+					className="header__options-menu" />
 			</div>
 		</header>
 	);

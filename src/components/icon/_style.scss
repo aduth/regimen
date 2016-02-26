@@ -1,7 +1,13 @@
 .icon {
+	line-height: 1;
 	color: $font-color-icon;
 }
 
 .icon__screen-reader-text {
 	@include screen-reader-text;
+}
+
+.icon.is-gear .icon__variant {
+    transform-origin: left;
+    transform: scale( 1.24 ) translateX( 8% );
 }
