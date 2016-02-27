@@ -29,11 +29,15 @@ app.use( express.static( __dirname + '/public', {
 		var maxAge;
 
 		if ( 0 === response.req.path.indexOf( '/dist/' ) ) {
-			maxAge = 31536000;
+			maxAge = 31536000; // 1 year
 		}
 
-		if ( /\/(favicon\.ico$|images\/|fonts\/)/.test( response.req.path ) ) {
-			maxAge = 86400;
+		if ( /^\/fonts\//.test( response.req.path ) ) {
+			maxAge = 2592000; // 30 days
+		}
+
+		if ( /\/(favicon\.ico$|images\/)/.test( response.req.path ) ) {
+			maxAge = 86400; // 1 day
 		}
 
 		if ( maxAge ) {
