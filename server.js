@@ -32,7 +32,7 @@ app.use( express.static( __dirname + '/public', {
 			maxAge = 31536000;
 		}
 
-		if ( /\/(favicon\.ico$|images\/)/.test( response.req.path ) ) {
+		if ( /\/(favicon\.ico$|images\/|fonts\/)/.test( response.req.path ) ) {
 			maxAge = 86400;
 		}
 
