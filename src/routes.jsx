@@ -14,6 +14,7 @@ import HomeRoute from 'components/sections/home/route';
 import PlanRoute from 'components/sections/plan/route';
 import NewPlanRoute from 'components/sections/new-plan/route';
 import WorkoutRoute from 'components/sections/workout/route';
+import NotFoundRoute from 'components/sections/not-found/route';
 
 export default [
 	<Route path="/" component={ BaseRoute }>
@@ -25,5 +26,6 @@ export default [
 				<IndexRedirect to="/plan/:planId/workout/1" />
 			</Route>
 		</Route>
+		<Route path="*" component={ NotFoundRoute }/>
 	</Route>
 ];

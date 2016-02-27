@@ -1,0 +1,27 @@
+.not-found-warning {
+	position: absolute;
+		top: 50%;
+		left: 50%;
+	transform: translate( -50%, -50% );
+	width: $content-width;
+	max-width: 100%;
+	text-align: center;
+}
+
+.not-found-warning__heading {
+	margin: 0;
+}
+
+.not-found-warning__divider {
+	width: 6rem;
+	margin: 1.4rem auto;
+}
+
+.button.not-found-warning__return-home {
+	display: inline-block;
+	margin-top: 2rem;
+}
+
+.not-found-warning > p {
+	margin: 0;
+}
