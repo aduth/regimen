@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url( '/fonts/OpenSans-400.woff' ) format( 'woff' );
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url( '/fonts/OpenSans-600.woff' ) format( 'woff' );
+    font-weight: 600;
+    font-style: normal;
+}
+
 @mixin sans() {
 	font-family: 'Open Sans', sans-serif;
 }

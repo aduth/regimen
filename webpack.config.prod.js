@@ -51,7 +51,9 @@ module.exports = assign( {}, common, {
 					'/images/icon-48.png',
 					'/images/icon-96.png',
 					'/images/icon-144.png',
-					'/images/icon-192.png'
+					'/images/icon-192.png',
+					'/fonts/OpenSans-400.woff',
+					'/fonts/OpenSans-600.woff'
 				]
 			},
 			externals: [
@@ -60,7 +62,9 @@ module.exports = assign( {}, common, {
 				'/images/icon-48.png',
 				'/images/icon-96.png',
 				'/images/icon-144.png',
-				'/images/icon-192.png'
+				'/images/icon-192.png',
+				'/fonts/OpenSans-400.woff',
+				'/fonts/OpenSans-600.woff'
 			]
 		} )
 	] )
