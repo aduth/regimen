@@ -5,6 +5,7 @@
   "description": "A workout progression planning web app",
   "scripts": {
     "dev": "NODE_PATH=src/ node webpack.server.js",
+    "lint": "eslint src --ext js,jsx",
     "build": "NODE_PATH=src/ NODE_ENV=production rimraf public/dist && webpack --config webpack.config.prod.js",
     "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi",
     "start": "node server.js"
