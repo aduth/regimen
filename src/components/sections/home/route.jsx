@@ -10,8 +10,8 @@ import React from 'react';
 
 import Page from 'components/layout/page';
 import Content from 'components/layout/content';
-import ProfilePlans from 'components/sections/home/profile-plans';
-import AddPlanButton from 'components/sections/home/add-plan-button';
+import ProfilePlans from './profile-plans';
+import AddPlanButton from './add-plan-button';
 
 export default function HomeRoute() {
 	return (

@@ -10,8 +10,8 @@ import React, { Component } from 'react';
 
 import Page from 'components/layout/page';
 import Content from 'components/layout/content';
-import AddViaRoutine from 'components/sections/new-plan/add-via-routine';
-import AddViaId from 'components/sections/new-plan/add-via-id';
+import AddViaRoutine from './add-via-routine';
+import AddViaId from './add-via-id';
 
 export default class NewPlanRoute extends Component {
 	render() {

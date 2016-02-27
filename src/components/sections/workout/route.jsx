@@ -14,8 +14,8 @@ import { setWorkoutRoute } from 'state/routing/actions';
 import { setProfilePlanProgress } from 'state/profile/actions';
 import { setWorkout } from 'state/ui/actions';
 import Content from 'components/layout/content';
-import Workout from 'components/sections/workout/workout';
-import WorkoutPagination from 'components/sections/workout/workout-pagination';
+import Workout from './workout';
+import WorkoutPagination from './workout-pagination';
 
 class WorkoutRoute extends Component {
 	static propTypes = {

@@ -14,9 +14,9 @@ import { addPlanToProfile } from 'state/profile/actions';
 import { setPlanId } from 'state/ui/actions';
 import { getPlanId } from 'state/ui/selectors';
 import { getPlan } from 'state/plans/selectors';
-import PlanPageHeader from 'components/sections/plan/plan-page-header';
 import QueryPlan from 'components/data/query-plan';
 import Page from 'components/layout/page';
+import PlanPageHeader from './plan-page-header';
 
 class PlanRoute extends Component {
 	static propTypes = {
