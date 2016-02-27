@@ -6,23 +6,21 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
 
-function Button( { success, danger, type, to, onClick, className, children } ) {
+function Button( { success, danger, type, to, onClick, disabled, className, children } ) {
 	const classes = classNames( 'button', className, {
 		'is-success': success,
 		'is-danger': danger
 	} );
 
-	let element, props;
+	let props = { className: classes, disabled },
+		element;
+
 	if ( to ) {
 		element = Link;
-		props = { className: classes, to };
+		props = { ...props, to };
 	} else {
 		element = 'button';
-		props = {
-			className: classes,
-			type,
-			onClick
-		};
+		props = { ...props, type, onClick };
 	}
 
 	return React.createElement( element, props, children );
@@ -33,6 +31,7 @@ Button.propTypes = {
 	danger: PropTypes.bool,
 	to: PropTypes.string,
 	onClick: PropTypes.func,
+	disabled: PropTypes.bool,
 	className: PropTypes.string,
 	children: PropTypes.node
 };

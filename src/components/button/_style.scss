@@ -7,7 +7,13 @@
 	padding: 4px 12px;
 	cursor: pointer;
 
-	&:hover {
+	&:disabled {
+		opacity: 0.8;
+		cursor: default;
+		cursor: not-allowed;
+	}
+
+	&:hover:not( :disabled ) {
 		border-color: darken( $border-color, 10% );
 	}
 

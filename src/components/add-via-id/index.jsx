@@ -23,10 +23,24 @@ class AddViaId extends Component {
 		setWorkoutRoute: () => {}
 	};
 
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			isSubmitDisabled: true
+		};
+	}
+
 	setWorkoutRoute( event ) {
 		const planId = this.refs.input.value;
 		this.props.setWorkoutRoute( planId, 1 );
 		event.preventDefault();
+	}
+
+	toggleSubmitDisabled( event ) {
+		this.setState( {
+			isSubmitDisabled: ! event.target.value.length
+		} );
 	}
 
 	render() {
@@ -39,10 +53,12 @@ class AddViaId extends Component {
 					<input
 						ref="input"
 						initialValue=""
+						onChange={ this.toggleSubmitDisabled.bind( this ) }
 						placeholder="e.g. V1zPDOMvl"
 						className="add-via-id__input" />
 					<Button
 						type="submit"
+						disabled={ this.state.isSubmitDisabled }
 						className="add-via-id__submit">
 						Add
 					</Button>
