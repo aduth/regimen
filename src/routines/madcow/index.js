@@ -307,8 +307,8 @@ export function sets( plan, workout, exercise ) {
 			];
 
 		case Exercises.DEADLIFT:
-			const { testDeadliftMax, testDeadliftReps } = plan.form;
-			const deadliftMax = getMax( testDeadliftMax, testDeadliftReps, week, prWeek );
+			const { testDeadliftWeight, testDeadliftReps } = plan.form;
+			const deadliftMax = getMax( testDeadliftWeight, testDeadliftReps, week, prWeek );
 
 			return [
 				{
