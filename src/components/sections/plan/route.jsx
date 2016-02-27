@@ -20,10 +20,12 @@ import PlanPageHeader from './plan-page-header';
 
 class PlanRoute extends Component {
 	static propTypes = {
+		planId: PropTypes.string,
 		params: PropTypes.object.isRequired,
 		plan: PropTypes.object,
 		setPlanId: PropTypes.func,
-		addPlanToProfile: PropTypes.func
+		addPlanToProfile: PropTypes.func,
+		children: PropTypes.node
 	};
 
 	static defaultProps = {

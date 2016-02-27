@@ -15,7 +15,13 @@ import { isRequestingPlan } from 'state/plans/selectors';
 
 class QueryPlan extends Component {
 	static propTypes = {
-		planId: PropTypes.string.isRequired
+		planId: PropTypes.string.isRequired,
+		isRequestingPlan: PropTypes.bool,
+		requestPlan: PropTypes.func
+	};
+
+	static defaultProps = {
+		requestPlan: () => {}
 	};
 
 	componentWillMount() {

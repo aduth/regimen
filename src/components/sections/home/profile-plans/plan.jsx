@@ -35,7 +35,13 @@ function ProfilePlan( { planId, workout, removePlanFromProfile } ) {
 }
 
 ProfilePlan.propTypes = {
-	planId: PropTypes.string.isRequired
+	planId: PropTypes.string.isRequired,
+	workout: PropTypes.number,
+	removePlanFromProfile: PropTypes.func
+};
+
+ProfilePlan.defaultProps = {
+	removePlanFromProfile: () => {}
 };
 
 export default connect( ( state, ownProps ) => {

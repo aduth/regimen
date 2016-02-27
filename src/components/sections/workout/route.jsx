@@ -19,7 +19,15 @@ import WorkoutPagination from './workout-pagination';
 
 class WorkoutRoute extends Component {
 	static propTypes = {
-		params: PropTypes.object.isRequired
+		params: PropTypes.object.isRequired,
+		setWorkout: PropTypes.func,
+		setProfilePlanProgress: PropTypes.func,
+		setWorkoutRoute: PropTypes.func
+	};
+
+	static defaultProps = {
+		setProfilePlanProgress: () => {},
+		setWorkoutRoute: () => {}
 	};
 
 	componentDidMount() {

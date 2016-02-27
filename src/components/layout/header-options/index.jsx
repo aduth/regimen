@@ -34,11 +34,13 @@ function HeaderOptions( { active, toggleActive, className } ) {
 
 HeaderOptions.propTypes = {
 	active: PropTypes.bool,
+	toggleActive: PropTypes.func,
 	className: PropTypes.string
 };
 
 HeaderOptions.defaultProps = {
-	active: false
+	active: false,
+	toggleActive: () => {}
 };
 
 export default connect( ( state ) => {

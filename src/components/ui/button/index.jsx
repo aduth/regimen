@@ -29,6 +29,7 @@ function Button( { success, danger, type, to, onClick, disabled, className, chil
 Button.propTypes = {
 	success: PropTypes.bool,
 	danger: PropTypes.bool,
+	type: PropTypes.oneOf( [ 'button', 'submit', 'reset' ] ),
 	to: PropTypes.string,
 	onClick: PropTypes.func,
 	disabled: PropTypes.bool,

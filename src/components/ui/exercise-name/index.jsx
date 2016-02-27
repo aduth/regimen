@@ -3,6 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
+import values from 'lodash/values';
 
 /**
  * Internal dependencies
@@ -10,7 +11,7 @@ import React, { PropTypes } from 'react';
 
 import { Exercises } from 'routines/constants';
 
-export default function ExerciseName( { exercise } ) {
+function ExerciseName( { exercise } ) {
 	let name;
 	switch ( exercise ) {
 		case Exercises.SQUAT:
@@ -40,3 +41,9 @@ export default function ExerciseName( { exercise } ) {
 		</div>
 	);
 }
+
+ExerciseName.propTypes = {
+	exercise: PropTypes.oneOf( values( Exercises ) )
+};
+
+export default ExerciseName;
