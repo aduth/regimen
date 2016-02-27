@@ -24,8 +24,8 @@
 
 .exercise-set__weight,
 .exercise-set__reps {
+	@include bold;
 	margin-right: 2px;
-	font-weight: bold;
 	color: $font-color-body;
 }
 

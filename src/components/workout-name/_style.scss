@@ -3,7 +3,7 @@
 }
 
 .workout-name__title {
-	font-weight: bold;
+	@include bold;
 }
 
 .workout-name__subtitle {

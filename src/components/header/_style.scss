@@ -9,6 +9,7 @@
 }
 
 .header__content {
+	@include bold;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -18,7 +19,6 @@
 	background-color: $brand-primary;
 	text-align: center;
 	text-shadow: -1px -1px darken( $brand-primary, 10% );
-	font-weight: bold;
 	color: white;
 
 	@media screen and ( orientation: portrait ) {

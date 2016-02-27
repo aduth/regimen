@@ -2,6 +2,6 @@
 	font-family: 'Open Sans', sans-serif;
 }
 
-@mixin serif() {
-	font-family: 'Merriweather', serif;
+@mixin bold() {
+	font-weight: 600;
 }
