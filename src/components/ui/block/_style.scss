@@ -1,7 +1,7 @@
 .block {
 	border: 1px solid #cecece;
 	border-radius: $border-radius;
-	margin-bottom: 1.3rem;
+	margin-bottom: $body-padding;
 }
 
 .block__header {
