@@ -14,7 +14,7 @@ import { install as installOfflineRuntime } from 'offline-plugin/runtime';
 
 import { createReduxStore } from 'state';
 import routes from 'routes';
-import Root from 'components/root';
+import Root from 'components/layout/root';
 import { initializeRemoteSync } from 'db';
 import iosStandalone from 'lib/ios-standalone';
 
