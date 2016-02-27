@@ -4,8 +4,13 @@
 	background-color: $color-gray;
 	border: 1px solid $border-color;
 	border-radius: $border-radius;
-	padding: 4px 12px;
+	padding: 0.2rem 0.7rem;
 	cursor: pointer;
+
+	&.is-large {
+		padding: 0.4rem 1.2rem;
+		font-size: 120%;
+	}
 
 	&:disabled {
 		opacity: 0.8;
