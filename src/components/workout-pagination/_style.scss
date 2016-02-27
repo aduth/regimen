@@ -3,7 +3,7 @@
 }
 
 .workout-pagination__content {
-	position: fixed;
+	@include fixed;
 	top: 3rem;
 	right: 0;
 	left: 0;

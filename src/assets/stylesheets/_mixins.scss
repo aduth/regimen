@@ -69,3 +69,10 @@
 		content: 'Loading';
 	}
 }
+
+@mixin fixed() {
+	position: fixed;
+	transform: translateZ( 0 );
+	z-index: 100;
+	backface-visibility: hidden;
+}
