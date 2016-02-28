@@ -195,83 +195,88 @@ export function sets( plan, workout, exercise ) {
 	const week = Math.floor( ( workout - 1 ) / weekdays.length ) + 1;
 	const weekday = weekdays[ ( workout - 1 ) % weekdays.length ];
 
+	let sets;
 	switch ( exercise ) {
 		case Exercises.SQUAT:
 			const { testSquatWeight, testSquatReps } = plan.form;
 			const squatMax = getMax( testSquatWeight, testSquatReps, week, prWeek );
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
-					return [
+					sets = [
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 4 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 3 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 2 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - setIncrement ), minPlateWeight )
+							weight: squatMax * ( 1 - setIncrement )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax, minPlateWeight )
+							weight: squatMax
 						}
 					];
+					break;
 
 				case Weekdays.WEDNESDAY:
-					return [
+					sets = [
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 4 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 3 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 2 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 2 ) )
 						}
 					];
+					break;
 
 				case Weekdays.FRIDAY:
-					return [
+					sets = [
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 4 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 3 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 2 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( squatMax * ( 1 - setIncrement ), minPlateWeight )
+							weight: squatMax * ( 1 - setIncrement )
 						},
 						{
 							reps: 3,
-							weight: roundToNearestPlate( getMax( testSquatWeight, testSquatReps, week + 1, prWeek ), minPlateWeight )
+							weight: getMax( testSquatWeight, testSquatReps, week + 1, prWeek )
 						},
 						{
 							reps: 8,
-							weight: roundToNearestPlate( squatMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: squatMax * ( 1 - ( setIncrement * 2 ) )
 						}
 					];
+					break;
 			}
+			break;
 
 		case Exercises.BENCH_PRESS:
 			const { testBenchWeight, testBenchReps } = plan.form;
@@ -279,57 +284,60 @@ export function sets( plan, workout, exercise ) {
 
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
-					return [
+					sets = [
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
+							weight: benchMax * ( 1 - ( setIncrement * 4 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+							weight: benchMax * ( 1 - ( setIncrement * 3 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: benchMax * ( 1 - ( setIncrement * 2 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - setIncrement ), minPlateWeight )
+							weight: benchMax * ( 1 - setIncrement )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax, minPlateWeight )
+							weight: benchMax
 						}
 					];
+					break;
 
 				case Weekdays.FRIDAY:
-					return [
+					sets = [
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
+							weight: benchMax * ( 1 - ( setIncrement * 4 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+							weight: benchMax * ( 1 - ( setIncrement * 3 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: benchMax * ( 1 - ( setIncrement * 2 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( benchMax * ( 1 - setIncrement ), minPlateWeight )
+							weight: benchMax * ( 1 - setIncrement )
 						},
 						{
 							reps: 3,
-							weight: roundToNearestPlate( getMax( testBenchWeight, testBenchReps, week + 1, prWeek ), minPlateWeight )
+							weight: getMax( testBenchWeight, testBenchReps, week + 1, prWeek )
 						},
 						{
 							reps: 8,
-							weight: roundToNearestPlate( benchMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: benchMax * ( 1 - ( setIncrement * 2 ) )
 						}
 					];
+					break;
 			}
+			break;
 
 		case Exercises.ROW:
 			const { testRowWeight, testRowReps } = plan.form;
@@ -337,102 +345,112 @@ export function sets( plan, workout, exercise ) {
 
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
-					return [
+					sets = [
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
+							weight: rowMax * ( 1 - ( setIncrement * 4 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+							weight: rowMax * ( 1 - ( setIncrement * 3 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: rowMax * ( 1 - ( setIncrement * 2 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - setIncrement ), minPlateWeight )
+							weight: rowMax * ( 1 - setIncrement )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax, minPlateWeight )
+							weight: rowMax
 						}
 					];
+					break;
 
 				case Weekdays.FRIDAY:
-					return [
+					sets = [
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 4 ) ), minPlateWeight )
+							weight: rowMax * ( 1 - ( setIncrement * 4 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+							weight: rowMax * ( 1 - ( setIncrement * 3 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: rowMax * ( 1 - ( setIncrement * 2 ) )
 						},
 						{
 							reps: 5,
-							weight: roundToNearestPlate( rowMax * ( 1 - setIncrement ), minPlateWeight )
+							weight: rowMax * ( 1 - setIncrement )
 						},
 						{
 							reps: 3,
-							weight: roundToNearestPlate( getMax( testRowWeight, testRowReps, week + 1, prWeek ), minPlateWeight )
+							weight: getMax( testRowWeight, testRowReps, week + 1, prWeek )
 						},
 						{
 							reps: 8,
-							weight: roundToNearestPlate( rowMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+							weight: rowMax * ( 1 - ( setIncrement * 2 ) )
 						}
 					];
+					break;
 			}
+			break;
 
 		case Exercises.OVERHEAD_PRESS:
 			const { testPressWeight, testPressReps } = plan.form;
 			const pressMax = getMax( testPressWeight, testPressReps, week, prWeek );
 
-			return [
+			sets = [
 				{
 					reps: 5,
-					weight: roundToNearestPlate( pressMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+					weight: pressMax * ( 1 - ( setIncrement * 3 ) )
 				},
 				{
 					reps: 5,
-					weight: roundToNearestPlate( pressMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+					weight: pressMax * ( 1 - ( setIncrement * 2 ) )
 				},
 				{
 					reps: 5,
-					weight: roundToNearestPlate( pressMax * ( 1 - setIncrement ), minPlateWeight )
+					weight: pressMax * ( 1 - setIncrement )
 				},
 				{
 					reps: 5,
-					weight: roundToNearestPlate( pressMax, minPlateWeight )
+					weight: pressMax
 				}
 			];
+			break;
 
 		case Exercises.DEADLIFT:
 			const { testDeadliftWeight, testDeadliftReps } = plan.form;
 			const deadliftMax = getMax( testDeadliftWeight, testDeadliftReps, week, prWeek );
 
-			return [
+			sets = [
 				{
 					reps: 5,
-					weight: roundToNearestPlate( deadliftMax * ( 1 - ( setIncrement * 3 ) ), minPlateWeight )
+					weight: deadliftMax * ( 1 - ( setIncrement * 3 ) )
 				},
 				{
 					reps: 5,
-					weight: roundToNearestPlate( deadliftMax * ( 1 - ( setIncrement * 2 ) ), minPlateWeight )
+					weight: deadliftMax * ( 1 - ( setIncrement * 2 ) )
 				},
 				{
 					reps: 5,
-					weight: roundToNearestPlate( deadliftMax * ( 1 - setIncrement ), minPlateWeight )
+					weight: deadliftMax * ( 1 - setIncrement )
 				},
 				{
 					reps: 5,
-					weight: roundToNearestPlate( deadliftMax, minPlateWeight )
+					weight: deadliftMax
 				}
 			];
+			break;
 	}
+
+	return sets.map( ( set ) => {
+		set.weight = roundToNearestPlate( set.weight, minPlateWeight );
+		return set;
+	} );
 }
