@@ -7,6 +7,7 @@
 // Shared
 @import 'typography';
 @import 'elements';
+@import 'forms';
 
 // Components
 @import '~components/layout/content/style';
@@ -17,6 +18,7 @@
 @import '~components/sections/home/profile-plans/style';
 @import '~components/sections/new-plan/add-via-id/style';
 @import '~components/sections/new-plan/add-via-routine/style';
+@import '~components/sections/new-plan/routine-form/style';
 @import '~components/sections/not-found/not-found-warning/style';
 @import '~components/sections/plan/plan-page-header/style';
 @import '~components/sections/workout/exercise/style';

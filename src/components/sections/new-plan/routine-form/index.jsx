@@ -30,6 +30,10 @@ const BASE_FORM = {
 	}
 };
 
+const BASE_UI_SCHEMA = {
+	classNames: 'routine-form__form'
+};
+
 function RoutineForm( { routine } ) {
 	const form = merge( {
 		properties: {
@@ -38,12 +42,17 @@ function RoutineForm( { routine } ) {
 			}
 		}
 	}, BASE_FORM, {
-		properties: routines[ routine ].form.properties
+		properties: routines[ routine ].form.schema.properties
 	} );
+
+	const uiSchema = {
+		...BASE_UI_SCHEMA,
+		...routines[ routine ].form.uiSchema
+	};
 
 	return (
 		<Block title="Create New Plan" padded>
-			<Form schema={ form }>
+			<Form schema={ form } uiSchema={ uiSchema }>
 				<Button type="submit" success>
 					Create
 				</Button>

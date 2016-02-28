@@ -32,130 +32,133 @@ export const weekdays = [
 ];
 
 export const form = {
-	type: 'object',
-	properties: {
-		prWeek: {
-			title: 'Personal record week',
-			description: 'Week during which you should reach your current personal record',
-			type: 'integer',
-			default: 4,
-			minimum: 1
-		},
-		setIncrement: {
-			title: 'Set increment percentage',
-			description: 'Weight increase percentage between sets',
-			type: 'number',
-			default: 12,
-			minimum: 1,
-			maximum: 100,
-			multipleOf: 1
-		},
-		minPlateWeight: {
-			title: 'Minimum plate weight',
-			description: 'The smallest available plate weight',
-			type: 'number',
-			default: 2.5,
-			minimum: 1,
-			multipleOf: 0.5
-		},
-		tests: {
-			title: 'Current maximums',
-			description: 'For each exercise, provide your current maximum weight and repetitions',
-			type: 'object',
-			properties: {
-				squat: {
-					title: 'Squat',
-					type: 'object',
-					properties: {
-						weight: {
-							title: 'Weight',
-							type: 'number',
-							default: 1,
-							multipleOf: 0.5,
-							minimum: 1
-						},
-						reps: {
-							title: 'Repetitions',
-							type: 'integer',
-							default: 1
+	schema: {
+		type: 'object',
+		properties: {
+			prWeek: {
+				title: 'Personal record week',
+				description: 'Week during which you should reach your current personal record',
+				type: 'integer',
+				default: 4,
+				minimum: 1
+			},
+			setIncrement: {
+				title: 'Set increment percentage',
+				description: 'Weight increase percentage between sets',
+				type: 'number',
+				default: 12,
+				minimum: 1,
+				maximum: 100,
+				multipleOf: 1
+			},
+			minPlateWeight: {
+				title: 'Minimum plate weight',
+				description: 'The smallest available plate weight',
+				type: 'number',
+				default: 2.5,
+				minimum: 1,
+				multipleOf: 0.5
+			},
+			tests: {
+				title: 'Current maximums',
+				description: 'For each exercise, provide your current maximum weight and repetitions',
+				type: 'object',
+				properties: {
+					squat: {
+						title: 'Squat',
+						type: 'object',
+						properties: {
+							weight: {
+								title: 'Weight',
+								type: 'number',
+								default: 1,
+								multipleOf: 0.5,
+								minimum: 1
+							},
+							reps: {
+								title: 'Repetitions',
+								type: 'integer',
+								default: 1
+							}
 						}
-					}
-				},
-				bench: {
-					title: 'Bench Press',
-					type: 'object',
-					properties: {
-						weight: {
-							title: 'Weight',
-							type: 'number',
-							default: 1,
-							multipleOf: 0.5,
-							minimum: 1
-						},
-						reps: {
-							title: 'Repetitions',
-							type: 'integer',
-							default: 1
+					},
+					bench: {
+						title: 'Bench Press',
+						type: 'object',
+						properties: {
+							weight: {
+								title: 'Weight',
+								type: 'number',
+								default: 1,
+								multipleOf: 0.5,
+								minimum: 1
+							},
+							reps: {
+								title: 'Repetitions',
+								type: 'integer',
+								default: 1
+							}
 						}
-					}
-				},
-				row: {
-					title: 'Row',
-					type: 'object',
-					properties: {
-						weight: {
-							title: 'Weight',
-							type: 'number',
-							default: 1,
-							multipleOf: 0.5,
-							minimum: 1
-						},
-						reps: {
-							title: 'Repetitions',
-							type: 'integer',
-							default: 1
+					},
+					row: {
+						title: 'Row',
+						type: 'object',
+						properties: {
+							weight: {
+								title: 'Weight',
+								type: 'number',
+								default: 1,
+								multipleOf: 0.5,
+								minimum: 1
+							},
+							reps: {
+								title: 'Repetitions',
+								type: 'integer',
+								default: 1
+							}
 						}
-					}
-				},
-				deadlift: {
-					title: 'Deadlift',
-					type: 'object',
-					properties: {
-						weight: {
-							title: 'Weight',
-							type: 'number',
-							default: 1,
-							multipleOf: 0.5,
-							minimum: 1
-						},
-						reps: {
-							title: 'Repetitions',
-							type: 'integer',
-							default: 1
+					},
+					deadlift: {
+						title: 'Deadlift',
+						type: 'object',
+						properties: {
+							weight: {
+								title: 'Weight',
+								type: 'number',
+								default: 1,
+								multipleOf: 0.5,
+								minimum: 1
+							},
+							reps: {
+								title: 'Repetitions',
+								type: 'integer',
+								default: 1
+							}
 						}
-					}
-				},
-				press: {
-					title: 'Overhead Press',
-					type: 'object',
-					properties: {
-						weight: {
-							title: 'Weight',
-							type: 'number',
-							default: 1,
-							multipleOf: 0.5,
-							minimum: 1
-						},
-						reps: {
-							title: 'Repetitions',
-							type: 'integer',
-							default: 1
+					},
+					press: {
+						title: 'Overhead Press',
+						type: 'object',
+						properties: {
+							weight: {
+								title: 'Weight',
+								type: 'number',
+								default: 1,
+								multipleOf: 0.5,
+								minimum: 1
+							},
+							reps: {
+								title: 'Repetitions',
+								type: 'integer',
+								default: 1
+							}
 						}
 					}
 				}
 			}
 		}
-	}
+	},
+	uiSchema: {}
 };
 
 /**

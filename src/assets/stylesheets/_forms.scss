@@ -1,0 +1,19 @@
+.field {
+	margin-bottom: 0.6rem;
+}
+
+.field > label > span {
+	display: block;
+	padding: 0.2rem 0;
+}
+
+.field > fieldset {
+	margin-top: 1rem;
+	padding: 0.6rem;
+	border: 1px solid $border-color;
+}
+
+.field > fieldset > legend {
+	@include bold;
+	padding: 0 0.8rem;
+}
