@@ -19,12 +19,6 @@ export const Weekdays = {
 	SUNDAY: 'SUNDAY'
 };
 
-export const ParameterTypes = {
-	TEST: 'TEST',
-	NUMBER: 'NUMBER',
-	PERCENT: 'PERCENT'
-};
-
 export const Exercises = {
 	SQUAT: 'SQUAT',
 	BENCH_PRESS: 'BENCH_PRESS',

@@ -3,7 +3,7 @@
  */
 
 import { roundToNearestPlate } from 'lib/weight';
-import { FocusTypes, ProgressionTypes, Weekdays, ParameterTypes, Exercises } from 'routines/constants';
+import { FocusTypes, ProgressionTypes, Weekdays, Exercises } from 'routines/constants';
 
 /**
  * Program Utility
@@ -31,27 +31,133 @@ export const weekdays = [
 	Weekdays.FRIDAY
 ];
 
-export const form = [
-	{
-		type: ParameterTypes.TEST,
-		name: 'bp',
-		label: 'Bench Press'
-	},
-	{
-		type: ParameterTypes.NUMBER,
-		name: 'prWeek',
-		label: 'Personal record match week',
-		description: 'The week during which you want to match your previous personal record',
-		default: 4
-	},
-	{
-		type: ParameterTypes.PERCENT,
-		name: 'setInterval',
-		label: 'Set Interval',
-		description: 'The percentage increase of weight between your sets',
-		default: 0.12
+export const form = {
+	title: 'Plan',
+	type: 'object',
+	properties: {
+		prWeek: {
+			title: 'Personal record week',
+			description: 'Week during which you should reach your current personal record',
+			type: 'integer',
+			default: 4,
+			minimum: 1
+		},
+		setIncrement: {
+			title: 'Set increment percentage',
+			description: 'Weight increase percentage between sets',
+			type: 'number',
+			default: 12,
+			minimum: 1,
+			maximum: 100,
+			multipleOf: 1
+		},
+		minPlateWeight: {
+			title: 'Minimum plate weight',
+			description: 'The smallest available plate weight',
+			type: 'number',
+			default: 2.5,
+			minimum: 1,
+			multipleOf: 0.5
+		},
+		tests: {
+			title: 'Current maximums',
+			description: 'For each exercise, provide your current maximum weight and repetitions',
+			type: 'object',
+			properties: {
+				squat: {
+					title: 'Squat',
+					type: 'object',
+					properties: {
+						weight: {
+							title: 'Weight',
+							type: 'number',
+							default: 1,
+							multipleOf: 0.5,
+							minimum: 1
+						},
+						reps: {
+							title: 'Repetitions',
+							type: 'integer',
+							default: 1
+						}
+					}
+				},
+				bench: {
+					title: 'Bench Press',
+					type: 'object',
+					properties: {
+						weight: {
+							title: 'Weight',
+							type: 'number',
+							default: 1,
+							multipleOf: 0.5,
+							minimum: 1
+						},
+						reps: {
+							title: 'Repetitions',
+							type: 'integer',
+							default: 1
+						}
+					}
+				},
+				row: {
+					title: 'Row',
+					type: 'object',
+					properties: {
+						weight: {
+							title: 'Weight',
+							type: 'number',
+							default: 1,
+							multipleOf: 0.5,
+							minimum: 1
+						},
+						reps: {
+							title: 'Repetitions',
+							type: 'integer',
+							default: 1
+						}
+					}
+				},
+				deadlift: {
+					title: 'Deadlift',
+					type: 'object',
+					properties: {
+						weight: {
+							title: 'Weight',
+							type: 'number',
+							default: 1,
+							multipleOf: 0.5,
+							minimum: 1
+						},
+						reps: {
+							title: 'Repetitions',
+							type: 'integer',
+							default: 1
+						}
+					}
+				},
+				press: {
+					title: 'Overhead Press',
+					type: 'object',
+					properties: {
+						weight: {
+							title: 'Weight',
+							type: 'number',
+							default: 1,
+							multipleOf: 0.5,
+							minimum: 1
+						},
+						reps: {
+							title: 'Repetitions',
+							type: 'integer',
+							default: 1
+						}
+					}
+				}
+			}
+		}
 	}
-];
+};
 
 /**
  * Program Generators
