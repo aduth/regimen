@@ -18,7 +18,7 @@ function NewPlanRoute( { location } ) {
 		<Page title="Create Plan">
 			<Content>
 				{ location.query.routine ?
-					<RoutineForm /> :
+					<RoutineForm routine={ location.query.routine } /> :
 					<NewPlanSelection /> }
 			</Content>
 		</Page>

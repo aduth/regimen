@@ -32,7 +32,6 @@ export const weekdays = [
 ];
 
 export const form = {
-	title: 'Plan',
 	type: 'object',
 	properties: {
 		prWeek: {
