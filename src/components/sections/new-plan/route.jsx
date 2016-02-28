@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 /**
  * Internal dependencies
@@ -10,14 +10,23 @@ import React from 'react';
 
 import Page from 'components/layout/page';
 import Content from 'components/layout/content';
+import RoutineForm from './routine-form';
 import NewPlanSelection from './new-plan-selection';
 
-export default function NewPlanRoute() {
+function NewPlanRoute( { location } ) {
 	return (
 		<Page title="Create Plan">
 			<Content>
-				<NewPlanSelection />
+				{ location.query.routine ?
+					<RoutineForm /> :
+					<NewPlanSelection /> }
 			</Content>
 		</Page>
 	);
 }
+
+NewPlanRoute.propTypes = {
+	location: PropTypes.object
+};
+
+export default NewPlanRoute;
