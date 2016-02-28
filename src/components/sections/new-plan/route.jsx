@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 
 /**
  * Internal dependencies
@@ -10,18 +10,14 @@ import React, { Component } from 'react';
 
 import Page from 'components/layout/page';
 import Content from 'components/layout/content';
-import AddViaRoutine from './add-via-routine';
-import AddViaId from './add-via-id';
+import NewPlanSelection from './new-plan-selection';
 
-export default class NewPlanRoute extends Component {
-	render() {
-		return (
-			<Page title="Create Plan">
-				<Content>
-					<AddViaRoutine />
-					<AddViaId />
-				</Content>
-			</Page>
-		);
-	}
+export default function NewPlanRoute() {
+	return (
+		<Page title="Create Plan">
+			<Content>
+				<NewPlanSelection />
+			</Content>
+		</Page>
+	);
 }
