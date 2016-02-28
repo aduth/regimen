@@ -33,6 +33,12 @@ export default class RoutineOption extends Component {
 		};
 	}
 
+	toggleSelected() {
+		this.setState( {
+			selected: ! this.state.selected
+		} );
+	}
+
 	render() {
 		const { name, description, focus, progression, weekdays } = this.props.routine;
 		const classes = classNames( 'add-via-routine__option', {
@@ -41,7 +47,7 @@ export default class RoutineOption extends Component {
 
 		return (
 			<div
-				onClick={ () => this.setState( { selected: true } ) }
+				onClick={ this.toggleSelected.bind( this ) }
 				className={ classes }>
 				<div className="add-via-routine__option-overview">
 					<h2 className="add-via-routine__option-name">
