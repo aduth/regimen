@@ -70,15 +70,12 @@ export const form = {
 						properties: {
 							weight: {
 								title: 'Weight',
-								type: 'number',
-								default: 1,
-								multipleOf: 0.5,
+								type: 'integer',
 								minimum: 1
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer',
-								default: 1
+								type: 'integer'
 							}
 						}
 					},
@@ -88,15 +85,12 @@ export const form = {
 						properties: {
 							weight: {
 								title: 'Weight',
-								type: 'number',
-								default: 1,
-								multipleOf: 0.5,
+								type: 'integer',
 								minimum: 1
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer',
-								default: 1
+								type: 'integer'
 							}
 						}
 					},
@@ -106,15 +100,12 @@ export const form = {
 						properties: {
 							weight: {
 								title: 'Weight',
-								type: 'number',
-								default: 1,
-								multipleOf: 0.5,
+								type: 'integer',
 								minimum: 1
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer',
-								default: 1
+								type: 'integer'
 							}
 						}
 					},
@@ -124,15 +115,12 @@ export const form = {
 						properties: {
 							weight: {
 								title: 'Weight',
-								type: 'number',
-								default: 1,
-								multipleOf: 0.5,
+								type: 'integer',
 								minimum: 1
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer',
-								default: 1
+								type: 'integer'
 							}
 						}
 					},
@@ -142,15 +130,12 @@ export const form = {
 						properties: {
 							weight: {
 								title: 'Weight',
-								type: 'number',
-								default: 1,
-								multipleOf: 0.5,
+								type: 'integer',
 								minimum: 1
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer',
-								default: 1
+								type: 'integer'
 							}
 						}
 					}
