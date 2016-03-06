@@ -30,17 +30,17 @@ class WorkoutRoute extends Component {
 		setWorkoutRoute: () => {}
 	};
 
-	componentDidMount() {
-		this.setWorkoutState();
+	componentWillMount() {
+		this.setWorkoutState( this.props );
 	}
 
-	componentDidUpdate() {
-		this.setWorkoutState();
+	componentWillReceiveProps( nextProps ) {
+		this.setWorkoutState( nextProps );
 	}
 
-	setWorkoutState() {
-		const { params, setWorkout, setProfilePlanProgress, setWorkoutRoute } = this.props;
-		const workout = parseInt( this.props.params.workout, 10 );
+	setWorkoutState( props ) {
+		const { params, setWorkout, setProfilePlanProgress, setWorkoutRoute } = props;
+		const workout = parseInt( params.workout, 10 );
 
 		if ( workout > 0 ) {
 			setProfilePlanProgress( params.planId, workout );
