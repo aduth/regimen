@@ -449,6 +449,9 @@ export function sets( plan, workout, exercise ) {
 				}
 			];
 			break;
+
+		default:
+			sets = [];
 	}
 
 	return sets.map( ( set ) => {
