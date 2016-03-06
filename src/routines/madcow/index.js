@@ -67,6 +67,7 @@ export const form = {
 					squat: {
 						title: 'Squat',
 						type: 'object',
+						required: [ 'weight', 'reps' ],
 						properties: {
 							weight: {
 								title: 'Weight',
@@ -82,6 +83,7 @@ export const form = {
 					bench: {
 						title: 'Bench Press',
 						type: 'object',
+						required: [ 'weight', 'reps' ],
 						properties: {
 							weight: {
 								title: 'Weight',
@@ -97,6 +99,7 @@ export const form = {
 					row: {
 						title: 'Row',
 						type: 'object',
+						required: [ 'weight', 'reps' ],
 						properties: {
 							weight: {
 								title: 'Weight',
@@ -112,6 +115,7 @@ export const form = {
 					deadlift: {
 						title: 'Deadlift',
 						type: 'object',
+						required: [ 'weight', 'reps' ],
 						properties: {
 							weight: {
 								title: 'Weight',
@@ -127,6 +131,7 @@ export const form = {
 					press: {
 						title: 'Overhead Press',
 						type: 'object',
+						required: [ 'weight', 'reps' ],
 						properties: {
 							weight: {
 								title: 'Weight',
