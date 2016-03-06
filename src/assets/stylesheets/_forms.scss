@@ -8,12 +8,25 @@
 }
 
 .field > fieldset {
-	margin-top: 1rem;
-	padding: 0.6rem;
-	border: 1px solid $border-color;
+	margin: 1rem 0 0;
+	padding: 0;
+	border: 0;
 }
 
-.field > fieldset > legend {
-	@include bold;
-	padding: 0 0.8rem;
+.field > fieldset legend {
+	@extend h2;
+	padding: 0;
+}
+
+.field > fieldset fieldset legend {
+	@extend h3;
+}
+
+.field > fieldset fieldset fieldset legend {
+	@extend h4;
+}
+
+.form__inline-flex:not( :first-of-type ) {
+	display: inline-flex;
+	margin: 0 0.5rem;
 }

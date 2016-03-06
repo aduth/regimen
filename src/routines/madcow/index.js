@@ -158,7 +158,25 @@ export const form = {
 			}
 		}
 	},
-	uiSchema: {}
+	uiSchema: {
+		tests: {
+			squat: {
+				classNames: 'form__inline-flex'
+			},
+			bench: {
+				classNames: 'form__inline-flex'
+			},
+			row: {
+				classNames: 'form__inline-flex'
+			},
+			deadlift: {
+				classNames: 'form__inline-flex'
+			},
+			press: {
+				classNames: 'form__inline-flex'
+			}
+		}
+	}
 };
 
 /**
