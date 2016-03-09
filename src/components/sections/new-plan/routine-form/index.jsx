@@ -3,6 +3,8 @@
  */
 
 import React, { PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Form from 'react-jsonschema-form';
 import merge from 'lodash/merge';
 
@@ -10,6 +12,7 @@ import merge from 'lodash/merge';
  * Internal dependencies
  */
 
+import { createPlan } from 'state/plans/actions';
 import * as routines from 'routines';
 import Block from 'components/ui/block';
 import Button from 'components/ui/button';
@@ -34,7 +37,7 @@ const BASE_UI_SCHEMA = {
 	classNames: 'routine-form__form'
 };
 
-function RoutineForm( { routine } ) {
+function RoutineForm( { routine, createPlan } ) {
 	const form = merge( {
 		properties: {
 			title: {
@@ -50,10 +53,21 @@ function RoutineForm( { routine } ) {
 		...routines[ routine ].form.uiSchema
 	};
 
+	function onSubmit( form ) {
+		createPlan( merge( { routine }, form.formData ) );
+	}
+
 	return (
 		<Block title="Create New Plan" padded>
-			<Form schema={ form } uiSchema={ uiSchema }>
-				<Button type="submit" success>
+			<Form
+				schema={ form }
+				uiSchema={ uiSchema }
+				onSubmit={ onSubmit }>
+				<Button
+					type="submit"
+					success
+					large
+					className="routine-form__submit">
 					Create
 				</Button>
 			</Form>
@@ -65,4 +79,8 @@ RoutineForm.propTypes = {
 	routine: PropTypes.oneOf( Object.keys( routines ) ).isRequired
 };
 
-export default RoutineForm;
+export default connect( null, ( dispatch ) => {
+	return bindActionCreators( {
+		createPlan
+	}, dispatch );
+} )( RoutineForm );

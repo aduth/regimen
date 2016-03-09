@@ -1,10 +1,17 @@
 /**
+ * External dependencies
+ */
+
+import shortid from 'shortid';
+
+/**
  * Internal dependencies
  */
 
 import { getDatabase } from 'db';
 import {
 	PLAN_CREATE,
+	PLAN_CREATE_SUCCESS,
 	PLAN_EDIT,
 	PLAN_RECEIVE,
 	PLAN_REMOVE,
@@ -14,9 +21,26 @@ import {
 } from 'state/action-types';
 
 export function createPlan( plan ) {
-	return {
-		type: PLAN_CREATE,
-		payload: { plan }
+	return async ( dispatch ) => {
+		plan._id = shortid();
+
+		dispatch( {
+			type: PLAN_CREATE,
+			payload: { plan }
+		} );
+
+		const db = getDatabase( 'plans' );
+
+		try {
+			await db.validatingPut( plan );
+			dispatch( receivePlan( await db.get( plan._id ) ) );
+			dispatch( {
+				type: PLAN_CREATE_SUCCESS,
+				payload: { plan }
+			} );
+		} catch ( error ) {
+			dispatch( removePlan( plan ) );
+		}
 	};
 }
 
