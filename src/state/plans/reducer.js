@@ -15,6 +15,7 @@ import {
 	DATABASES_RECEIVE_SYNC_CHANGE,
 	PLAN_EDIT,
 	PLAN_RECEIVE,
+	PLAN_REMOVE,
 	PLAN_REQUEST,
 	PLAN_REQUEST_SUCCESS,
 	PLAN_REQUEST_FAILURE
@@ -59,34 +60,35 @@ function errors( state = {}, action ) {
 function items( state = {}, action ) {
 	switch ( action.type ) {
 		case PLAN_RECEIVE:
-			const { plan } = action.payload;
 			state = {
 				...state,
-				[ plan._id ]: plan
+				[ action.payload.plan._id ]: action.payload.plan
 			};
 			break;
 
 		case DATABASES_RECEIVE_SYNC_CHANGE:
-			const { database, change } = action.payload;
-			if ( 'plans' !== database ) {
+			if ( 'plans' !== action.payload.database ) {
 				break;
 			}
 
 			state = {
 				...state,
-				...keyBy( change.docs, '_id' )
+				...keyBy( action.payload.change.docs, '_id' )
 			};
 			break;
 
 		case PLAN_EDIT:
-			const { planId, attributes } = action.payload;
 			state = {
 				...state,
-				[ planId ]: {
+				[ action.payload.planId ]: {
 					...state[ planId ],
-					...attributes
+					...action.payload.attributes
 				}
 			};
+			break;
+
+		case PLAN_REMOVE:
+			state = omit( state, [ action.payload.plan._id ] );
 			break;
 	}
 

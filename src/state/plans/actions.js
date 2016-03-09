@@ -7,6 +7,7 @@ import {
 	PLAN_CREATE,
 	PLAN_EDIT,
 	PLAN_RECEIVE,
+	PLAN_REMOVE,
 	PLAN_REQUEST,
 	PLAN_REQUEST_SUCCESS,
 	PLAN_REQUEST_FAILURE
@@ -22,6 +23,13 @@ export function createPlan( plan ) {
 export function receivePlan( plan ) {
 	return {
 		type: PLAN_RECEIVE,
+		payload: { plan }
+	};
+}
+
+export function removePlan( plan ) {
+	return {
+		type: PLAN_REMOVE,
 		payload: { plan }
 	};
 }
