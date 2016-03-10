@@ -18,7 +18,7 @@ import * as routines from 'routines';
 export default class RoutineOption extends Component {
 	static propTypes = {
 		onSelect: PropTypes.func,
-		routine: PropTypes.oneOf( values( routines ) )
+		routine: PropTypes.oneOf( Object.keys( routines ) )
 	};
 
 	static defaultProps = {
@@ -40,7 +40,8 @@ export default class RoutineOption extends Component {
 	}
 
 	render() {
-		const { name, description, focus, progression, weekdays } = this.props.routine;
+		const routine = routines[ this.props.routine ];
+		const { name, description, focus, progression, weekdays } = routine;
 		const classes = classNames( 'add-via-routine__option', {
 			'is-selected': this.state.selected
 		} );
@@ -58,7 +59,7 @@ export default class RoutineOption extends Component {
 					</p>
 					{ this.state.selected && (
 						<Button
-							onClick={ this.props.onSelect }
+							to={ `/plan/new?routine=${ this.props.routine }` }
 							success
 							className="add-via-routine__option-select">
 							Choose This Routine
