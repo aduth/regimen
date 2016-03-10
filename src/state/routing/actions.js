@@ -2,12 +2,12 @@
  * External dependencies
  */
 
-import { pushPath } from 'redux-simple-router';
+import { push } from 'react-router-redux';
 
 export function setPath( path ) {
-	return pushPath( path );
+	return push( path );
 }
 
 export function setWorkoutRoute( planId, workout ) {
-	return pushPath( `/plan/${ planId }/workout/${ workout }` );
+	return push( `/plan/${ planId }/workout/${ workout }` );
 }

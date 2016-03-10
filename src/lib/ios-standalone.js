@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import { pushPath } from 'redux-simple-router';
+import { push } from 'react-router-redux';
 
 /**
  * Adds iOS-specific styling to the page.
@@ -22,7 +22,7 @@ function trackPath( store ) {
 	// Restore path from localStorage
 	let path = localStorage.getItem( 'path' );
 	if ( path && path !== store.getState().routing.path ) {
-		store.dispatch( pushPath( path ) );
+		store.dispatch( push( path ) );
 	}
 
 	// Subscribe to path changes

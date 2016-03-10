@@ -3,8 +3,9 @@
  */
 
 import { compose, applyMiddleware, createStore } from 'redux';
+import { browserHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk';
-import { syncReduxAndRouter } from 'redux-simple-router';
 
 /**
  * Internal dependencies
@@ -16,9 +17,12 @@ import reducer from './reducer';
  * Store initialization
  */
 
-export function createReduxStore( history ) {
+export function createReduxStore() {
 	let createStoreWithMiddleware = compose(
-		applyMiddleware( thunkMiddleware )
+		applyMiddleware(
+			routerMiddleware( browserHistory ),
+			thunkMiddleware
+		)
 	);
 
 	if ( __DEV__ && 'object' === typeof window && window.devToolsExtension ) {
@@ -28,7 +32,5 @@ export function createReduxStore( history ) {
 		);
 	}
 
-	const store = createStoreWithMiddleware( createStore )( reducer );
-	syncReduxAndRouter( history, store );
-	return store;
+	return createStoreWithMiddleware( createStore )( reducer );
 }

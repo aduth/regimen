@@ -4,8 +4,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router } from 'react-router';
-import { createHistory } from 'history';
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { install as installOfflineRuntime } from 'offline-plugin/runtime';
 
 /**
@@ -28,8 +28,8 @@ import 'assets/stylesheets/main.scss';
  * Store initialization
  */
 
-const history = createHistory();
-const store = createReduxStore( history );
+const store = createReduxStore();
+const history = syncHistoryWithStore( browserHistory, store );
 initializeRemoteSync( store );
 
 /**

@@ -9,6 +9,7 @@ import shortid from 'shortid';
  */
 
 import { getDatabase } from 'db';
+import { setWorkoutRoute } from 'state/routing/actions';
 import {
 	PLAN_CREATE,
 	PLAN_CREATE_SUCCESS,
@@ -34,6 +35,7 @@ export function createPlan( plan ) {
 		try {
 			await db.validatingPut( plan );
 			dispatch( receivePlan( await db.get( plan._id ) ) );
+			dispatch( setWorkoutRoute( plan._id, 1 ) );
 			dispatch( {
 				type: PLAN_CREATE_SUCCESS,
 				payload: { plan }
