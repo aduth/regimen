@@ -15,6 +15,7 @@
 	right: 0;
 	left: 0;
 	display: flex;
+	height: 3rem;
 	border-bottom: 1px solid darken( $brand-primary, 10% );
 	background-color: $brand-primary;
 	text-align: center;
@@ -69,5 +70,5 @@
 
 .header__brand {
 	flex: 5;
-	padding: 0.7222222rem 0;
+	padding: 0.7rem 0;
 }
