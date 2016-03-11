@@ -9,7 +9,10 @@ import without from 'lodash/without';
  */
 
 import { getDatabase } from 'db';
-import { getProfileOrDefault } from 'db/api/profile';
+import {
+	getProfileOrDefault,
+	queueValidatingPut
+} from 'db/api/profile';
 import {
 	PROFILE_PLAN_ADD,
 	PROFILE_PLAN_PROGRESS_SET,
@@ -63,12 +66,11 @@ export function setProfilePlanProgress( planId, workout ) {
 			payload: { planId, workout }
 		} );
 
-		const db = getDatabase( 'profile' );
 		try {
 			let profile = await getProfileOrDefault();
 			profile.progress[ planId ] = workout;
-			await db.validatingPut( profile );
-			profile = await db.get( 'profile' );
+			await queueValidatingPut( profile );
+			profile = await getProfileOrDefault();
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
 			dispatch( updateProfileFailure( error ) );
@@ -83,7 +85,6 @@ export function addPlanToProfile( planId ) {
 			payload: { planId }
 		} );
 
-		const db = getDatabase( 'profile' );
 		try {
 			let profile = await getProfileOrDefault();
 			if ( planId === profile.plans[ 0 ] ) {
@@ -91,8 +92,8 @@ export function addPlanToProfile( planId ) {
 			}
 
 			profile.plans = [ planId ].concat( without( profile.plans, planId ) );
-			await db.validatingPut( profile );
-			profile = await db.get( 'profile' );
+			await queueValidatingPut( profile );
+			profile = await getProfileOrDefault();
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
 			dispatch( updateProfileFailure( error ) );
@@ -107,7 +108,6 @@ export function removePlanFromProfile( planId ) {
 			payload: { planId }
 		} );
 
-		const db = getDatabase( 'profile' );
 		try {
 			let profile = await getProfileOrDefault();
 			if ( ! includes( profile.plans, planId ) ) {
@@ -116,8 +116,8 @@ export function removePlanFromProfile( planId ) {
 
 			profile.plans = without( profile.plans, planId );
 			delete profile.progress[ planId ];
-			await db.validatingPut( profile );
-			profile = await db.get( 'profile' );
+			await queueValidatingPut( profile );
+			profile = await getProfileOrDefault();
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
 			dispatch( updateProfileFailure( error ) );
