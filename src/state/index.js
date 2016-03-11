@@ -17,6 +17,11 @@ import reducer from './reducer';
  * Store initialization
  */
 
+/**
+ * Returns a Redux store instance with application-specific middleware applied.
+ *
+ * @return {Object} Redux store instance
+ */
 export function createReduxStore() {
 	let createStoreWithMiddleware = compose(
 		applyMiddleware(

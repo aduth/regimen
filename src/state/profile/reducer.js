@@ -20,6 +20,14 @@ import {
 	PROFILE_UPDATE_SUCCESS
 } from 'state/action-types';
 
+/**
+ * Returns the updated profile fetching state after an action has been
+ * dispatched.
+ *
+ * @param  {Boolean} state  Current state
+ * @param  {Object}  action Action object
+ * @return {Boolean}        Updated state
+ */
 function fetching( state = false, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST:
@@ -32,6 +40,14 @@ function fetching( state = false, action ) {
 	return state;
 }
 
+/**
+ * Returns the updated profile progress state after an action has been
+ * dispatched.
+ *
+ * @param  {Object} state  Current state
+ * @param  {Object} action Action object
+ * @return {Object}        Updated state
+ */
 function progress( state = {}, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
@@ -54,6 +70,14 @@ function progress( state = {}, action ) {
 	return state;
 }
 
+/**
+ * Returns the updated profile plans state after an action has been
+ * dispatched.
+ *
+ * @param  {Array}  state  Current state
+ * @param  {Object} action Action object
+ * @return {Array}         Updated state
+ */
 function plans( state = [], action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:

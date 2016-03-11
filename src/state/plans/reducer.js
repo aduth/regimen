@@ -21,6 +21,14 @@ import {
 	PLAN_REQUEST_FAILURE
 } from 'state/action-types';
 
+/**
+ * Returns the updated plans fetching state after an action has been
+ * dispatched.
+ *
+ * @param  {Object} state  Current state
+ * @param  {Object} action Action object
+ * @return {Object}        Updated state
+ */
 function fetching( state = {}, action ) {
 	switch ( action.type ) {
 		case PLAN_REQUEST:
@@ -36,6 +44,13 @@ function fetching( state = {}, action ) {
 	return state;
 }
 
+/**
+ * Returns the updated plans error state after an action has been dispatched.
+ *
+ * @param  {Object} state  Current state
+ * @param  {Object} action Action object
+ * @return {Object}        Updated state
+ */
 function errors( state = {}, action ) {
 	switch ( action.type ) {
 		case PLAN_REQUEST_FAILURE:
@@ -59,6 +74,13 @@ function errors( state = {}, action ) {
 	return state;
 }
 
+/**
+ * Returns the updated plan items state after an action has been dispatched.
+ *
+ * @param  {Object} state  Current state
+ * @param  {Object} action Action object
+ * @return {Object}        Updated state
+ */
 function items( state = {}, action ) {
 	switch ( action.type ) {
 		case PLAN_RECEIVE:

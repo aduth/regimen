@@ -24,6 +24,12 @@ import {
 	PROFILE_UPDATE_FAILURE
 } from 'state/action-types';
 
+/**
+ * Returns an action thunk, dispatching progress of an attempt to request the
+ * current profile.
+ *
+ * @return {Function} Action thunk
+ */
 export function requestProfile() {
 	return async ( dispatch ) => {
 		dispatch( {
@@ -45,6 +51,13 @@ export function requestProfile() {
 	};
 }
 
+/**
+ * Returns an action object signalling that the profile has been updated
+ * successfully.
+ *
+ * @param  {Object} profile Updated profile
+ * @return {Object}         Action object
+ */
 export function updateProfileSuccess( profile ) {
 	return {
 		type: PROFILE_UPDATE_SUCCESS,
@@ -52,6 +65,13 @@ export function updateProfileSuccess( profile ) {
 	};
 }
 
+/**
+ * Returns an action object signalling that the profile had failed to be
+ * updated.
+ *
+ * @param  {Object} error Error object
+ * @return {Object}       Action object
+ */
 export function updateProfileFailure( error ) {
 	return {
 		type: PROFILE_UPDATE_FAILURE,
@@ -59,6 +79,14 @@ export function updateProfileFailure( error ) {
 	};
 }
 
+/**
+ * Returns an action thunk, dispatching progress of an attempt to set the
+ * workout progress for a plan.
+ *
+ * @param  {String}   planId  Plan ID
+ * @param  {Number}   workout Workout
+ * @return {Function}       Action thunk
+ */
 export function setProfilePlanProgress( planId, workout ) {
 	return async ( dispatch ) => {
 		dispatch( {
@@ -78,6 +106,13 @@ export function setProfilePlanProgress( planId, workout ) {
 	};
 }
 
+/**
+ * Returns an action thunk, dispatching progress of an attempt to add a plan to
+ * the profile.
+ *
+ * @param  {String}   planId  Plan ID
+ * @return {Function}         Action thunk
+ */
 export function addPlanToProfile( planId ) {
 	return async ( dispatch ) => {
 		dispatch( {
@@ -101,6 +136,13 @@ export function addPlanToProfile( planId ) {
 	};
 }
 
+/**
+ * Returns an action thunk, dispatching progress of an attempt to remove a plan
+ * from the profile.
+ *
+ * @param  {String}   planId  Plan ID
+ * @return {Function}         Action thunk
+ */
 export function removePlanFromProfile( planId ) {
 	return async ( dispatch ) => {
 		dispatch( {

@@ -21,6 +21,13 @@ import {
 	PLAN_REQUEST_FAILURE
 } from 'state/action-types';
 
+/**
+ * Returns an action thunk, dispatching progress of an attempt to create a new
+ * plan.
+ *
+ * @param  {Object}   plan Plan to create
+ * @return {Function}      Action thunk
+ */
 export function createPlan( plan ) {
 	return async ( dispatch ) => {
 		plan._id = shortid();
@@ -46,6 +53,12 @@ export function createPlan( plan ) {
 	};
 }
 
+/**
+ * Returns an action object signalling that a plan object has been received.
+ *
+ * @param  {Object} plan Plan received
+ * @return {Object}      Action object
+ */
 export function receivePlan( plan ) {
 	return {
 		type: PLAN_RECEIVE,
@@ -53,6 +66,12 @@ export function receivePlan( plan ) {
 	};
 }
 
+/**
+ * Returns an action object signalling that a plan object has been removed.
+ *
+ * @param  {Object} plan Plan removed
+ * @return {Object}      Action object
+ */
 export function removePlan( plan ) {
 	return {
 		type: PLAN_REMOVE,
@@ -60,6 +79,13 @@ export function removePlan( plan ) {
 	};
 }
 
+/**
+ * Returns an action thunk, dispatching progress of an attempt to request a
+ * plan.
+ *
+ * @param  {String}   planId Plan to request
+ * @return {Function}        Action thunk
+ */
 export function requestPlan( planId ) {
 	return async ( dispatch ) => {
 		dispatch( {
@@ -84,6 +110,13 @@ export function requestPlan( planId ) {
 	};
 }
 
+/**
+ * Returns an action thunk, dispatching progress of an attempt to edit a plan.
+ *
+ * @param  {String}   planId     Plan to edit
+ * @param  {Object}   attributes Attribute revisions
+ * @return {Function}            Action thunk
+ */
 export function editPlan( planId, attributes ) {
 	return async ( dispatch ) => {
 		dispatch( {
