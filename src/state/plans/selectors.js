@@ -27,10 +27,6 @@ export function isRequestingPlan( state, planId ) {
 	return state.plans.fetching[ planId ];
 }
 
-export function hasRequestedPlan( state, planId ) {
-	return state.plans.fetching.hasOwnProperty( planId );
-}
-
 export function isPlanNotFound( state, planId ) {
 	return some( state.plans.errors[ planId ], { status: 404 } );
 }
