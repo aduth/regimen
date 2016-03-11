@@ -60,24 +60,24 @@ export function removePlan( plan ) {
 	};
 }
 
-export function requestPlan( id ) {
+export function requestPlan( planId ) {
 	return async ( dispatch ) => {
 		dispatch( {
 			type: PLAN_REQUEST,
-			payload: { id }
+			payload: { planId }
 		} );
 
 		try {
-			const plan = await getDatabase( 'plans' ).get( id );
+			const plan = await getDatabase( 'plans' ).get( planId );
 			dispatch( {
 				type: PLAN_REQUEST_SUCCESS,
-				payload: { id }
+				payload: { planId }
 			} );
 			dispatch( receivePlan( plan ) );
 		} catch ( error ) {
 			dispatch( {
 				type: PLAN_REQUEST_FAILURE,
-				payload: { id },
+				payload: { planId },
 				error
 			} );
 		}

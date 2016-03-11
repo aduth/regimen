@@ -28,7 +28,7 @@ function fetching( state = {}, action ) {
 		case PLAN_REQUEST_FAILURE:
 			state = {
 				...state,
-				[ action.payload.id ]: PLAN_REQUEST === action.type
+				[ action.payload.planId ]: PLAN_REQUEST === action.type
 			};
 			break;
 	}
@@ -39,10 +39,12 @@ function fetching( state = {}, action ) {
 function errors( state = {}, action ) {
 	switch ( action.type ) {
 		case PLAN_REQUEST_FAILURE:
-			const { id } = action.payload;
 			state = {
 				...state,
-				[ id ]: [ ...( state[ id ] || [] ), action.error ]
+				[ action.payload.planId ]: [
+					...( state[ action.payload.planId ] || [] ),
+					action.error
+				]
 			};
 			break;
 
@@ -81,7 +83,7 @@ function items( state = {}, action ) {
 			state = {
 				...state,
 				[ action.payload.planId ]: {
-					...state[ planId ],
+					...state[ action.payload.planId ],
 					...action.payload.attributes
 				}
 			};
