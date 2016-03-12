@@ -3,6 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from 'react-jsonschema-form';
@@ -37,7 +38,18 @@ const BASE_UI_SCHEMA = {
 	classNames: 'routine-form__form'
 };
 
-function RoutineForm( { routine, createPlan } ) {
+function RoutineForm( { routine, plan, createPlan } ) {
+	const classes = classNames( 'routine-form', {
+		'is-loading': ! routine
+	} );
+
+	const block = <Block title="Create New Plan" padded className={ classes } />;
+	if ( ! routine ) {
+		return React.cloneElement( block, null, (
+			<div className="routine-form__placeholder" />
+		) );
+	}
+
 	const form = merge( {
 		properties: {
 			title: {
@@ -57,26 +69,27 @@ function RoutineForm( { routine, createPlan } ) {
 		createPlan( merge( { routine }, form.formData ) );
 	}
 
-	return (
-		<Block title="Create New Plan" padded>
-			<Form
-				schema={ form }
-				uiSchema={ uiSchema }
-				onSubmit={ onSubmit }>
-				<Button
-					type="submit"
-					success
-					large
-					className="routine-form__submit">
-					Create
-				</Button>
-			</Form>
-		</Block>
-	);
+	return React.cloneElement( block, null, (
+		<Form
+			schema={ form }
+			formData={ plan }
+			uiSchema={ uiSchema }
+			onSubmit={ onSubmit }>
+			<Button
+				type="submit"
+				success
+				large
+				className="routine-form__submit">
+				Create
+			</Button>
+		</Form>
+	) );
 }
 
 RoutineForm.propTypes = {
-	routine: PropTypes.oneOf( Object.keys( routines ) ).isRequired
+	routine: PropTypes.oneOf( Object.keys( routines ) ),
+	plan: PropTypes.object,
+	createPlan: PropTypes.func.isRequired
 };
 
 export default connect( null, ( dispatch ) => {

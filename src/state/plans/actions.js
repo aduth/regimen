@@ -3,6 +3,7 @@
  */
 
 import shortid from 'shortid';
+import omit from 'lodash/omit';
 
 /**
  * Internal dependencies
@@ -22,6 +23,29 @@ import {
 } from 'state/action-types';
 
 /**
+ * Constants
+ */
+
+/**
+ * CouchDB special document field keys, to be stripped from any created plan so
+ * as not to introduce conflicts.
+ *
+ * @see  https://wiki.apache.org/couchdb/HTTP_Document_API
+ * @type CouchDB special document fields
+ */
+const COUCHDB_SPECIAL_FIELDS = [
+	'_id',
+	'_rev',
+	'_attachments',
+	'_deleted',
+	'_revisions',
+	'_revs_info',
+	'_conflicts',
+	'_deleted_conflicts',
+	'_local_seq'
+];
+
+/**
  * Returns an action thunk, dispatching progress of an attempt to create a new
  * plan.
  *
@@ -30,6 +54,7 @@ import {
  */
 export function createPlan( plan ) {
 	return async ( dispatch ) => {
+		plan = omit( plan, COUCHDB_SPECIAL_FIELDS );
 		plan._id = shortid();
 
 		dispatch( {
