@@ -157,7 +157,7 @@ export function removePlanFromProfile( planId ) {
 			}
 
 			profile.plans = without( profile.plans, planId );
-			delete profile.progress[ planId ];
+			await setProfilePlanProgress( planId, undefined );
 			await queueValidatingPut( profile );
 			profile = await getProfileOrDefault();
 			dispatch( updateProfileSuccess( profile ) );
