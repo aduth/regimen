@@ -12,7 +12,7 @@ import get from 'lodash/get';
  */
 
 import { getPlanId } from 'state/ui/selectors';
-import { getPlan, isPlanNotFound } from 'state/plans/selectors';
+import { getPlan, isRequestingPlan, isPlanNotFound } from 'state/plans/selectors';
 
 function PlanPageHeader( { title, loading, notFound } ) {
 	const classes = classNames( 'plan-page-header', {
@@ -40,10 +40,10 @@ PlanPageHeader.propTypes = {
 
 export default connect( ( state ) => {
 	const planId = getPlanId( state );
-	const plan = getPlan( state, planId );
+
 	return {
-		title: get( plan, 'title', '' ),
-		loading: ! plan,
 		notFound: isPlanNotFound( state, planId )
+		title: get( getPlan( state, planId ), 'title', '' ),
+		loading: isRequestingPlan( state, planId ),
 	};
 } )( PlanPageHeader );
