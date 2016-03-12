@@ -42,7 +42,7 @@ class PlanRoute extends Component {
 	}
 
 	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.params.planId !== this.props.planId ) {
+		if ( nextProps.params.planId !== this.props.params.planId ) {
 			nextProps.setPlanId( nextProps.params.planId );
 		}
 
