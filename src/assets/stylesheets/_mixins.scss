@@ -70,9 +70,9 @@
 	}
 }
 
-@mixin fixed() {
+@mixin fixed( $z-index: 100 ) {
 	position: fixed;
 	transform: translateZ( 0 );
-	z-index: 100;
+	z-index: $z-index;
 	backface-visibility: hidden;
 }

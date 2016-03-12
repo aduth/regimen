@@ -12,11 +12,11 @@ import { bindActionCreators } from 'redux';
  */
 
 import { toggleHeaderOptionsActive } from 'state/ui/actions';
-import { isHeaderOptionsActive } from 'state/ui/selectors';
+import { getPlanId, isHeaderOptionsActive } from 'state/ui/selectors';
 import PopoverMenu from 'components/ui/popover-menu';
-import PopoverMenuItem from 'components/ui/popover-menu-item';
+import PopoverMenuItem from 'components/ui/popover-menu/item';
 
-function HeaderOptions( { active, toggleActive, className } ) {
+function HeaderOptions( { planId, active, toggleActive, className } ) {
 	const classes = classNames( 'header-options', className );
 
 	return (
@@ -25,8 +25,14 @@ function HeaderOptions( { active, toggleActive, className } ) {
 				position="bottom left"
 				visible={ active }
 				onClose={ toggleActive }>
-				<PopoverMenuItem>Edit</PopoverMenuItem>
-				<PopoverMenuItem>Add to Mine</PopoverMenuItem>
+				{ planId && (
+					<PopoverMenuItem to={ `/plan/new?planId=${ planId }` }>
+						Edit
+					</PopoverMenuItem>
+				) }
+				<PopoverMenuItem to="/settings">
+					Settings
+				</PopoverMenuItem>
 			</PopoverMenu>
 		</div>
 	);
@@ -45,6 +51,7 @@ HeaderOptions.defaultProps = {
 
 export default connect( ( state ) => {
 	return {
+		planId: getPlanId( state ),
 		active: isHeaderOptionsActive( state )
 	};
 }, ( dispatch ) => {

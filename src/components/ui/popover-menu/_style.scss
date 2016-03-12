@@ -10,9 +10,25 @@
 .popover-menu__list {
 	@include reset-list;
 	position: absolute;
+	padding: 0.2rem 0;
+	min-width: 10rem;
 	background-color: white;
 	border: 1px solid $border-color;
 	border-radius: $border-radius;
+
+	&::before {
+		content: '';
+		position: absolute;
+		right: 12px;
+		height: 8px;
+		width: 8px;
+		top: -4px;
+		z-index: 10;
+		transform: rotate( 45deg );
+		background: white;
+		border-left: 1px solid $border-color;
+		border-top: 1px solid $border-color;
+	}
 }
 
 .popover-menu.is-top-left .popover-menu__list,
@@ -28,9 +44,49 @@
 .popover-menu.is-top-left .popover-menu__list,
 .popover-menu.is-bottom-left .popover-menu__list {
 	right: 50%;
+	margin-right: -17px;
 }
 
 .popover-menu.is-top-right .popover-menu__list,
 .popover-menu.is-bottom-right .popover-menu__list {
 	left: 50%;
+	margin-left: -17px;
+}
+
+.popover-menu__item-button {
+	@include reset-button;
+	position: relative;
+	z-index: 20;
+	display: block;
+	width: 100%;
+	padding: 0.1rem 0.8rem;
+	cursor: pointer;
+	font-size: 1rem;
+	white-space: nowrap;
+
+	&:hover {
+		background-color: $hover-color;
+	}
+
+	.popover-menu__item:first-child &:hover::before,
+	.popover-menu__item:last-child &:hover::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 0.2rem;
+		background-color: $hover-color;
+	}
+
+	.popover-menu__item:first-child &:hover::before {
+		top: -0.2rem;
+		border-top-left-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+	}
+
+	.popover-menu__item:last-child &:hover::after {
+		bottom: -0.2rem;
+		border-bottom-left-radius: $border-radius;
+		border-bottom-right-radius: $border-radius;
+	}
 }
