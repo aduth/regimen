@@ -51,6 +51,10 @@ class PlanRoute extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		this.props.setPlanId( null );
+	}
+
 	render() {
 		const { params, children } = this.props;
 

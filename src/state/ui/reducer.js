@@ -27,10 +27,6 @@ function planId( state = null, action ) {
 		case PLAN_ID_SET:
 			state = action.payload.planId;
 			break;
-
-		case LOCATION_CHANGE:
-			state = null;
-			break;
 	}
 
 	return state;
