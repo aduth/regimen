@@ -45,7 +45,13 @@ function RoutineForm( { routine, planId, plan, removePlanFromProfile, createPlan
 		'is-loading': ! routine
 	} );
 
-	const block = <Block title="Create New Plan" padded className={ classes } />;
+	const block = (
+		<Block
+			title={ planId ? 'Update Plan' : 'Create New Plan' }
+			padded
+			className={ classes } />
+	);
+
 	if ( ! routine ) {
 		return React.cloneElement( block, null, (
 			<div className="routine-form__placeholder" />
@@ -86,7 +92,7 @@ function RoutineForm( { routine, planId, plan, removePlanFromProfile, createPlan
 				success
 				large
 				className="routine-form__submit">
-				Create
+				{ planId ? 'Update' : 'Create' }
 			</Button>
 		</Form>
 	) );
