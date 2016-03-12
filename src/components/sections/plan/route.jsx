@@ -13,7 +13,8 @@ import { connect } from 'react-redux';
 import { addPlanToProfile } from 'state/profile/actions';
 import { setPlanId } from 'state/ui/actions';
 import { getPlanId } from 'state/ui/selectors';
-import { getPlan } from 'state/plans/selectors';
+import { getPlan, isPlanNotFound } from 'state/plans/selectors';
+import NotFoundRoute from 'components/sections/not-found/route';
 import QueryPlan from 'components/data/query-plan';
 import Page from 'components/layout/page';
 import PlanPageHeader from './plan-page-header';
@@ -23,6 +24,7 @@ class PlanRoute extends Component {
 		planId: PropTypes.string,
 		params: PropTypes.object.isRequired,
 		plan: PropTypes.object,
+		notFound: PropTypes.bool,
 		setPlanId: PropTypes.func,
 		addPlanToProfile: PropTypes.func,
 		children: PropTypes.node
@@ -56,7 +58,11 @@ class PlanRoute extends Component {
 	}
 
 	render() {
-		const { params, children } = this.props;
+		const { params, children, notFound } = this.props;
+
+		if ( notFound ) {
+			return <NotFoundRoute />;
+		}
 
 		return (
 			<Page title="Plan" header={ <PlanPageHeader /> }>
@@ -68,8 +74,11 @@ class PlanRoute extends Component {
 }
 
 export default connect( ( state ) => {
+	const planId = getPlanId( state );
+
 	return {
-		plan: getPlan( state, getPlanId( state ) )
+		plan: getPlan( state, planId ),
+		notFound: isPlanNotFound( state, planId )
 	};
 }, ( dispatch ) => {
 	return bindActionCreators( {
