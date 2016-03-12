@@ -2,7 +2,8 @@
  * External dependencies
  */
 
-var HtmlWebpackPlugin = require( 'html-webpack-plugin' ),
+var webpack = require( 'webpack' ),
+	HtmlWebpackPlugin = require( 'html-webpack-plugin' ),
 	autoprefixer = require( 'autoprefixer' );
 
 module.exports = {
@@ -24,6 +25,11 @@ module.exports = {
 		noParse: /lie\.js/
 	},
 	plugins: [
+		new webpack.DefinePlugin( {
+			'process.env.COUCHDB_REMOTE_HOST': JSON.stringify(
+				'COUCHDB_REMOTE_HOST' in process.env ? process.env.COUCHDB_REMOTE_HOST : 'https://regimenapp.cloudant.com'
+			)
+		} ),
 		new HtmlWebpackPlugin( {
 			title: 'Regimen',
 			templateContent: '' +

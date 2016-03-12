@@ -10,6 +10,7 @@ import each from 'lodash/each';
  * Internal dependencies
  */
 
+import { COUCHDB_REMOTE_HOST } from 'config';
 import { isDatabaseSyncing } from 'state/databases/selectors';
 import {
 	toggleDatabaseSyncing,
@@ -26,9 +27,12 @@ let databases = {};
  * Remote mappings
  */
 
-const remotes = {
-	plans: 'https://regimenapp.cloudant.com/plans'
-};
+const remotes = {};
+if ( COUCHDB_REMOTE_HOST ) {
+	Object.assign( remotes, {
+		plans: `${ COUCHDB_REMOTE_HOST }/plans`
+	} );
+}
 
 /**
  * Module variables
