@@ -3,7 +3,6 @@
  */
 
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,6 +11,7 @@ import { bindActionCreators } from 'redux';
  */
 
 import { toggleHeaderOptionsActive } from 'state/ui/actions';
+import Button from 'components/ui/button';
 import Icon from 'components/ui/icon';
 import HeaderOptions from 'components/layout/header-options';
 
@@ -19,9 +19,9 @@ function Header( { title, toggleHeaderOptions } ) {
 	return (
 		<header className="header">
 			<div className="header__content">
-				<Link to="/" className="header__home">
+				<Button plain to="/" className="header__home">
 					<Icon icon="home" />
-				</Link>
+				</Button>
 				<span className="header__brand">
 					{ title }
 				</span>

@@ -6,25 +6,31 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
 
-function Button( { success, danger, type, large, to, onClick, disabled, className, children } ) {
+function Button( props ) {
+	const {
+		plain, success, danger, type, large, to,
+		onClick, disabled, className, children
+	} = props;
+
 	const classes = classNames( 'button', className, {
+		'is-plain': plain,
 		'is-success': success,
 		'is-danger': danger,
 		'is-large': large
 	} );
 
-	let props = { className: classes, disabled },
-		element;
+	const baseProps = { className: classes, disabled, children };
 
 	if ( to ) {
-		element = Link;
-		props = { ...props, to };
-	} else {
-		element = 'button';
-		props = { ...props, type, onClick };
+		return <Link { ...baseProps } to={ to } />;
 	}
 
-	return React.createElement( element, props, children );
+	return (
+		<button
+			{ ...baseProps }
+			type={ type }
+			onClick={ onClick } />
+	);
 }
 
 Button.propTypes = {

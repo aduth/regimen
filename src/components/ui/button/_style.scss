@@ -1,11 +1,14 @@
 .button {
 	@include reset-button;
 	@include reset-link;
-	background-color: $color-gray;
-	border: 1px solid $border-color;
-	border-radius: $border-radius;
-	padding: 0.2rem 0.7rem;
 	cursor: pointer;
+
+	&:not( .is-plain ) {
+		padding: 0.2rem 0.7rem;
+		background-color: $color-gray;
+		border: 1px solid $border-color;
+		border-radius: $border-radius;
+	}
 
 	&.is-large {
 		padding: 0.4rem 1.2rem;
@@ -18,7 +21,7 @@
 		cursor: not-allowed;
 	}
 
-	&:hover:not( :disabled ) {
+	&:hover:not( :disabled ):not( .is-plain ) {
 		border-color: darken( $border-color, 10% );
 	}
 
