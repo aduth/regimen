@@ -3,6 +3,7 @@
  */
 
 import { combineReducers } from 'redux';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
 /**
  * Internal dependencies
@@ -25,6 +26,10 @@ function planId( state = null, action ) {
 	switch ( action.type ) {
 		case PLAN_SET:
 			state = action.payload.planId;
+			break;
+
+		case LOCATION_CHANGE:
+			state = null;
 			break;
 	}
 
