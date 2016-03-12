@@ -13,7 +13,9 @@ import merge from 'lodash/merge';
  * Internal dependencies
  */
 
+import { removePlanFromProfile } from 'state/profile/actions';
 import { createPlan } from 'state/plans/actions';
+import { getPlan } from 'state/plans/selectors';
 import * as routines from 'routines';
 import Block from 'components/ui/block';
 import Button from 'components/ui/button';
@@ -38,7 +40,7 @@ const BASE_UI_SCHEMA = {
 	classNames: 'routine-form__form'
 };
 
-function RoutineForm( { routine, plan, createPlan } ) {
+function RoutineForm( { routine, planId, plan, removePlanFromProfile, createPlan } ) {
 	const classes = classNames( 'routine-form', {
 		'is-loading': ! routine
 	} );
@@ -66,6 +68,10 @@ function RoutineForm( { routine, plan, createPlan } ) {
 	};
 
 	function onSubmit( form ) {
+		if ( planId ) {
+			removePlanFromProfile( planId );
+		}
+
 		createPlan( merge( { routine }, form.formData ) );
 	}
 
@@ -88,12 +94,21 @@ function RoutineForm( { routine, plan, createPlan } ) {
 
 RoutineForm.propTypes = {
 	routine: PropTypes.oneOf( Object.keys( routines ) ),
+	planId: PropTypes.string,
 	plan: PropTypes.object,
 	createPlan: PropTypes.func.isRequired
 };
 
-export default connect( null, ( dispatch ) => {
-	return bindActionCreators( {
-		createPlan
-	}, dispatch );
-} )( RoutineForm );
+export default connect(
+	( state, ownProps ) => {
+		return {
+			plan: getPlan( state, ownProps.planId )
+		};
+	},
+	( dispatch ) => {
+		return bindActionCreators( {
+			removePlanFromProfile,
+			createPlan
+		}, dispatch );
+	}
+)( RoutineForm );

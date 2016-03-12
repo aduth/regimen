@@ -17,17 +17,18 @@ import NewPlanSelection from './new-plan-selection';
 import QueryPlan from 'components/data/query-plan';
 
 function NewPlanRoute( { location, plan } ) {
-	const isFormVisible = location.query.routine || location.query.planId;
+	const planId = location.query.planId;
+	const isFormVisible = location.query.routine || planId;
 	const routine = plan ? plan.routine : location.query.routine;
 
 	return (
 		<Page title="Create Plan">
-			{ location.query.planId && (
-				<QueryPlan planId={ location.query.planId } />
+			{ planId && (
+				<QueryPlan planId={ planId } />
 			) }
 			<Content>
 				{ isFormVisible && (
-					<RoutineForm routine={ routine } plan={ plan } />
+					<RoutineForm routine={ routine } planId={ planId } />
 				) }
 				{ ! isFormVisible && (
 					<NewPlanSelection />
