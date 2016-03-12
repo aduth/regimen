@@ -11,7 +11,7 @@ import without from 'lodash/without';
 import { getDatabase } from 'db';
 import {
 	getProfileOrDefault,
-	queueValidatingPut
+	queueRevisions
 } from 'db/api/profile';
 import {
 	PROFILE_PLAN_ADD,
@@ -96,8 +96,10 @@ export function setProfilePlanProgress( planId, workout ) {
 
 		try {
 			let profile = await getProfileOrDefault();
-			profile.progress[ planId ] = workout;
-			await queueValidatingPut( profile );
+			const progress = Object.assign( {}, profile.progress, {
+				[ planId ]: workout
+			} );
+			await queueRevisions( { progress } );
 			profile = await getProfileOrDefault();
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
@@ -126,8 +128,8 @@ export function addPlanToProfile( planId ) {
 				return;
 			}
 
-			profile.plans = [ planId ].concat( without( profile.plans, planId ) );
-			await queueValidatingPut( profile );
+			const plans = [ planId ].concat( without( profile.plans, planId ) );
+			await queueRevisions( { plans } );
 			profile = await getProfileOrDefault();
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {
@@ -156,9 +158,9 @@ export function removePlanFromProfile( planId ) {
 				return;
 			}
 
-			profile.plans = without( profile.plans, planId );
+			const plans = without( profile.plans, planId );
 			await setProfilePlanProgress( planId, undefined );
-			await queueValidatingPut( profile );
+			await queueRevisions( { plans } );
 			profile = await getProfileOrDefault();
 			dispatch( updateProfileSuccess( profile ) );
 		} catch ( error ) {

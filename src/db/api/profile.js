@@ -2,8 +2,7 @@
  * External dependencies
  */
 
-import debounce from 'lodash/debounce';
-import merge from 'lodash/merge';
+import PromiseQueue from 'promise-queue';
 
 /**
  * Internal dependencies
@@ -12,45 +11,31 @@ import merge from 'lodash/merge';
 import { getDatabase } from 'db';
 
 /**
- * A runtime-initialized closure for queueing validated put requests to the
- * profile document, finally invoking the put with a merged profile after the
- * current call stack resolves.
- *
- * @type {Function} Debounced validated put
+ * Module variables
  */
-export const queueValidatingPut = ( () => {
-	let queue = [];
 
-	/**
-	 * Debounced queue resolver, invoking the validated put and resetting the
-	 * queue array.
-	 *
-	 * @type {Function} Debounced queue resolver
-	 */
-	const resolveQueue = debounce( () => {
-		const profile = queue.reduce( ( memo, queueItem ) => {
-			return merge( memo, queueItem.profile );
-		}, {} );
+/**
+ * Instance of PromiseQueue, used for managing queued profile revisions.
+ *
+ * @type {PromiseQueue}
+ */
+const _queue = new PromiseQueue( 1 );
 
-		getDatabase( 'profile' ).validatingPut( profile ).then( () => {
-			queue.forEach( ( { resolve } ) => resolve() );
-			queue = [];
-		} );
+/**
+ * Queues a profile put request using the specified profile revisions. Requests
+ * are queued such as to avoid a conflict error when multiple updates are made
+ * during the same call stack.
+ *
+ * @param  {Object}  revisions Updated profile value
+ * @return {Promise}           Promise to resolve when put finishes
+ */
+export async function queueRevisions( revisions ) {
+	return _queue.add( async () => {
+		const profile = await getProfileOrDefault();
+		const db = getDatabase( 'profile' );
+		return await db.validatingPut( Object.assign( {}, profile, revisions ) );
 	} );
-
-	/**
-	 * Queues a profile put request for the specified profile document.
-	 *
-	 * @param  {Object}  profile Updated profile
-	 * @return {Promise}         Promise to resolve when put finishes
-	 */
-	return async function( profile ) {
-		return new Promise( ( resolve ) => {
-			queue.push( { profile, resolve } );
-			resolveQueue();
-		} );
-	};
-} )();
+}
 
 /**
  * Requests the profile document, returning the default profile if the document
