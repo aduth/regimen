@@ -4,7 +4,7 @@
 
 import {
 	WORKOUT_SET,
-	PLAN_SET,
+	PLAN_ID_SET,
 	HEADER_OPTIONS_ACTIVE_TOGGLE
 } from 'state/action-types';
 
@@ -31,7 +31,7 @@ export function setWorkout( workout ) {
  */
 export function setPlanId( planId ) {
 	return {
-		type: PLAN_SET,
+		type: PLAN_ID_SET,
 		payload: { planId }
 	};
 }

@@ -11,7 +11,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import {
 	WORKOUT_SET,
-	PLAN_SET,
+	PLAN_ID_SET,
 	HEADER_OPTIONS_ACTIVE_TOGGLE
 } from 'state/action-types';
 
@@ -24,7 +24,7 @@ import {
  */
 function planId( state = null, action ) {
 	switch ( action.type ) {
-		case PLAN_SET:
+		case PLAN_ID_SET:
 			state = action.payload.planId;
 			break;
 
