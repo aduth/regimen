@@ -36,21 +36,6 @@ function trackPath( store ) {
 }
 
 /**
- * Binds to the window applicationCache, forcing a reload without cache when
- * it's determined that the application cache has an update ready. This is
- * necessary because otherwise the changes aren't reflected until the next
- * time the application is loaded.
- */
-function reloadOnCacheUpdate() {
-	if ( ! window.applicationCache ) {
-		return;
-	}
-
-	window.applicationCache.addEventListener( 'updateready', () => {
-		window.location.reload( true );
-	} );
-}
-
 /**
  * Enables compatibility features for iOS standalone (home screen) usage,
  * because iOS is misery.
@@ -64,5 +49,4 @@ export default function( store ) {
 
 	applyStyling();
 	trackPath( store );
-	reloadOnCacheUpdate();
 }
