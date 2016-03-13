@@ -203,233 +203,94 @@ export function sets( plan, workout, exercise ) {
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
 					return [
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 4 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 3 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 2 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - setIncrementPct )
-						},
-						{
-							reps: 5,
-							weight: squatMax
-						}
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 4 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 3 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 2 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - setIncrementPct ) },
+						{ reps: 5, weight: squatMax }
 					];
 
 				case Weekdays.WEDNESDAY:
 					return [
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 4 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 3 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 2 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 2 ) )
-						}
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 4 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 3 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 2 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 2 ) ) }
 					];
 
 				case Weekdays.FRIDAY:
 					return [
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 4 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 3 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - ( setIncrementPct * 2 ) )
-						},
-						{
-							reps: 5,
-							weight: squatMax * ( 1 - setIncrementPct )
-						},
-						{
-							reps: 3,
-							weight: getMax( tests.squat.weight, tests.squat.reps, week + 1, prWeek )
-						},
-						{
-							reps: 8,
-							weight: squatMax * ( 1 - ( setIncrementPct * 2 ) )
-						}
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 4 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 3 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - ( setIncrementPct * 2 ) ) },
+						{ reps: 5, weight: squatMax * ( 1 - setIncrementPct ) },
+						{ reps: 3, weight: getMax( tests.squat.weight, tests.squat.reps, week + 1, prWeek ) },
+						{ reps: 8, weight: squatMax * ( 1 - ( setIncrementPct * 2 ) ) }
 					];
 			}
 
 		case Exercises.BENCH_PRESS:
 			const benchMax = getMax( tests.bench.weight, tests.bench.reps, week, prWeek );
-
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
 					return [
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - ( setIncrementPct * 4 ) )
-						},
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - ( setIncrementPct * 3 ) )
-						},
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - ( setIncrementPct * 2 ) )
-						},
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - setIncrementPct )
-						},
-						{
-							reps: 5,
-							weight: benchMax
-						}
+						{ reps: 5, weight: benchMax * ( 1 - ( setIncrementPct * 4 ) ) },
+						{ reps: 5, weight: benchMax * ( 1 - ( setIncrementPct * 3 ) ) },
+						{ reps: 5, weight: benchMax * ( 1 - ( setIncrementPct * 2 ) ) },
+						{ reps: 5, weight: benchMax * ( 1 - setIncrementPct ) },
+						{ reps: 5, weight: benchMax }
 					];
 
 				case Weekdays.FRIDAY:
 					return [
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - ( setIncrementPct * 4 ) )
-						},
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - ( setIncrementPct * 3 ) )
-						},
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - ( setIncrementPct * 2 ) )
-						},
-						{
-							reps: 5,
-							weight: benchMax * ( 1 - setIncrementPct )
-						},
-						{
-							reps: 3,
-							weight: getMax( tests.bench.weight, tests.bench.reps, week + 1, prWeek )
-						},
-						{
-							reps: 8,
-							weight: benchMax * ( 1 - ( setIncrementPct * 2 ) )
-						}
+						{ reps: 5, weight: benchMax * ( 1 - ( setIncrementPct * 4 ) ) },
+						{ reps: 5, weight: benchMax * ( 1 - ( setIncrementPct * 3 ) ) },
+						{ reps: 5, weight: benchMax * ( 1 - ( setIncrementPct * 2 ) ) },
+						{ reps: 5, weight: benchMax * ( 1 - setIncrementPct ) },
+						{ reps: 3, weight: getMax( tests.bench.weight, tests.bench.reps, week + 1, prWeek ) },
+						{ reps: 8, weight: benchMax * ( 1 - ( setIncrementPct * 2 ) ) }
 					];
 			}
 
 		case Exercises.ROW:
 			const rowMax = getMax( tests.row.weight, tests.row.reps, week, prWeek );
-
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
 					return [
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - ( setIncrementPct * 4 ) )
-						},
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - ( setIncrementPct * 3 ) )
-						},
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - ( setIncrementPct * 2 ) )
-						},
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - setIncrementPct )
-						},
-						{
-							reps: 5,
-							weight: rowMax
-						}
+						{ reps: 5, weight: rowMax * ( 1 - ( setIncrementPct * 4 ) ) },
+						{ reps: 5, weight: rowMax * ( 1 - ( setIncrementPct * 3 ) ) },
+						{ reps: 5, weight: rowMax * ( 1 - ( setIncrementPct * 2 ) ) },
+						{ reps: 5, weight: rowMax * ( 1 - setIncrementPct ) },
+						{ reps: 5, weight: rowMax }
 					];
 
 				case Weekdays.FRIDAY:
 					return [
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - ( setIncrementPct * 4 ) )
-						},
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - ( setIncrementPct * 3 ) )
-						},
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - ( setIncrementPct * 2 ) )
-						},
-						{
-							reps: 5,
-							weight: rowMax * ( 1 - setIncrementPct )
-						},
-						{
-							reps: 3,
-							weight: getMax( tests.row.weight, tests.row.reps, week + 1, prWeek )
-						},
-						{
-							reps: 8,
-							weight: rowMax * ( 1 - ( setIncrementPct * 2 ) )
-						}
+						{ reps: 5, weight: rowMax * ( 1 - ( setIncrementPct * 4 ) ) },
+						{ reps: 5, weight: rowMax * ( 1 - ( setIncrementPct * 3 ) ) },
+						{ reps: 5, weight: rowMax * ( 1 - ( setIncrementPct * 2 ) ) },
+						{ reps: 5, weight: rowMax * ( 1 - setIncrementPct ) },
+						{ reps: 3, weight: getMax( tests.row.weight, tests.row.reps, week + 1, prWeek ) },
+						{ reps: 8, weight: rowMax * ( 1 - ( setIncrementPct * 2 ) ) }
 					];
 			}
 
 		case Exercises.OVERHEAD_PRESS:
 			const pressMax = getMax( tests.press.weight, tests.press.reps, week, prWeek );
-
 			return [
-				{
-					reps: 5,
-					weight: pressMax * ( 1 - ( setIncrementPct * 3 ) )
-				},
-				{
-					reps: 5,
-					weight: pressMax * ( 1 - ( setIncrementPct * 2 ) )
-				},
-				{
-					reps: 5,
-					weight: pressMax * ( 1 - setIncrementPct )
-				},
-				{
-					reps: 5,
-					weight: pressMax
-				}
+				{ reps: 5, weight: pressMax * ( 1 - ( setIncrementPct * 3 ) ) },
+				{ reps: 5, weight: pressMax * ( 1 - ( setIncrementPct * 2 ) ) },
+				{ reps: 5, weight: pressMax * ( 1 - setIncrementPct ) },
+				{ reps: 5, weight: pressMax }
 			];
 
 		case Exercises.DEADLIFT:
 			const deadliftMax = getMax( tests.deadlift.weight, tests.deadlift.reps, week, prWeek );
-
 			return [
-				{
-					reps: 5,
-					weight: deadliftMax * ( 1 - ( setIncrementPct * 3 ) )
-				},
-				{
-					reps: 5,
-					weight: deadliftMax * ( 1 - ( setIncrementPct * 2 ) )
-				},
-				{
-					reps: 5,
-					weight: deadliftMax * ( 1 - setIncrementPct )
-				},
-				{
-					reps: 5,
-					weight: deadliftMax
-				}
+				{ reps: 5, weight: deadliftMax * ( 1 - ( setIncrementPct * 3 ) ) },
+				{ reps: 5, weight: deadliftMax * ( 1 - ( setIncrementPct * 2 ) ) },
+				{ reps: 5, weight: deadliftMax * ( 1 - setIncrementPct ) },
+				{ reps: 5, weight: deadliftMax }
 			];
 	}
 
