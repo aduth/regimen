@@ -12,7 +12,6 @@ import classNames from 'classnames';
 
 import { isRequestingProfile, getProfilePlans } from 'state/profile/selectors';
 import Block from 'components/ui/block';
-import QueryProfile from 'components/data/query-profile';
 import ProfilePlan from './plan';
 
 function ProfilePlans( { requesting, plans } ) {
@@ -22,7 +21,6 @@ function ProfilePlans( { requesting, plans } ) {
 
 	return (
 		<Block title="Your Plans" className={ classes }>
-			<QueryProfile />
 			{ ( ! plans.length ) && (
 				<div className="profile-plans__empty">
 					You don't have any plans yet!
