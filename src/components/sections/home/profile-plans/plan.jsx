@@ -17,6 +17,12 @@ import Button from 'components/ui/button';
 import Icon from 'components/ui/icon';
 
 function ProfilePlan( { planId, workout, removePlanFromProfile } ) {
+	function confirmRemove() {
+		if ( confirm( 'Are you sure you want to remove this plan?' ) ) {
+			removePlanFromProfile( planId );
+		}
+	}
+
 	return (
 		<div className="profile-plans__plan">
 			<span className="profile-plans__plan-name">
@@ -26,7 +32,7 @@ function ProfilePlan( { planId, workout, removePlanFromProfile } ) {
 				<Button success to={ `/plan/${ planId }/workout/${ workout }` }>
 					<Icon icon="play">Resume</Icon>
 				</Button>
-				<Button danger onClick={ () => removePlanFromProfile( planId ) }>
+				<Button danger onClick={ confirmRemove }>
 					<Icon icon="trash">Remove</Icon>
 				</Button>
 			</nav>
