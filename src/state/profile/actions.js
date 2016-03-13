@@ -20,6 +20,7 @@ import {
 	PROFILE_REQUEST,
 	PROFILE_REQUEST_SUCCESS,
 	PROFILE_REQUEST_FAILURE,
+	PROFILE_UPDATE,
 	PROFILE_UPDATE_SUCCESS,
 	PROFILE_UPDATE_FAILURE
 } from 'state/action-types';
@@ -48,6 +49,20 @@ export function requestProfile() {
 				error
 			} );
 		}
+	};
+}
+
+/**
+ * Returns an action thunk, dispatching progress of an attempt to request the
+ * current profile.
+ *
+ * @param  {Object}   profile Profile attributes to update
+ * @return {Function}         Action thunk
+ */
+export function updateProfile( profile ) {
+	return {
+		type: PROFILE_UPDATE,
+		payload: { profile }
 	};
 }
 

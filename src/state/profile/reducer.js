@@ -17,6 +17,7 @@ import {
 	PROFILE_REQUEST,
 	PROFILE_REQUEST_SUCCESS,
 	PROFILE_REQUEST_FAILURE,
+	PROFILE_UPDATE,
 	PROFILE_UPDATE_SUCCESS
 } from 'state/action-types';
 
@@ -52,6 +53,7 @@ function progress( state = {}, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
+		case PROFILE_UPDATE:
 			if ( action.payload.profile.progress ) {
 				state = action.payload.profile.progress;
 			}
@@ -84,6 +86,7 @@ function plans( state = [], action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
+		case PROFILE_UPDATE:
 			if ( action.payload.profile.plans ) {
 				state = action.payload.profile.plans;
 			}
