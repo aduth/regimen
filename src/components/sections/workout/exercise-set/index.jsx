@@ -4,14 +4,19 @@
 
 import React, { PropTypes } from 'react';
 
+/**
+ * Internal dependencies
+ */
+
+import Weight from 'components/ui/weight';
+
 function ExerciseSet( { weight, reps } ) {
 	return (
 		<div className="exercise-set">
 			<div className="exercise-set__weight-label">
-				<span className="exercise-set__weight">
-					{ weight }
-				</span>
-				lbs
+				<Weight
+					weight={ weight }
+					className="exercise-set__weight" />
 			</div>
 			<div className="exercise-set__reps-label">
 				<span className="exercise-set__reps">

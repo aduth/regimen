@@ -2,7 +2,6 @@
  * Internal dependencies
  */
 
-import { roundToNearestPlate } from 'lib/weight';
 import { FocusTypes, ProgressionTypes, Weekdays, Exercises } from 'routines/constants';
 
 /**
@@ -206,13 +205,12 @@ export function sets( plan, workout, exercise ) {
 	const weekday = weekdays[ ( workout - 1 ) % weekdays.length ];
 	const setIncrementPct = setIncrement / 100;
 
-	let sets;
 	switch ( exercise ) {
 		case Exercises.SQUAT:
 			const squatMax = getMax( tests.squat.weight, tests.squat.reps, week, prWeek );
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
-					sets = [
+					return [
 						{
 							reps: 5,
 							weight: squatMax * ( 1 - ( setIncrementPct * 4 ) )
@@ -234,10 +232,9 @@ export function sets( plan, workout, exercise ) {
 							weight: squatMax
 						}
 					];
-					break;
 
 				case Weekdays.WEDNESDAY:
-					sets = [
+					return [
 						{
 							reps: 5,
 							weight: squatMax * ( 1 - ( setIncrementPct * 4 ) )
@@ -255,10 +252,9 @@ export function sets( plan, workout, exercise ) {
 							weight: squatMax * ( 1 - ( setIncrementPct * 2 ) )
 						}
 					];
-					break;
 
 				case Weekdays.FRIDAY:
-					sets = [
+					return [
 						{
 							reps: 5,
 							weight: squatMax * ( 1 - ( setIncrementPct * 4 ) )
@@ -284,16 +280,14 @@ export function sets( plan, workout, exercise ) {
 							weight: squatMax * ( 1 - ( setIncrementPct * 2 ) )
 						}
 					];
-					break;
 			}
-			break;
 
 		case Exercises.BENCH_PRESS:
 			const benchMax = getMax( tests.bench.weight, tests.bench.reps, week, prWeek );
 
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
-					sets = [
+					return [
 						{
 							reps: 5,
 							weight: benchMax * ( 1 - ( setIncrementPct * 4 ) )
@@ -315,10 +309,9 @@ export function sets( plan, workout, exercise ) {
 							weight: benchMax
 						}
 					];
-					break;
 
 				case Weekdays.FRIDAY:
-					sets = [
+					return [
 						{
 							reps: 5,
 							weight: benchMax * ( 1 - ( setIncrementPct * 4 ) )
@@ -344,16 +337,14 @@ export function sets( plan, workout, exercise ) {
 							weight: benchMax * ( 1 - ( setIncrementPct * 2 ) )
 						}
 					];
-					break;
 			}
-			break;
 
 		case Exercises.ROW:
 			const rowMax = getMax( tests.row.weight, tests.row.reps, week, prWeek );
 
 			switch ( weekday ) {
 				case Weekdays.MONDAY:
-					sets = [
+					return [
 						{
 							reps: 5,
 							weight: rowMax * ( 1 - ( setIncrementPct * 4 ) )
@@ -375,10 +366,9 @@ export function sets( plan, workout, exercise ) {
 							weight: rowMax
 						}
 					];
-					break;
 
 				case Weekdays.FRIDAY:
-					sets = [
+					return [
 						{
 							reps: 5,
 							weight: rowMax * ( 1 - ( setIncrementPct * 4 ) )
@@ -404,14 +394,12 @@ export function sets( plan, workout, exercise ) {
 							weight: rowMax * ( 1 - ( setIncrementPct * 2 ) )
 						}
 					];
-					break;
 			}
-			break;
 
 		case Exercises.OVERHEAD_PRESS:
 			const pressMax = getMax( tests.press.weight, tests.press.reps, week, prWeek );
 
-			sets = [
+			return [
 				{
 					reps: 5,
 					weight: pressMax * ( 1 - ( setIncrementPct * 3 ) )
@@ -429,12 +417,11 @@ export function sets( plan, workout, exercise ) {
 					weight: pressMax
 				}
 			];
-			break;
 
 		case Exercises.DEADLIFT:
 			const deadliftMax = getMax( tests.deadlift.weight, tests.deadlift.reps, week, prWeek );
 
-			sets = [
+			return [
 				{
 					reps: 5,
 					weight: deadliftMax * ( 1 - ( setIncrementPct * 3 ) )
@@ -452,14 +439,7 @@ export function sets( plan, workout, exercise ) {
 					weight: deadliftMax
 				}
 			];
-			break;
-
-		default:
-			sets = [];
 	}
 
-	return sets.map( ( set ) => {
-		set.weight = roundToNearestPlate( set.weight, minPlateWeight );
-		return set;
-	} );
+	return [];
 }

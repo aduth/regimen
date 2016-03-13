@@ -22,7 +22,7 @@
 	flex: 2;
 }
 
-.exercise-set__weight,
+.exercise-set__weight .weight__weight,
 .exercise-set__reps {
 	@include bold;
 	margin-right: 2px;
