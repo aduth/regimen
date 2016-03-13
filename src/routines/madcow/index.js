@@ -50,14 +50,6 @@ export const form = {
 				maximum: 100,
 				multipleOf: 1
 			},
-			minPlateWeight: {
-				title: 'Minimum plate weight',
-				description: 'The smallest available plate weight',
-				type: 'number',
-				default: 2.5,
-				minimum: 1,
-				multipleOf: 0.5
-			},
 			tests: {
 				title: 'Current maximums',
 				description: 'For each exercise, provide your current maximum weight and repetitions',
@@ -200,7 +192,7 @@ export function exercises( workout ) {
 }
 
 export function sets( plan, workout, exercise ) {
-	const { prWeek, setIncrement, minPlateWeight, tests } = plan;
+	const { prWeek, setIncrement, tests } = plan;
 	const week = Math.floor( ( workout - 1 ) / weekdays.length ) + 1;
 	const weekday = weekdays[ ( workout - 1 ) % weekdays.length ];
 	const setIncrementPct = setIncrement / 100;
