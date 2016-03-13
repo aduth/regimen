@@ -139,6 +139,13 @@ export const form = {
 			}
 		}
 	},
+	weights: [
+		'tests.squat.weight',
+		'tests.bench.weight',
+		'tests.row.weight',
+		'tests.deadlift.weight',
+		'tests.press.weight'
+	],
 	uiSchema: {
 		tests: {
 			squat: {

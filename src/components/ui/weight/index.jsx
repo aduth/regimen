@@ -10,19 +10,8 @@ import classNames from 'classnames';
  * Internal dependencies
  */
 
+import { roundToNearestPlate, toKilograms } from 'lib/weight';
 import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
-
-/**
- * Utility
- */
-
-function roundToNearestPlate( weight, minPlate ) {
-	return Math.round( weight / ( minPlate * 2 ) ) * ( minPlate * 2 );
-}
-
-function toKilograms( weight ) {
-	return weight / 2.2046226218;
-}
 
 function Weight( { weight, isImperial, minPlate, className } ) {
 	const classes = classNames( 'weight', className );
