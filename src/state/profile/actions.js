@@ -60,9 +60,18 @@ export function requestProfile() {
  * @return {Function}         Action thunk
  */
 export function updateProfile( profile ) {
-	return {
-		type: PROFILE_UPDATE,
-		payload: { profile }
+	return async ( dispatch ) => {
+		dispatch( {
+			type: PROFILE_UPDATE,
+			payload: { profile }
+		} );
+
+		try {
+			await queueRevisions( profile );
+			dispatch( updateProfileSuccess( profile ) );
+		} catch ( error ) {
+			dispatch( updateProfileFailure( error ) );
+		}
 	};
 }
 
