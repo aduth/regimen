@@ -52,7 +52,9 @@ function progress( state = {}, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
-			state = action.payload.profile.progress;
+			if ( action.payload.profile.progress ) {
+				state = action.payload.profile.progress;
+			}
 			break;
 
 		case PROFILE_PLAN_PROGRESS_SET:
@@ -82,7 +84,9 @@ function plans( state = [], action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
-			state = action.payload.profile.plans;
+			if ( action.payload.profile.plans ) {
+				state = action.payload.profile.plans;
+			}
 			break;
 
 		case PROFILE_PLAN_ADD:

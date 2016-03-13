@@ -50,11 +50,7 @@ export async function getProfileOrDefault() {
 		return await db.get( 'profile' );
 	} catch ( error ) {
 		if ( 404 === error.status ) {
-			return {
-				_id: 'profile',
-				plans: [],
-				progress: {}
-			};
+			return { _id: 'profile' };
 		}
 
 		throw error;
