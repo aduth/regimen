@@ -5,10 +5,33 @@
 import { push } from 'react-router-redux';
 
 /**
- * Adds iOS-specific styling to the page.
+ * Module variables
+ */
+
+/**
+ * Runtime-assigned value reflecting whether navigator is in standalone mode.
+ *
+ * @type {Boolean}
+ */
+const isStandalone = ( () => {
+	return navigator.standalone;
+} )();
+
+/**
+ * Runtime-assigned value reflecting whether device is iOS-based.
+ *
+ * @type {Boolean}
+ */
+const isIos = ( () => {
+	return /(iPad|iPhone|iPod)/.test( navigator.userAgent );
+} )();
+
+/**
+ * Adds standalone context classes to the page.
  */
 function applyStyling() {
-	document.documentElement.classList.add( 'is-ios-standalone' );
+	document.documentElement.classList.toggle( 'is-standalone', isStandalone );
+	document.documentElement.classList.toggle( 'is-ios', isIos );
 }
 
 /**
@@ -19,6 +42,10 @@ function applyStyling() {
  * @param {Object} store Redux store instance
  */
 function trackPath( store ) {
+	if ( ! isStandalone || ! isIos ) {
+		return;
+	}
+
 	// Restore path from localStorage
 	let path = localStorage.getItem( 'path' );
 	if ( path && path !== store.getState().routing.path ) {
@@ -36,17 +63,12 @@ function trackPath( store ) {
 }
 
 /**
-/**
- * Enables compatibility features for iOS standalone (home screen) usage,
- * because iOS is misery.
+ * Enables compatibility features for standalone (home screen) usage, because
+ * iOS is misery.
  *
  * @param {Object} store Redux store instance
  */
 export default function( store ) {
-	if ( ! navigator.standalone || ! /(iPad|iPhone|iPod)/.test( navigator.userAgent ) ) {
-		return;
-	}
-
 	applyStyling();
 	trackPath( store );
 }

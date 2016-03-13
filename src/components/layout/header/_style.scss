@@ -2,7 +2,7 @@
 	padding-top: 3rem;
 
 	@media screen and ( orientation: portrait ) {
-		html.is-ios-standalone & {
+		html.is-ios.is-standalone & {
 			padding-top: 4.25rem;
 		}
 	}
@@ -21,7 +21,7 @@
 	color: white;
 
 	@media screen and ( orientation: portrait ) {
-		html.is-ios-standalone & {
+		html.is-ios.is-standalone & {
 			margin-top: 1.25rem;
 
 			&::before {
