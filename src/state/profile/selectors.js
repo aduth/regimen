@@ -28,3 +28,23 @@ export function getProfilePlans( state ) {
 export function getProfilePlanProgress( state, planId ) {
 	return state.profile.progress[ planId ];
 }
+
+/**
+ * Returns whether imperial units are preferred for the profile.
+ *
+ * @param  {Object}  state Global state
+ * @return {Boolean}       Whether imperial units are preferred
+ */
+export function isProfileImperialUnit( state ) {
+	return state.profile.imperial;
+}
+
+/**
+ * Returns the minimum plate weight for the profile.
+ *
+ * @param  {Object}  state Global state
+ * @return {Number}        Minimum plate weight
+ */
+export function getProfileMinPlate( state ) {
+	return state.profile.minPlate;
+}

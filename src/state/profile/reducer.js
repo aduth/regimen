@@ -105,8 +105,52 @@ function plans( state = [], action ) {
 	return state;
 }
 
+/**
+ * Returns the updated profile imperial unit boolean state after an action has
+ * been dispatched.
+ *
+ * @param  {Boolean} state  Current state
+ * @param  {Object}  action Action object
+ * @return {Boolean}        Updated state
+ */
+function imperial( state = true, action ) {
+	switch ( action.type ) {
+		case PROFILE_REQUEST_SUCCESS:
+		case PROFILE_UPDATE_SUCCESS:
+		case PROFILE_UPDATE:
+			if ( action.payload.profile.imperial ) {
+				return action.payload.profile.imperial;
+			}
+	}
+
+	return state;
+}
+
+/**
+ * Returns the updated profile minimum plate weight state after an action has
+ * been dispatched.
+ *
+ * @param  {Number} state  Current state
+ * @param  {Object} action Action object
+ * @return {Number}        Updated state
+ */
+function minPlate( state = 2.5, action ) {
+	switch ( action.type ) {
+		case PROFILE_REQUEST_SUCCESS:
+		case PROFILE_UPDATE_SUCCESS:
+		case PROFILE_UPDATE:
+			if ( action.payload.profile.minPlate ) {
+				return action.payload.profile.minPlate;
+			}
+	}
+
+	return state;
+}
+
 export default combineReducers( {
 	fetching,
 	progress,
-	plans
+	plans,
+	imperial,
+	minPlate
 } );
