@@ -26,6 +26,8 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin( {
+			__DEV__: 'production' !== process.env.NODE_ENV,
+			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
 			'process.env.COUCHDB_REMOTE_HOST': JSON.stringify(
 				'COUCHDB_REMOTE_HOST' in process.env ? process.env.COUCHDB_REMOTE_HOST : 'https://regimenapp.cloudant.com'
 			)

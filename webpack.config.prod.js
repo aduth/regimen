@@ -37,10 +37,6 @@ module.exports = assign( {}, common, {
 		new ExtractTextPlugin( 'dist/app-[hash].css', {
 			allChunks: true
 		} ),
-		new webpack.DefinePlugin( {
-			__DEV__: false,
-			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
-		} ),
 		new OfflinePlugin( {
 			updateStrategy: 'hash',
 			caches: {

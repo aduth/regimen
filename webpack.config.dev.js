@@ -34,10 +34,6 @@ module.exports = assign( {}, common, {
 	} ),
 	plugins: common.plugins.concat( [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
-		new webpack.DefinePlugin( {
-			__DEV__: true,
-			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV )
-		} )
+		new webpack.NoErrorsPlugin()
 	] )
 } );
