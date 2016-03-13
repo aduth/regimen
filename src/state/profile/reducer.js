@@ -54,7 +54,7 @@ function progress( state = {}, action ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
 		case PROFILE_UPDATE:
-			if ( action.payload.profile.progress ) {
+			if ( 'progress' in action.payload.profile ) {
 				state = action.payload.profile.progress;
 			}
 			break;
@@ -87,7 +87,7 @@ function plans( state = [], action ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
 		case PROFILE_UPDATE:
-			if ( action.payload.profile.plans ) {
+			if ( 'plans' in action.payload.profile ) {
 				state = action.payload.profile.plans;
 			}
 			break;
@@ -118,7 +118,7 @@ function imperial( state = true, action ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
 		case PROFILE_UPDATE:
-			if ( action.payload.profile.imperial ) {
+			if ( 'imperial' in action.payload.profile ) {
 				return action.payload.profile.imperial;
 			}
 	}
@@ -139,7 +139,7 @@ function minPlate( state = 2.5, action ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
 		case PROFILE_UPDATE:
-			if ( action.payload.profile.minPlate ) {
+			if ( 'minPlate' in action.payload.profile ) {
 				return action.payload.profile.minPlate;
 			}
 	}
