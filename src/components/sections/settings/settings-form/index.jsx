@@ -13,9 +13,9 @@ import Form from 'react-jsonschema-form';
 
 import Block from 'components/ui/block';
 import { updateProfile } from 'state/profile/actions';
-import { isProfileImperialUnit } from 'state/profile/selectors';
+import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
 
-function SettingsForm( { isImperial, updateProfile } ) {
+function SettingsForm( { isImperial, minPlate, updateProfile } ) {
 	const schema = {
 		title: 'Settings',
 		type: 'object',
@@ -23,8 +23,12 @@ function SettingsForm( { isImperial, updateProfile } ) {
 			unit: {
 				title: 'Unit',
 				type: 'string',
-				enum: [ 'Pounds', 'Kilograms' ],
-				default: isImperial ? 'Pounds' : 'Kilograms'
+				enum: [ 'Pounds', 'Kilograms' ]
+			},
+			minPlate: {
+				title: 'Minimum plate weight',
+				type: 'number',
+				multipleOf: 0.25
 			}
 		}
 	};
@@ -35,9 +39,15 @@ function SettingsForm( { isImperial, updateProfile } ) {
 		}
 	};
 
+	const formData = {
+		unit: isImperial ? 'Pounds' : 'Kilograms',
+		minPlate
+	};
+
 	function onSubmit( { formData } ) {
 		updateProfile( {
-			imperial: 'Pounds' === formData.unit
+			imperial: 'Pounds' === formData.unit,
+			minPlate: formData.minPlate
 		} );
 	}
 
@@ -46,6 +56,7 @@ function SettingsForm( { isImperial, updateProfile } ) {
 			<Form
 				schema={ schema }
 				uiSchema={ uiSchema }
+				formData={ formData }
 				onSubmit={ onSubmit } />
 		</Block>
 	);
@@ -59,7 +70,8 @@ SettingsForm.propTypes = {
 export default connect(
 	( state ) => {
 		return {
-			isImperial: isProfileImperialUnit( state )
+			isImperial: isProfileImperialUnit( state ),
+			minPlate: getProfileMinPlate( state )
 		};
 	},
 	( dispatch ) => {
