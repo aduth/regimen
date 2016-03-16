@@ -12,6 +12,7 @@ import Form from 'react-jsonschema-form';
  */
 
 import Block from 'components/block';
+import Button from 'components/button';
 import { updateProfile } from 'state/profile/actions';
 import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
 
@@ -34,6 +35,7 @@ function SettingsForm( { isImperial, minPlate, updateProfile } ) {
 	};
 
 	const uiSchema = {
+		classNames: 'settings-form__form',
 		unit: {
 			'ui:widget': 'radio'
 		}
@@ -44,7 +46,12 @@ function SettingsForm( { isImperial, minPlate, updateProfile } ) {
 		minPlate
 	};
 
-	function onSubmit( { formData } ) {
+	/**
+	 * Settings form submission handler, updating profile
+	 *
+	 * @param {Object} form.formData Form values
+	 */
+	function onSubmit( { formData } ) { // eslint-disable-line react/prop-types
 		updateProfile( {
 			imperial: 'Pounds' === formData.unit,
 			minPlate: formData.minPlate
@@ -52,18 +59,27 @@ function SettingsForm( { isImperial, minPlate, updateProfile } ) {
 	}
 
 	return (
-		<Block title="Profile Settings" padded>
+		<Block title="Profile Settings" padded className="settings-form">
 			<Form
 				schema={ schema }
 				uiSchema={ uiSchema }
 				formData={ formData }
-				onSubmit={ onSubmit } />
+				onSubmit={ onSubmit }>
+				<Button
+					type="submit"
+					success
+					large
+					className="settings-form__submit">
+					Submit
+				</Button>
+			</Form>
 		</Block>
 	);
 }
 
 SettingsForm.propTypes = {
 	isImperial: PropTypes.bool,
+	minPlate: PropTypes.number,
 	updateProfile: PropTypes.func
 };
 

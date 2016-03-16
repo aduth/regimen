@@ -11,6 +11,10 @@
 	margin: 1rem 0 0;
 	padding: 0;
 	border: 0;
+
+	&:first-of-type {
+		margin-top: 0;
+	}
 }
 
 .field > fieldset legend {
@@ -29,4 +33,23 @@
 .form__inline-flex:not( :first-of-type ) {
 	display: inline-flex;
 	margin: 0 0.5rem;
+}
+
+.field .field-radio-group > label {
+	display: block;
+}
+
+.field .field-radio-group input[type='radio'] {
+	margin-top: 0;
+	margin-bottom: 0;
+
+	&,
+	& + span {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	& + span {
+		margin-left: 4px;
+	}
 }
