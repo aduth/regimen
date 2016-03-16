@@ -9,13 +9,13 @@ import { Route, IndexRedirect, IndexRoute } from 'react-router';
  * Internal dependencies
  */
 
-import BaseRoute from 'components/sections/route';
-import HomeRoute from 'components/sections/home/route';
-import PlanRoute from 'components/sections/plan/route';
-import NewPlanRoute from 'components/sections/new-plan/route';
-import WorkoutRoute from 'components/sections/workout/route';
-import SettingsRoute from 'components/sections/settings/route';
-import NotFoundRoute from 'components/sections/not-found/route';
+import BaseRoute from 'sections/route';
+import HomeRoute from 'sections/home/route';
+import PlanRoute from 'sections/plan/route';
+import NewPlanRoute from 'sections/new-plan/route';
+import WorkoutRoute from 'sections/workout/route';
+import SettingsRoute from 'sections/settings/route';
+import NotFoundRoute from 'sections/not-found/route';
 
 export default [
 	<Route path="/" component={ BaseRoute }>
