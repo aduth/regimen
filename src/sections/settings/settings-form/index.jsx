@@ -5,6 +5,7 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { goBack } from 'react-router-redux';
 import Form from 'react-jsonschema-form';
 
 /**
@@ -16,7 +17,7 @@ import Button from 'components/button';
 import { updateProfile } from 'state/profile/actions';
 import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
 
-function SettingsForm( { isImperial, minPlate, updateProfile } ) {
+function SettingsForm( { isImperial, minPlate, updateProfile, goBack } ) {
 	const schema = {
 		title: 'Settings',
 		type: 'object',
@@ -56,6 +57,8 @@ function SettingsForm( { isImperial, minPlate, updateProfile } ) {
 			imperial: 'Pounds' === formData.unit,
 			minPlate: formData.minPlate
 		}, true );
+
+		goBack();
 	}
 
 	return (
@@ -92,7 +95,8 @@ export default connect(
 	},
 	( dispatch ) => {
 		return bindActionCreators( {
-			updateProfile
+			updateProfile,
+			goBack
 		}, dispatch );
 	}
 )( SettingsForm );
