@@ -24,6 +24,7 @@ import {
 	PROFILE_UPDATE_SUCCESS,
 	PROFILE_UPDATE_FAILURE
 } from 'state/action-types';
+import { addSuccessNotice, addErrorNotice } from 'state/notices/actions';
 
 /**
  * Returns an action thunk, dispatching progress of an attempt to request the
@@ -56,10 +57,11 @@ export function requestProfile() {
  * Returns an action thunk, dispatching progress of an attempt to request the
  * current profile.
  *
- * @param  {Object}   profile Profile attributes to update
- * @return {Function}         Action thunk
+ * @param  {Object}   profile    Profile attributes to update
+ * @param  {Boolean}  showNotice Whether to display notice on update completion
+ * @return {Function}            Action thunk
  */
-export function updateProfile( profile ) {
+export function updateProfile( profile, showNotice = false ) {
 	return async ( dispatch ) => {
 		dispatch( {
 			type: PROFILE_UPDATE,
@@ -69,8 +71,14 @@ export function updateProfile( profile ) {
 		try {
 			await queueRevisions( profile );
 			dispatch( updateProfileSuccess( profile ) );
+			if ( showNotice ) {
+				dispatch( addSuccessNotice( 'Profile updated successfully' ) );
+			}
 		} catch ( error ) {
 			dispatch( updateProfileFailure( error ) );
+			if ( showNotice ) {
+				dispatch( addErrorNotice( 'Profile failed to update' ) );
+			}
 		}
 	};
 }

@@ -55,7 +55,7 @@ function SettingsForm( { isImperial, minPlate, updateProfile } ) {
 		updateProfile( {
 			imperial: 'Pounds' === formData.unit,
 			minPlate: formData.minPlate
-		} );
+		}, true );
 	}
 
 	return (
