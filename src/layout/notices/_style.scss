@@ -1,0 +1,46 @@
+.notices {
+	@include fixed( $z-index: 300 );
+	@include reset-list;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.notices__items-enter-active,
+.notices__items-leave-active {
+	transition: 0.2s transform ease-in-out;
+}
+
+.notices__items-enter {
+	transform: translateY( -100% );
+}
+
+.notices__items-enter-active,
+.notices__items-leave {
+	transform: translateY( 0 );
+}
+
+.notices__items-leave-active {
+	transform: translateY( -100% );
+}
+
+.notices__notice {
+	display: block;
+	width: 100%;
+	padding: 0.5rem;
+	background-color: $color-gray;
+	text-align: center;
+
+	&.is-success,
+	&.is-error {
+		color: white;
+	}
+
+	&.is-success {
+		background-color: $color-green;
+	}
+
+	&.is-error {
+		background-color: $color-red;
+	}
+}
