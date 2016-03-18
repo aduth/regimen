@@ -11,7 +11,8 @@ describe( 'regimen', () => {
 	} );
 
 	describe( 'lib', () => {
-		require( 'lib/standalone/test/index' );
+		require( 'lib/standalone/test' );
+		require( 'lib/weight/test' );
 	} );
 
 	describe( 'state', () => {
