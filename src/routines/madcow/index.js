@@ -3,6 +3,7 @@
  */
 
 import { FocusTypes, ProgressionTypes, Weekdays, Exercises } from 'routines/constants';
+import { getWeekday } from 'routines/utils';
 
 /**
  * Program Utility
@@ -172,24 +173,22 @@ export const form = {
  */
 
 export function exercises( workout ) {
-	workout = workout % weekdays.length;
-
-	switch ( workout ) {
-		case 1:
+	switch ( getWeekday( weekdays, workout ) ) {
+		case Weekdays.MONDAY:
 			return [
 				Exercises.SQUAT,
 				Exercises.BENCH_PRESS,
 				Exercises.ROW
 			];
 
-		case 2:
+		case Weekdays.WEDNESDAY:
 			return [
 				Exercises.SQUAT,
 				Exercises.OVERHEAD_PRESS,
 				Exercises.DEADLIFT
 			];
 
-		case 0:
+		case Weekdays.FRIDAY:
 			return [
 				Exercises.SQUAT,
 				Exercises.BENCH_PRESS,

@@ -15,6 +15,10 @@ describe( 'regimen', () => {
 		require( 'lib/weight/test' );
 	} );
 
+	describe( 'routines', () => {
+		require( 'routines/test/utils' );
+	} );
+
 	describe( 'state', () => {
 		require( 'state/test/middlewares' );
 
