@@ -28,6 +28,7 @@ module.exports = {
 		new webpack.DefinePlugin( {
 			__DEV__: 'production' !== process.env.NODE_ENV,
 			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
+			'process.env.GA_ACCOUNT_ID': JSON.stringify( process.env.GA_ACCOUNT_ID ),
 			'process.env.COUCHDB_REMOTE_HOST': JSON.stringify(
 				'COUCHDB_REMOTE_HOST' in process.env ? process.env.COUCHDB_REMOTE_HOST : 'https://regimenapp.cloudant.com'
 			)
@@ -59,6 +60,15 @@ module.exports = {
 				'</head>' +
 				'<body>' +
 				'<div id="app"></div>' +
+				( process.env.GA_ACCOUNT_ID ?
+					'<script>' +
+					'(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){' +
+					'(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),' +
+					'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)' +
+					'})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');' +
+					'ga(\'create\', \'' + process.env.GA_ACCOUNT_ID + '\', \'auto\');' +
+					'</script>' :
+					'' ) +
 				'{% for ( var chunk in o.htmlWebpackPlugin.files.chunks ) { %}' +
 				'<script src="{%= o.htmlWebpackPlugin.files.chunks[ chunk ].entry %}"></script>' +
 				'{% } %}' +
