@@ -8,7 +8,8 @@
     "lint": "eslint src --ext js,jsx",
     "build": "NODE_PATH=src/ NODE_ENV=production rimraf public/dist && webpack --config webpack.config.prod.js",
     "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "NODE_PATH=src/ mocha --compilers js:babel-register --compilers jsx:babel-register"
   },
   "repository": {
     "type": "git",
@@ -75,5 +76,10 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.7.2",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }
