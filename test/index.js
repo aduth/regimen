@@ -10,6 +10,10 @@ describe( 'regimen', () => {
 		Chai.use( sinonChai );
 	} );
 
+	describe( 'lib', () => {
+		require( 'lib/standalone/test/index' );
+	} );
+
 	describe( 'state', () => {
 		require( 'state/test/middlewares' );
 

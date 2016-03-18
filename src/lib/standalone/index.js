@@ -5,33 +5,29 @@
 import { push } from 'react-router-redux';
 
 /**
- * Module variables
- */
-
-/**
- * Runtime-assigned value reflecting whether navigator is in standalone mode.
+ * Returns true if navigator is in standalone mode.
  *
- * @type {Boolean}
+ * @return {Boolean} Whether navigator is in standalone mode
  */
-const isStandalone = ( () => {
+export function isStandalone() {
 	return navigator.standalone;
-} )();
+}
 
 /**
- * Runtime-assigned value reflecting whether device is iOS-based.
+ * Returns true if device is iOS-based.
  *
- * @type {Boolean}
+ * @return {Boolean} Whether device is iOS-based
  */
-const isIos = ( () => {
+export function isIos() {
 	return /(iPad|iPhone|iPod)/.test( navigator.userAgent );
-} )();
+}
 
 /**
  * Adds standalone context classes to the page.
  */
 function applyStyling() {
-	document.documentElement.classList.toggle( 'is-standalone', isStandalone );
-	document.documentElement.classList.toggle( 'is-ios', isIos );
+	document.documentElement.classList.toggle( 'is-standalone', isStandalone() );
+	document.documentElement.classList.toggle( 'is-ios', isIos() );
 }
 
 /**
@@ -42,7 +38,7 @@ function applyStyling() {
  * @param {Object} store Redux store instance
  */
 function trackPath( store ) {
-	if ( ! isStandalone || ! isIos ) {
+	if ( ! isStandalone() || ! isIos() ) {
 		return;
 	}
 
