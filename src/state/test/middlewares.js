@@ -4,12 +4,13 @@
 
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
 /**
  * Internal dependencies
  */
 
-import { analytics } from '../middlewares';
+import { analytics, pageView } from '../middlewares';
 
 describe( 'middlewares', () => {
 	describe( '#analytics()', () => {
@@ -39,6 +40,29 @@ describe( 'middlewares', () => {
 			} );
 
 			expect( ga ).to.not.have.been.called;
+		} );
+	} );
+
+	describe( '#pageView()', () => {
+		it( 'should return a middleware function', () => {
+			const next = spy();
+
+			pageView( () => {} )()( next )( {} );
+
+			expect( next ).to.have.been.calledOnce;
+		} );
+
+		it( 'should track location change pathname', () => {
+			const ga = spy();
+
+			pageView( ga )()( () => {} )( {
+				type: LOCATION_CHANGE,
+				payload: {
+					pathname: '/foo'
+				}
+			} );
+
+			expect( ga ).to.have.been.calledWith( 'send', 'pageview', '/foo' );
 		} );
 	} );
 } );

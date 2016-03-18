@@ -12,7 +12,7 @@ import thunkMiddleware from 'redux-thunk';
  */
 
 import reducer from './reducer';
-import { analytics } from './middlewares';
+import { analytics, pageView } from './middlewares';
 
 /**
  * Returns a Redux store instance with application-specific middleware applied.
@@ -26,7 +26,11 @@ export function createReduxStore() {
 	];
 
 	if ( 'object' === typeof window && window.ga ) {
-		middlewares = [ ...middlewares, analytics( window.ga ) ];
+		middlewares = [
+			...middlewares,
+			analytics( window.ga ),
+			pageView( window.ga )
+		];
 	}
 
 	let createStoreWithMiddleware = applyMiddleware( ...middlewares );
