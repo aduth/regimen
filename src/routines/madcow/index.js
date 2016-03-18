@@ -9,7 +9,16 @@ import { getWeekday } from 'routines/utils';
  * Program Utility
  */
 
-function getMax( testWeight, testReps, week, prWeek ) {
+/**
+ * Returns the day's maximum weight for an exercise.
+ *
+ * @param  {Number} testWeight Users reported original personal record weight
+ * @param  {Number} testReps   Users reported original personal record reps
+ * @param  {Number} week       Current week
+ * @param  {Number} prWeek     Week during which personal record should be achieved
+ * @return {Number}            Day's maximum weight
+ */
+export function getMax( testWeight, testReps, week, prWeek ) {
 	return ( ( ( testWeight / ( 1.0278 - ( 0.0278 * testReps ) ) ) * ( 1.0278 - ( 0.0278 * 5 ) ) ) * Math.pow( 1 / 1.025, prWeek - 1 ) ) * Math.pow( 1.025, week - 1 );
 }
 
@@ -17,20 +26,53 @@ function getMax( testWeight, testReps, week, prWeek ) {
  * Program Constants
  */
 
+/**
+ * Program name.
+ *
+ * @type {String}
+ */
 export const name = 'Madcow 5x5';
 
+/**
+ * Program description.
+ *
+ * @type {String}
+ */
 export const description = 'Originally created by Bill Starr, the writer of the book "The Strongest Shall Survive" this program is great for adding muscle mass and increasing overall strength and fitness levels.';
 
+/**
+ * Program focus type.
+ *
+ * @type {FocusType}
+ */
 export const focus = FocusTypes.STRENGTH;
 
+/**
+ * Program progression type.
+ *
+ * @type {ProgressionType}
+ */
 export const progression = ProgressionTypes.WEEKLY;
 
+/**
+ * Days of the week for which the routine is performed.
+ *
+ * @type {Weekday[]}
+ */
 export const weekdays = [
 	Weekdays.MONDAY,
 	Weekdays.WEDNESDAY,
 	Weekdays.FRIDAY
 ];
 
+/**
+ * Form schema and UI schema from which a set of form fields are generated.
+ * Properties of the form schema are saved as plan properties, to be used in
+ * generating the routine exercises. All weight paths are defined such that the
+ * weight can be normalized to the preferred unit upon save and display.
+ *
+ * @type {Object}
+ */
 export const form = {
 	schema: {
 		type: 'object',
@@ -172,6 +214,12 @@ export const form = {
  * Program Generators
  */
 
+/**
+ * Returns an array of exercises to be performed for the specified workout.
+ *
+ * @param  {Number}     workout Workout (1-based index)
+ * @return {Exercise[]}         Exercises
+ */
 export function exercises( workout ) {
 	switch ( getWeekday( weekdays, workout ) ) {
 		case Weekdays.MONDAY:
@@ -197,6 +245,15 @@ export function exercises( workout ) {
 	}
 }
 
+/**
+ * Returns an array of set objects to be performed for the workout exercise. A
+ * set object describes reps and weight.
+ *
+ * @param  {Object}   plan     Plan form object
+ * @param  {Number}   workout  Workout (1-based index)
+ * @param  {Exercise} exercise Exercise
+ * @return {Object[]}          Array of set objects to be performed
+ */
 export function sets( plan, workout, exercise ) {
 	const { prWeek, setIncrement, tests } = plan;
 	const week = Math.floor( ( workout - 1 ) / weekdays.length ) + 1;

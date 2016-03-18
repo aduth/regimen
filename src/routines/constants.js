@@ -1,14 +1,32 @@
+/**
+ * Supported focus types for a routine.
+ *
+ * @type {Object}
+ * @enum {FocusType}
+ */
 export const FocusTypes = {
 	STRENGTH: 'STRENGTH',
 	HYPERTROPHY: 'HYPERTROPHY',
 	ENDURANCE: 'ENDURANCE'
 };
 
+/**
+ * Supported progression types for a routine.
+ *
+ * @type {Object}
+ * @enum {ProgressionType}
+ */
 export const ProgressionTypes = {
 	WEEKLY: 'WEEKLY',
 	DAILY: 'DAILY'
 };
 
+/**
+ * Days of the week.
+ *
+ * @type {Object}
+ * @enum {Weekday}
+ */
 export const Weekdays = {
 	MONDAY: 'MONDAY',
 	TUESDAY: 'TUESDAY',
@@ -19,6 +37,12 @@ export const Weekdays = {
 	SUNDAY: 'SUNDAY'
 };
 
+/**
+ * Supported exercises for a routine.
+ *
+ * @type {Object}
+ * @enum {Exercise}
+ */
 export const Exercises = {
 	SQUAT: 'SQUAT',
 	BENCH_PRESS: 'BENCH_PRESS',
