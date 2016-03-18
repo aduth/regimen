@@ -12,10 +12,7 @@ import thunkMiddleware from 'redux-thunk';
  */
 
 import reducer from './reducer';
-
-/**
- * Store initialization
- */
+import { analytics } from './middlewares';
 
 /**
  * Returns a Redux store instance with application-specific middleware applied.
@@ -23,12 +20,16 @@ import reducer from './reducer';
  * @return {Object} Redux store instance
  */
 export function createReduxStore() {
-	let createStoreWithMiddleware = compose(
-		applyMiddleware(
-			routerMiddleware( browserHistory ),
-			thunkMiddleware
-		)
-	);
+	let middlewares = [
+		routerMiddleware( browserHistory ),
+		thunkMiddleware
+	];
+
+	if ( 'object' === typeof window && window.ga ) {
+		middlewares = [ ...middlewares, analytics( window.ga ) ];
+	}
+
+	let createStoreWithMiddleware = applyMiddleware( ...middlewares );
 
 	if ( __DEV__ && 'object' === typeof window && window.devToolsExtension ) {
 		createStoreWithMiddleware = compose(
