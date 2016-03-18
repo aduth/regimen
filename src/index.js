@@ -29,8 +29,8 @@ import 'assets/stylesheets/main.scss';
  */
 
 const store = createReduxStore();
-const history = syncHistoryWithStore( browserHistory, store );
 initializeRemoteSync( store );
+configureStandalone( store );
 
 /**
  * Offline capability
@@ -41,18 +41,14 @@ if ( ! __DEV__ ) {
 }
 
 /**
- * Standalone navigator compatibility
- */
-
-configureStandalone( store );
-
-/**
  * Render
  */
 
 ReactDOM.render(
 	<Root store={ store }>
-		<Router history={ history } routes={ routes } />
+		<Router
+			history={ syncHistoryWithStore( browserHistory, store ) }
+			routes={ routes } />
 	</Root>,
 	document.getElementById( 'app' )
 );
