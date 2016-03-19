@@ -8,7 +8,7 @@
 
 .notices__items-enter-active,
 .notices__items-leave-active {
-	transition: 0.2s transform ease-in-out;
+	transition: $transition-duration transform ease-in-out;
 }
 
 .notices__items-enter {
