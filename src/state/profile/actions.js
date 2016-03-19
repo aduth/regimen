@@ -8,7 +8,6 @@ import without from 'lodash/without';
  * Internal dependencies
  */
 
-import { getDatabase } from 'db';
 import {
 	getProfileOrDefault,
 	queueRevisions
@@ -39,7 +38,7 @@ export function requestProfile() {
 		} );
 
 		try {
-			const profile = await getDatabase( 'profile' ).get( 'profile' );
+			const profile = await getProfileOrDefault();
 			dispatch( {
 				type: PROFILE_REQUEST_SUCCESS,
 				payload: { profile }
