@@ -9,6 +9,16 @@ export function isRequestingProfile( state ) {
 }
 
 /**
+ * Returns whether the profile has been requested successfully.
+ *
+ * @param  {Object}  state Global state
+ * @return {Boolean}       Whether profile has been loaded
+ */
+export function hasProfileLoaded( state ) {
+	return state.profile.loaded;
+}
+
+/**
  * Returns an array of plans for the profile.
  *
  * @param  {Object} state Global state
@@ -42,9 +52,19 @@ export function isProfileImperialUnit( state ) {
 /**
  * Returns the minimum plate weight for the profile.
  *
- * @param  {Object}  state Global state
- * @return {Number}        Minimum plate weight
+ * @param  {Object} state Global state
+ * @return {Number}       Minimum plate weight
  */
 export function getProfileMinPlate( state ) {
 	return state.profile.minPlate;
+}
+
+/**
+ * Returns whether the welcome message is to be hidden.
+ *
+ * @param  {Object}  state Global state
+ * @return {Boolean}       Whether welcome message is hidden
+ */
+export function isWelcomeHidden( state ) {
+	return state.profile.hideWelcome;
 }

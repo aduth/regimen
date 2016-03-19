@@ -42,6 +42,23 @@ export function fetching( state = false, action ) {
 }
 
 /**
+ * Returns the profile loaded state after an action has been dispatched.
+ *
+ * @param  {Boolean} state  Current state
+ * @param  {Object}  action Action object
+ * @return {Boolean}        Updated state
+ */
+export function loaded( state = false, action ) {
+	switch ( action.type ) {
+		case PROFILE_REQUEST_SUCCESS:
+			state = true;
+			break;
+	}
+
+	return state;
+}
+
+/**
  * Returns the updated profile progress state after an action has been
  * dispatched.
  *
@@ -147,10 +164,33 @@ export function minPlate( state = 2.5, action ) {
 	return state;
 }
 
+/**
+ * Returns the updated welcome hidden state after an action has been
+ * dispatched.
+ *
+ * @param  {Boolean} state  Current state
+ * @param  {Object}  action Action object
+ * @return {Boolean}        Updated state
+ */
+export function hideWelcome( state = false, action ) {
+	switch ( action.type ) {
+		case PROFILE_REQUEST_SUCCESS:
+		case PROFILE_UPDATE_SUCCESS:
+		case PROFILE_UPDATE:
+			if ( 'hideWelcome' in action.payload.profile ) {
+				return action.payload.profile.hideWelcome;
+			}
+	}
+
+	return state;
+}
+
 export default combineReducers( {
 	fetching,
+	loaded,
 	progress,
 	plans,
 	imperial,
-	minPlate
+	minPlate,
+	hideWelcome
 } );

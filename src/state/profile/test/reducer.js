@@ -18,16 +18,26 @@ import {
 	PROFILE_REQUEST_SUCCESS,
 	PROFILE_UPDATE
 } from 'state/action-types';
-import reducer, { fetching, progress, plans, imperial, minPlate } from '../reducer';
+import reducer, {
+	fetching,
+	loaded,
+	progress,
+	plans,
+	imperial,
+	minPlate,
+	hideWelcome
+} from '../reducer';
 
 describe( 'reducer', () => {
 	it( 'should include the expected keys in return value', () => {
 		expect( reducer( undefined, {} ) ).to.have.keys( [
 			'fetching',
+			'loaded',
 			'progress',
 			'plans',
 			'imperial',
-			'minPlate'
+			'minPlate',
+			'hideWelcome'
 		] );
 	} );
 
@@ -60,6 +70,22 @@ describe( 'reducer', () => {
 			} );
 
 			expect( state ).to.be.false;
+		} );
+	} );
+
+	describe( '#loaded()', () => {
+		it( 'should default to false', () => {
+			const state = loaded( undefined, {} );
+
+			expect( state ).to.be.false;
+		} );
+
+		it( 'should update state to true when profile load succeeds', () => {
+			const state = loaded( undefined, {
+				type: PROFILE_REQUEST_SUCCESS
+			} );
+
+			expect( state ).to.be.true;
 		} );
 	} );
 
@@ -263,6 +289,27 @@ describe( 'reducer', () => {
 			} );
 
 			expect( state ).to.equal( 1 );
+		} );
+	} );
+
+	describe( '#hideWelcome', () => {
+		it( 'should default to false', () => {
+			const state = hideWelcome( undefined, {} );
+
+			expect( state ).to.be.false;
+		} );
+
+		it( 'should set value from profile update', () => {
+			const state = hideWelcome( undefined, {
+				type: PROFILE_UPDATE,
+				payload: {
+					profile: {
+						hideWelcome: true
+					}
+				}
+			} );
+
+			expect( state ).to.be.true;
 		} );
 	} );
 } );

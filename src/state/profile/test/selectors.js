@@ -10,6 +10,7 @@ import { expect } from 'chai';
 
 import {
 	isRequestingProfile,
+	hasProfileLoaded,
 	getProfilePlans,
 	getProfilePlanProgress,
 	isProfileImperialUnit,
@@ -26,6 +27,18 @@ describe( 'selectors', () => {
 			} );
 
 			expect( isRequesting ).to.be.true;
+		} );
+	} );
+
+	describe( '#hasProfileLoaded()', () => {
+		it( 'should return whether profile has loaded', () => {
+			const hasLoaded = hasProfileLoaded( {
+				profile: {
+					loaded: true
+				}
+			} );
+
+			expect( hasLoaded ).to.be.true;
 		} );
 	} );
 

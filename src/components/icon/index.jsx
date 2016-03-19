@@ -11,6 +11,7 @@ import IconHome from 'react-icons/fa/home';
 import IconGear from 'react-icons/fa/gear';
 import IconPlay from 'react-icons/fa/play';
 import IconTrash from 'react-icons/fa/trash';
+import IconClose from 'react-icons/fa/close';
 
 function Icon( { icon, children } ) {
 	const classes = classNames( 'icon', 'is-' + icon );
@@ -24,6 +25,7 @@ function Icon( { icon, children } ) {
 		case 'gear': IconVariant = IconGear; break;
 		case 'play': IconVariant = IconPlay; break;
 		case 'trash': IconVariant = IconTrash; break;
+		case 'close': IconVariant = IconClose; break;
 	}
 
 	return (

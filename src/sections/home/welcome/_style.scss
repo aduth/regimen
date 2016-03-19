@@ -1,0 +1,52 @@
+.welcome__fade-enter-active,
+.welcome__fade-leave-active {
+	transition: $transition-duration opacity ease-in-out;
+}
+
+.welcome__fade-enter {
+	opacity: 0;
+}
+
+.welcome__fade-enter-active,
+.welcome__fade-leave {
+	opacity: 1;
+}
+
+.welcome__fade-leave-active {
+	opacity: 0;
+}
+
+.welcome {
+	@include well;
+	position: relative;
+	padding: 1rem;
+	background-color: rgba( $color-green, 0.9 );
+	margin-bottom: 1rem;
+}
+
+.welcome__heading {
+	margin: 0 0 0.4rem;
+	font-size: 1.2rem;
+}
+
+.welcome__dismiss {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.3rem 0.5rem 0.5rem;
+	font-size: 1.4rem;
+
+	.icon {
+		display: block;
+	}
+}
+
+.welcome,
+.welcome__heading,
+.welcome__dismiss .icon {
+	color: white;
+}
+
+.welcome__body {
+	margin: 0;
+}
