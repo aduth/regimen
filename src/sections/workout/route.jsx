@@ -15,6 +15,7 @@ import { setProfilePlanProgress } from 'state/profile/actions';
 import { setWorkout } from 'state/ui/actions';
 import Content from 'layout/content';
 import Workout from './workout';
+import Accessory from './accessory';
 import WorkoutPagination from './workout-pagination';
 
 class WorkoutRoute extends Component {
@@ -56,6 +57,7 @@ class WorkoutRoute extends Component {
 				<WorkoutPagination />
 				<Content>
 					<Workout />
+					<Accessory />
 				</Content>
 			</div>
 		);
