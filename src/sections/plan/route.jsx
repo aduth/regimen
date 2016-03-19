@@ -48,7 +48,8 @@ class PlanRoute extends Component {
 			nextProps.setPlanId( nextProps.params.planId );
 		}
 
-		if ( nextProps.plan ) {
+		if ( nextProps.plan && ( ! this.props.plan ||
+				nextProps.params.planId !== this.props.params.planId ) ) {
 			nextProps.addPlanToProfile( nextProps.params.planId );
 		}
 	}
