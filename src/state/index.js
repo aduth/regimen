@@ -25,22 +25,28 @@ export function createReduxStore() {
 		thunkMiddleware
 	];
 
-	if ( 'object' === typeof window && window.ga ) {
+	if ( global.ga ) {
 		middlewares = [
 			...middlewares,
-			analytics( window.ga ),
-			pageView( window.ga )
+			analytics( global.ga ),
+			pageView( global.ga )
 		];
 	}
 
 	let createStoreWithMiddleware = applyMiddleware( ...middlewares );
 
-	if ( __DEV__ && 'object' === typeof window && window.devToolsExtension ) {
+	if ( __DEV__ && global.devToolsExtension ) {
 		createStoreWithMiddleware = compose(
 			createStoreWithMiddleware,
-			window.devToolsExtension()
+			global.devToolsExtension()
 		);
 	}
 
-	return createStoreWithMiddleware( createStore )( reducer );
+	const store = createStoreWithMiddleware( createStore )( reducer );
+
+	if ( __DEV__ ) {
+		global.store = store;
+	}
+
+	return store;
 }
