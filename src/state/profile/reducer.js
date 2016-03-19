@@ -60,14 +60,14 @@ function progress( state = {}, action ) {
 			break;
 
 		case PROFILE_PLAN_PROGRESS_SET:
-			const { planId, workout } = action;
+			const { planId, workout } = action.payload;
 			state = Object.assign( {}, state, {
 				[ planId ]: workout
 			} );
 			break;
 
 		case PROFILE_PLAN_REMOVE:
-			state = omit( state, action.planId );
+			state = omit( state, action.payload.planId );
 			break;
 	}
 
@@ -94,11 +94,11 @@ function plans( state = [], action ) {
 
 		case PROFILE_PLAN_ADD:
 			const { planId } = action.payload;
-			state.plans = [ planId ].concat( without( state.plans, planId ) );
+			state = [ planId ].concat( without( state, planId ) );
 			break;
 
 		case PROFILE_PLAN_REMOVE:
-			state.plans = without( state.plans, action.payload.planId );
+			state = without( state, action.payload.planId );
 			break;
 	}
 
