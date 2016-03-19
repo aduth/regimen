@@ -106,11 +106,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								minimum: 1
+								default: 0
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer'
+								type: 'integer',
+								default: 0
 							}
 						}
 					},
@@ -122,11 +123,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								minimum: 1
+								default: 0
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer'
+								type: 'integer',
+								default: 0
 							}
 						}
 					},
@@ -138,11 +140,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								minimum: 1
+								default: 0
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer'
+								type: 'integer',
+								default: 0
 							}
 						}
 					},
@@ -154,11 +157,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								minimum: 1
+								default: 0
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer'
+								type: 'integer',
+								default: 0
 							}
 						}
 					},
@@ -170,11 +174,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								minimum: 1
+								default: 0
 							},
 							reps: {
 								title: 'Repetitions',
-								type: 'integer'
+								type: 'integer',
+								default: 0
 							}
 						}
 					}

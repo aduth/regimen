@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from 'react-jsonschema-form';
+import { getDefaultFormState } from 'react-jsonschema-form/lib/utils';
 import merge from 'lodash/merge';
 import get from 'lodash/get';
 import set from 'lodash/set';
@@ -56,12 +57,16 @@ function RoutineForm( { routine, planId, plan, isImperial, removePlanFromProfile
 			className={ classes } />
 	);
 
+	// Routine may be unknown while loading an edit form for an existing plan.
+	// In these cases, display a placeholder until the plan has loaded.
 	if ( ! routine ) {
 		return React.cloneElement( block, null, (
 			<div className="routine-form__placeholder" />
 		) );
 	}
 
+	// Generate a form object containing the routine title, base form, and
+	// routine-defined form schema
 	const form = merge( {
 		properties: {
 			title: {
@@ -72,10 +77,20 @@ function RoutineForm( { routine, planId, plan, isImperial, removePlanFromProfile
 		properties: routines[ routine ].form.schema.properties
 	} );
 
+	// Routines can define their own UI schema. Merge with base UI schema.
 	const uiSchema = {
 		...BASE_UI_SCHEMA,
 		...routines[ routine ].form.uiSchema
 	};
+
+	// Default form state should be derived from plan if editing existing. For
+	// new plans, attempt to find default values in schema.
+	let formState;
+	if ( planId ) {
+		formState = plan;
+	} else {
+		formState = getDefaultFormState( form );
+	}
 
 	/**
 	 * Normalizes a form's units to conform to a standard imperial weight.
@@ -117,7 +132,7 @@ function RoutineForm( { routine, planId, plan, isImperial, removePlanFromProfile
 	return React.cloneElement( block, null, (
 		<Form
 			schema={ form }
-			formData={ normalizeFormDataUnit( plan, true ) }
+			formData={ normalizeFormDataUnit( formState, true ) }
 			uiSchema={ uiSchema }
 			onSubmit={ onSubmit }>
 			<Button
