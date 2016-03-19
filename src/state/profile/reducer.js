@@ -29,7 +29,7 @@ import {
  * @param  {Object}  action Action object
  * @return {Boolean}        Updated state
  */
-function fetching( state = false, action ) {
+export function fetching( state = false, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST:
 		case PROFILE_REQUEST_SUCCESS:
@@ -49,7 +49,7 @@ function fetching( state = false, action ) {
  * @param  {Object} action Action object
  * @return {Object}        Updated state
  */
-function progress( state = {}, action ) {
+export function progress( state = {}, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
@@ -82,7 +82,7 @@ function progress( state = {}, action ) {
  * @param  {Object} action Action object
  * @return {Array}         Updated state
  */
-function plans( state = [], action ) {
+export function plans( state = [], action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
@@ -113,7 +113,7 @@ function plans( state = [], action ) {
  * @param  {Object}  action Action object
  * @return {Boolean}        Updated state
  */
-function imperial( state = true, action ) {
+export function imperial( state = true, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:
@@ -134,7 +134,7 @@ function imperial( state = true, action ) {
  * @param  {Object} action Action object
  * @return {Number}        Updated state
  */
-function minPlate( state = 2.5, action ) {
+export function minPlate( state = 2.5, action ) {
 	switch ( action.type ) {
 		case PROFILE_REQUEST_SUCCESS:
 		case PROFILE_UPDATE_SUCCESS:

@@ -80,7 +80,9 @@
   "devDependencies": {
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
+    "deep-freeze": "0.0.1",
     "mocha": "^2.4.5",
+    "proxyquire": "^1.7.4",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
   }

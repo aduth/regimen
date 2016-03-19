@@ -27,5 +27,11 @@ describe( 'regimen', () => {
 		describe( 'databases', () => {
 			require( 'state/databases/test/actions' );
 		} );
+
+		describe( 'profile', () => {
+			require( 'state/profile/test/actions' );
+			require( 'state/profile/test/reducer' );
+			require( 'state/profile/test/selectors' );
+		} );
 	} );
 } );
