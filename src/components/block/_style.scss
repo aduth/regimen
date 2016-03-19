@@ -1,6 +1,5 @@
 .block {
-	border: 1px solid #cecece;
-	border-radius: $border-radius;
+	@include bordered;
 	margin-bottom: $body-padding;
 }
 

@@ -9,12 +9,11 @@
 
 .popover-menu__list {
 	@include reset-list;
+	@include bordered;
 	position: absolute;
 	padding: 0.2rem 0;
 	min-width: 10rem;
 	background-color: white;
-	border: 1px solid $border-color;
-	border-radius: $border-radius;
 
 	&::before {
 		content: '';

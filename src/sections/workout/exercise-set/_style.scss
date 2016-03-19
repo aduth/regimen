@@ -1,6 +1,6 @@
 .exercise-set {
 	display: flex;
-	border-bottom: 1px solid #cecece;
+	border-bottom: 1px solid $border-color;
 
 	&:last-child {
 		border-bottom-width: 0;
@@ -15,7 +15,7 @@
 
 .exercise-set__weight-label {
 	flex: 3;
-	border-right: 1px solid #cecece;
+	border-right: 1px solid $border-color;
 }
 
 .exercise-set__reps-label {

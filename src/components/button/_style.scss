@@ -4,10 +4,9 @@
 	cursor: pointer;
 
 	&:not( .is-plain ) {
+		@include bordered;
 		padding: 0.2rem 0.7rem;
 		background-color: $color-gray;
-		border: 1px solid $border-color;
-		border-radius: $border-radius;
 	}
 
 	&.is-large {
@@ -29,19 +28,11 @@
 		background-color: $color-green;
 		border-color: $color-green;
 		color: white;
-
-		&:hover {
-			border-color: darken( $color-green, 10% );
-		}
 	}
 
 	&.is-danger {
 		background-color: $color-red;
 		border-color: $color-red;
 		color: white;
-
-		&:hover {
-			border-color: darken( $color-red, 10% );
-		}
 	}
 }

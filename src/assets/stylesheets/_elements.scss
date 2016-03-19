@@ -84,8 +84,7 @@ input:not( [type] ),
 input[type="text"],
 input[type="password"] {
 	@include reset-input;
+	@include bordered;
 	font-size: 1rem;
 	padding: 2px 8px;
-	border-radius: $border-radius;
-	border: 1px solid $border-color;
 }

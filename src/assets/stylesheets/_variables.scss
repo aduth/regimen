@@ -9,7 +9,7 @@ $font-color-body: #3b454d;
 $font-color-icon: lighten( $font-color-body, 10% );
 $font-color-headings: darken( $font-color-body, 5% );
 $font-color-links: #2b78a8;
-$border-color: #cecece;
+$border-color: rgba( 0, 0, 0, 0.16 );
 $loading-pulse-color: #f7f7f7;
 $hover-color: $loading-pulse-color;
 $brand-primary: #63bdd4;
