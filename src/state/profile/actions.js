@@ -154,7 +154,7 @@ export function addPlanToProfile( planId ) {
 
 		try {
 			let profile = await getProfileOrDefault();
-			if ( planId === profile.plans[ 0 ] ) {
+			if ( profile.plans && planId === profile.plans[ 0 ] ) {
 				return;
 			}
 
