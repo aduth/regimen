@@ -8,7 +8,7 @@ import { expect } from 'chai';
  * Internal dependencies
  */
 
-import { exercises, sets } from '../';
+import { exercises, sets, accessory } from '../';
 import { Exercises } from 'routines/constants';
 
 describe( 'madcow', () => {
@@ -155,6 +155,35 @@ describe( 'madcow', () => {
 				{ reps: 3, weight: 152.340625 },
 				{ reps: 8, weight: 112.955 }
 			] );
+		} );
+	} );
+
+	describe( '#accessory()', () => {
+		it( 'should return hyperextension and sit-ups for monday', () => {
+			const accessories = accessory( 4 );
+
+			expect( accessories ).to.be.an( 'array' );
+			expect( accessories ).to.have.length( 2 );
+			expect( accessories[ 0 ] ).to.match( /hyperextension/i );
+			expect( accessories[ 1 ] ).to.match( /sit-ups/i );
+		} );
+
+		it( 'should return sit-ups for wednesday', () => {
+			const accessories = accessory( 5 );
+
+			expect( accessories ).to.be.an( 'array' );
+			expect( accessories ).to.have.length( 1 );
+			expect( accessories[ 0 ] ).to.match( /sit-ups/i );
+		} );
+
+		it( 'should return dips, curls, and triceps extensions for friday', () => {
+			const accessories = accessory( 6 );
+
+			expect( accessories ).to.be.an( 'array' );
+			expect( accessories ).to.have.length( 3 );
+			expect( accessories[ 0 ] ).to.match( /dips/i );
+			expect( accessories[ 1 ] ).to.match( /curls/i );
+			expect( accessories[ 2 ] ).to.match( /triceps extensions/i );
 		} );
 	} );
 } );

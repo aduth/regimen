@@ -371,3 +371,31 @@ export function sets( plan, workout, exercise ) {
 
 	return [];
 }
+
+/**
+ * Returns an array of recommended accessory work for the specified workout.
+ *
+ * @param  {Number}   workout Workout (1-based index)
+ * @return {String[]}         Array of accessory recommendations
+ */
+export function accessory( workout ) {
+	switch ( getWeekday( weekdays, workout ) ) {
+		case Weekdays.MONDAY:
+			return [
+				'Weighted hyperextension (2 sets)',
+				'Weighted sit-ups (2 sets)'
+			];
+
+		case Weekdays.WEDNESDAY:
+			return [
+				'Sit-ups (3 sets)'
+			];
+
+		case Weekdays.FRIDAY:
+			return [
+				'Weighted dips (3 sets, 5-8 reps)',
+				'Barbell curls (3 sets)',
+				'Triceps extensions (3 sets, 8 reps)'
+			];
+	}
+}
