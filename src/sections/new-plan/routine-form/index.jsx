@@ -45,7 +45,7 @@ const BASE_UI_SCHEMA = {
 	classNames: 'routine-form__form'
 };
 
-function RoutineForm( { routine, planId, plan, isImperial, removePlanFromProfile, createPlan } ) {
+function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, createPlan } ) {
 	const classes = classNames( 'routine-form', {
 		'is-loading': ! routine
 	} );
@@ -100,7 +100,7 @@ function RoutineForm( { routine, planId, plan, isImperial, removePlanFromProfile
 	 * @return {Object}            Normalized form values
 	 */
 	function normalizeFormDataUnit( formData, toDisplay ) {
-		if ( ! isImperial ) {
+		if ( ! imperial ) {
 			formData = Object.assign( {}, formData );
 			routines[ routine ].form.weights.forEach( ( path ) => {
 				let weight = get( formData, path );
@@ -150,7 +150,7 @@ RoutineForm.propTypes = {
 	routine: PropTypes.oneOf( Object.keys( routines ) ),
 	planId: PropTypes.string,
 	plan: PropTypes.object,
-	isImperial: PropTypes.bool,
+	imperial: PropTypes.bool,
 	removePlanFromProfile: PropTypes.func,
 	createPlan: PropTypes.func.isRequired
 };
@@ -159,7 +159,7 @@ export default connect(
 	( state, ownProps ) => {
 		return {
 			plan: getPlan( state, ownProps.planId ),
-			isImperial: isProfileImperialUnit( state )
+			imperial: isProfileImperialUnit( state )
 		};
 	},
 	( dispatch ) => {

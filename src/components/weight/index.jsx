@@ -13,9 +13,9 @@ import classNames from 'classnames';
 import { roundToNearestPlate, toKilograms } from 'lib/weight';
 import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
 
-function Weight( { weight, isImperial, minPlate, className } ) {
+function Weight( { weight, imperial, minPlate, className } ) {
 	const classes = classNames( 'weight', className );
-	const rounded = roundToNearestPlate( isImperial ? weight : toKilograms( weight ), minPlate );
+	const rounded = roundToNearestPlate( imperial ? weight : toKilograms( weight ), minPlate );
 
 	return (
 		<span className={ classes }>
@@ -23,7 +23,7 @@ function Weight( { weight, isImperial, minPlate, className } ) {
 				{ rounded }
 			</span>
 			<span className="weight__unit">
-				{ isImperial ? 'lbs' : 'kg' }
+				{ imperial ? 'lbs' : 'kg' }
 			</span>
 		</span>
 	);
@@ -31,14 +31,14 @@ function Weight( { weight, isImperial, minPlate, className } ) {
 
 Weight.propTypes = {
 	weight: PropTypes.number,
-	isImperial: PropTypes.bool,
+	imperial: PropTypes.bool,
 	minPlate: PropTypes.number,
 	className: PropTypes.string
 };
 
 export default connect( ( state ) => {
 	return {
-		isImperial: isProfileImperialUnit( state ),
+		imperial: isProfileImperialUnit( state ),
 		minPlate: getProfileMinPlate( state )
 	};
 } )( Weight );

@@ -17,7 +17,7 @@ import Button from 'components/button';
 import { updateProfile } from 'state/profile/actions';
 import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
 
-function SettingsForm( { isImperial, minPlate, updateProfile, goBack } ) {
+function SettingsForm( { imperial, minPlate, updateProfile, goBack } ) {
 	const schema = {
 		title: 'Settings',
 		type: 'object',
@@ -43,7 +43,7 @@ function SettingsForm( { isImperial, minPlate, updateProfile, goBack } ) {
 	};
 
 	const formData = {
-		unit: isImperial ? 'Pounds' : 'Kilograms',
+		unit: imperial ? 'Pounds' : 'Kilograms',
 		minPlate
 	};
 
@@ -81,7 +81,7 @@ function SettingsForm( { isImperial, minPlate, updateProfile, goBack } ) {
 }
 
 SettingsForm.propTypes = {
-	isImperial: PropTypes.bool,
+	imperial: PropTypes.bool,
 	minPlate: PropTypes.number,
 	updateProfile: PropTypes.func
 };
@@ -89,7 +89,7 @@ SettingsForm.propTypes = {
 export default connect(
 	( state ) => {
 		return {
-			isImperial: isProfileImperialUnit( state ),
+			imperial: isProfileImperialUnit( state ),
 			minPlate: getProfileMinPlate( state )
 		};
 	},
