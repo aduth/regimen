@@ -14,10 +14,11 @@ var app = express(),
 	server = http.Server( app );
 
 /**
- * Module variables
+ * Constants
  */
 
-var port = process.env.PORT || 3000;
+var REGEXP_VALID_PATH = /^\/($|plan\/(new|\w+(\/workout(\/\d+)?)?)|settings)$/,
+	PORT = process.env.PORT || 3000;
 
 /**
  * Middlewares
@@ -51,6 +52,10 @@ app.use( express.static( __dirname + '/public', {
  */
 
 app.get( '*', function( request, response ) {
+	if ( ! REGEXP_VALID_PATH.test( request.path.replace( /.\/$/, '' ) ) ) {
+		response.status( 404 );
+	}
+
 	response.sendFile( __dirname + '/public/index.html' );
 } );
 
@@ -58,7 +63,7 @@ app.get( '*', function( request, response ) {
  * Start server
  */
 
-server.listen( port, function() {
+server.listen( PORT, function() {
 	/* eslint-disable no-console */
-	console.log( 'Listening on port %d...', port );
+	console.log( 'Listening on port %d...', PORT );
 } );
