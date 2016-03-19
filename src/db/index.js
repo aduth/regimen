@@ -66,7 +66,7 @@ PouchDB.plugin( PouchDBValidation );
  * Development helpers
  */
 
-if ( __DEV__ ) {
+if ( global.__DEV__ ) {
 	window.PouchDB = PouchDB;
 }
 

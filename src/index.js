@@ -36,7 +36,7 @@ configureStandalone( store );
  * Offline capability
  */
 
-if ( ! __DEV__ ) {
+if ( ! global.__DEV__ ) {
 	installOfflineRuntime();
 }
 

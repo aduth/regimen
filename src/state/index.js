@@ -35,7 +35,7 @@ export function createReduxStore() {
 
 	let createStoreWithMiddleware = applyMiddleware( ...middlewares );
 
-	if ( __DEV__ && global.devToolsExtension ) {
+	if ( global.__DEV__ && global.devToolsExtension ) {
 		createStoreWithMiddleware = compose(
 			createStoreWithMiddleware,
 			global.devToolsExtension()
@@ -44,7 +44,7 @@ export function createReduxStore() {
 
 	const store = createStoreWithMiddleware( createStore )( reducer );
 
-	if ( __DEV__ ) {
+	if ( global.__DEV__ ) {
 		global.store = store;
 	}
 
