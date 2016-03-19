@@ -26,7 +26,7 @@ export function getProfilePlans( state ) {
  * @return {?Number}        Workout progress
  */
 export function getProfilePlanProgress( state, planId ) {
-	return state.profile.progress[ planId ];
+	return state.profile.progress[ planId ] || null;
 }
 
 /**
