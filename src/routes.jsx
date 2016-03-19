@@ -17,17 +17,20 @@ import WorkoutRoute from 'sections/workout/route';
 import SettingsRoute from 'sections/settings/route';
 import NotFoundRoute from 'sections/not-found/route';
 
-export default [
+export default (
 	<Route path="/" component={ BaseRoute }>
 		<IndexRoute component={ HomeRoute } />
 		<Route path="plan">
 			<Route path="new" component={ NewPlanRoute } />
 			<Route path=":planId" component={ PlanRoute }>
-				<Route path="workout/:workout" component={ WorkoutRoute } />
+				<Route path="workout">
+					<Route path=":workout" component={ WorkoutRoute } />
+					<IndexRedirect to="/plan/:planId/workout/1" />
+				</Route>
 				<IndexRedirect to="/plan/:planId/workout/1" />
 			</Route>
 		</Route>
 		<SettingsRoute path="settings" component={ SettingsRoute } />
 		<Route path="*" component={ NotFoundRoute }/>
 	</Route>
-];
+);
