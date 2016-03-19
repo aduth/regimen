@@ -131,8 +131,7 @@ export function setProfilePlanProgress( planId, workout ) {
 				[ planId ]: workout
 			} );
 			await queueRevisions( { progress } );
-			profile = await getProfileOrDefault();
-			dispatch( updateProfileSuccess( profile ) );
+			dispatch( updateProfileSuccess( { progress } ) );
 		} catch ( error ) {
 			dispatch( updateProfileFailure( error ) );
 		}
@@ -161,8 +160,7 @@ export function addPlanToProfile( planId ) {
 
 			const plans = [ planId ].concat( without( profile.plans, planId ) );
 			await queueRevisions( { plans } );
-			profile = await getProfileOrDefault();
-			dispatch( updateProfileSuccess( profile ) );
+			dispatch( updateProfileSuccess( { plans } ) );
 		} catch ( error ) {
 			dispatch( updateProfileFailure( error ) );
 		}
@@ -192,8 +190,7 @@ export function removePlanFromProfile( planId ) {
 			const plans = without( profile.plans, planId );
 			await setProfilePlanProgress( planId, undefined );
 			await queueRevisions( { plans } );
-			profile = await getProfileOrDefault();
-			dispatch( updateProfileSuccess( profile ) );
+			dispatch( updateProfileSuccess( { plans } ) );
 		} catch ( error ) {
 			dispatch( updateProfileFailure( error ) );
 		}
