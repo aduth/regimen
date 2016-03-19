@@ -2,6 +2,14 @@
 	@include reset-list;
 }
 
+.add-via-routine__options-item {
+	border-bottom: 1px solid $border-color;
+
+	&:last-child {
+		border-bottom-width: 0;
+	}
+}
+
 .add-via-routine__option {
 	position: relative;
 	display: block;
