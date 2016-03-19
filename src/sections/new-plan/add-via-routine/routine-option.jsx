@@ -4,7 +4,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import values from 'lodash/values';
 
 /**
  * Internal dependencies
@@ -58,12 +57,20 @@ export default class RoutineOption extends Component {
 						{ description }
 					</p>
 					{ this.state.selected && (
-						<Button
-							to={ `/plan/new?routine=${ this.props.routine }` }
-							success
-							className="add-via-routine__option-select">
-							Choose This Routine
-						</Button>
+						<div className="add-via-routine__actions">
+							<Button
+								to={ `/plan/new?routine=${ this.props.routine }` }
+								success>
+								Choose This Routine
+							</Button>
+							{ routine.external && (
+								<Button
+									to={ routine.external }
+									target="_blank">
+									More Information
+								</Button>
+							) }
+						</div>
 					) }
 				</div>
 				{ this.state.selected && (

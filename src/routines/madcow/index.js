@@ -41,6 +41,13 @@ export const name = 'Madcow 5x5';
 export const description = 'Originally created by Bill Starr, the writer of the book "The Strongest Shall Survive" this program is great for adding muscle mass and increasing overall strength and fitness levels.';
 
 /**
+ * Program external resource URL.
+ *
+ * @type {String}
+ */
+export const external = 'http://stronglifts.com/madcow/5x5_Program/Linear_5x5.htm';
+
+/**
  * Program focus type.
  *
  * @type {FocusType}

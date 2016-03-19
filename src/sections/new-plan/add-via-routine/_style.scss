@@ -21,12 +21,25 @@
 	padding: 12px;
 }
 
-.button.add-via-routine__option-select {
+.add-via-routine__actions {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	margin-top: 6px;
+
+	@include desktop() {
+		flex-direction: row;
+	}
+}
+
+.add-via-routine__actions .button {
 	display: block;
-	width: 100%;
-	max-width: 360px;
-	margin: 12px auto 0;
+	margin-top: 6px;
 	text-align: center;
+
+	@include desktop() {
+		flex-basis: 48%;
+	}
 }
 
 .add-via-routine__option-name,

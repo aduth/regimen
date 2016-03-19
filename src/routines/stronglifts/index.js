@@ -23,6 +23,13 @@ export const name = 'Stronglifts 5x5';
 export const description = 'Stronglifts 5x5 is the simplest, most effective workout to get stronger, build muscle and burn fat. The program is easy to follow and only takes three workouts a week of about 45 minutes.';
 
 /**
+ * Program external resource URL.
+ *
+ * @type {String}
+ */
+export const external = 'http://stronglifts.com/';
+
+/**
  * Program focus type.
  *
  * @type {FocusType}

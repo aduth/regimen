@@ -8,8 +8,8 @@ import { Link } from 'react-router';
 
 function Button( props ) {
 	const {
-		plain, success, danger, type, large, to,
-		onClick, disabled, className, children
+		plain, success, danger, type, large, to, onClick,
+		disabled, target, className, children
 	} = props;
 
 	const classes = classNames( 'button', className, {
@@ -22,7 +22,7 @@ function Button( props ) {
 	const baseProps = { className: classes, disabled, children };
 
 	if ( to ) {
-		return <Link { ...baseProps } to={ to } />;
+		return <Link { ...baseProps } to={ to } target={ target } />;
 	}
 
 	return (
@@ -34,6 +34,7 @@ function Button( props ) {
 }
 
 Button.propTypes = {
+	plain: PropTypes.bool,
 	success: PropTypes.bool,
 	danger: PropTypes.bool,
 	type: PropTypes.oneOf( [ 'button', 'submit', 'reset' ] ),
@@ -41,6 +42,7 @@ Button.propTypes = {
 	to: PropTypes.string,
 	onClick: PropTypes.func,
 	disabled: PropTypes.bool,
+	target: PropTypes.oneOf( [ '_self', '_blank', '_parent', '_top' ] ),
 	className: PropTypes.string,
 	children: PropTypes.node
 };
