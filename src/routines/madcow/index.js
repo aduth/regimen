@@ -34,6 +34,13 @@ export function getMax( testWeight, testReps, week, prWeek ) {
 export const name = 'Madcow 5x5';
 
 /**
+ * Program author name.
+ *
+ * @type {String}
+ */
+export const author = 'Bill Starr';
+
+/**
  * Program description.
  *
  * @type {String}

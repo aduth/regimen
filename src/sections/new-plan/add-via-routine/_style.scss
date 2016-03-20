@@ -42,6 +42,10 @@
 	}
 }
 
+.add-via-routine__option-name-author {
+	display: flex;
+}
+
 .add-via-routine__option-name,
 .add-via-routine__option-description {
 	margin: 0;
@@ -49,6 +53,12 @@
 
 .add-via-routine__option-name {
 	font-size: 1.2rem;
+}
+
+.add-via-routine__option-author {
+	margin-left: 0.4rem;
+	font-size: 0.9rem;
+	line-height: ( 1.2rem * 1.6 );
 }
 
 .add-via-routine__option-detail {

@@ -16,6 +16,13 @@ import { FocusTypes, ProgressionTypes, Weekdays, Exercises } from 'routines/cons
 export const name = 'Stronglifts 5x5';
 
 /**
+ * Program author name.
+ *
+ * @type {String}
+ */
+export const author = 'Mehdi';
+
+/**
  * Program description.
  *
  * @type {String}
