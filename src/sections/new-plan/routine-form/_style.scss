@@ -8,7 +8,22 @@
 	display: none;
 }
 
-.button.routine-form__submit {
+.routine-form__actions {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@include desktop() {
+		flex-direction: row;
+	}
+}
+
+.routine-form__actions .button {
 	display: block;
-	width: 100%;
+	margin-top: 6px;
+	text-align: center;
+
+	@include desktop() {
+		flex-basis: 49%;
+	}
 }

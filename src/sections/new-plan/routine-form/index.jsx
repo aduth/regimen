@@ -4,8 +4,8 @@
 
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { goBack } from 'react-router-redux';
 import Form from 'react-jsonschema-form';
 import { getDefaultFormState } from 'react-jsonschema-form/lib/utils';
 import merge from 'lodash/merge';
@@ -45,7 +45,7 @@ const BASE_UI_SCHEMA = {
 	classNames: 'routine-form__form'
 };
 
-function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, createPlan } ) {
+function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, createPlan, goBack } ) {
 	const classes = classNames( 'routine-form', {
 		'is-loading': ! routine
 	} );
@@ -135,13 +135,14 @@ function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, 
 			formData={ normalizeFormDataUnit( formState, true ) }
 			uiSchema={ uiSchema }
 			onSubmit={ onSubmit }>
-			<Button
-				type="submit"
-				success
-				large
-				className="routine-form__submit">
-				{ planId ? 'Update' : 'Create' }
-			</Button>
+			<div className="routine-form__actions">
+				<Button type="submit" success large>
+					{ planId ? 'Update' : 'Create' }
+				</Button>
+				<Button large onClick={ () => goBack() }>
+					Cancel
+				</Button>
+			</div>
 		</Form>
 	) );
 }
@@ -152,20 +153,18 @@ RoutineForm.propTypes = {
 	plan: PropTypes.object,
 	imperial: PropTypes.bool,
 	removePlanFromProfile: PropTypes.func,
-	createPlan: PropTypes.func.isRequired
+	createPlan: PropTypes.func,
+	goBack: PropTypes.func
 };
 
 export default connect(
-	( state, ownProps ) => {
-		return {
-			plan: getPlan( state, ownProps.planId ),
-			imperial: isProfileImperialUnit( state )
-		};
-	},
-	( dispatch ) => {
-		return bindActionCreators( {
-			removePlanFromProfile,
-			createPlan
-		}, dispatch );
+	( state, ownProps ) => ( {
+		plan: getPlan( state, ownProps.planId ),
+		imperial: isProfileImperialUnit( state )
+	} ),
+	{
+		removePlanFromProfile,
+		createPlan,
+		goBack
 	}
 )( RoutineForm );
