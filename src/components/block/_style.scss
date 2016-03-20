@@ -20,6 +20,16 @@
 	padding: 12px;
 }
 
-.block__content > p:first-child {
+.block__content > p:first-child,
+.block__content > h1:first-child,
+.block__content > h2:first-child,
+.block__content > h3:first-child,
+.block__content > h4:first-child,
+.block__content > h5:first-child,
+.block__content > h6:first-child {
 	margin-top: 0;
+}
+
+.block__content > p:last-child {
+	margin-bottom: 0;
 }

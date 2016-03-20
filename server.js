@@ -17,7 +17,7 @@ var app = express(),
  * Constants
  */
 
-var REGEXP_VALID_PATH = /^\/($|plan\/(new|\w+(\/workout(\/\d+)?)?)|settings)$/,
+var REGEXP_VALID_PATH = /^\/($|plan\/(new|\w+(\/workout(\/\d+)?)?)|settings|privacy)$/,
 	PORT = process.env.PORT || 3000;
 
 /**

@@ -14,6 +14,7 @@ import HomeRoute from 'sections/home/route';
 import PlanRoute from 'sections/plan/route';
 import NewPlanRoute from 'sections/new-plan/route';
 import WorkoutRoute from 'sections/workout/route';
+import PrivacyRoute from 'sections/privacy/route';
 import SettingsRoute from 'sections/settings/route';
 import NotFoundRoute from 'sections/not-found/route';
 
@@ -30,6 +31,7 @@ export default (
 				<IndexRedirect to="/plan/:planId/workout/1" />
 			</Route>
 		</Route>
+		<Route path="privacy" component={ PrivacyRoute } />
 		<SettingsRoute path="settings" component={ SettingsRoute } />
 		<Route path="*" component={ NotFoundRoute }/>
 	</Route>
