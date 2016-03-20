@@ -39,6 +39,7 @@ function HeaderOptions( { planId, active, toggleActive, className } ) {
 }
 
 HeaderOptions.propTypes = {
+	planId: PropTypes.string,
 	active: PropTypes.bool,
 	toggleActive: PropTypes.func,
 	className: PropTypes.string

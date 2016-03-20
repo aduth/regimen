@@ -3,7 +3,6 @@
  */
 
 import { combineReducers } from 'redux';
-import { LOCATION_CHANGE } from 'react-router-redux';
 
 /**
  * Internal dependencies

@@ -83,7 +83,8 @@ function SettingsForm( { imperial, minPlate, updateProfile, goBack } ) {
 SettingsForm.propTypes = {
 	imperial: PropTypes.bool,
 	minPlate: PropTypes.number,
-	updateProfile: PropTypes.func
+	updateProfile: PropTypes.func,
+	goBack: PropTypes.func
 };
 
 export default connect(
