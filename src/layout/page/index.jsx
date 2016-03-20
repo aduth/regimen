@@ -11,6 +11,7 @@ import Helmet from 'react-helmet';
 
 import Header from 'layout/header';
 import Notices from 'layout/notices';
+import Footer from 'layout/footer';
 
 function Page( { title, header, children } ) {
 	return (
@@ -19,6 +20,7 @@ function Page( { title, header, children } ) {
 			<Header title={ header || title } />
 			<Notices />
 			{ children }
+			<Footer />
 		</div>
 	);
 }
