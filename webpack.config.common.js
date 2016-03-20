@@ -53,6 +53,16 @@ module.exports = {
 				'	<link rel="apple-touch-icon" href="/images/icon-48.png">' +
 				'	<link rel="apple-touch-icon" sizes="96x96" href="/images/icon-96.png">' +
 				'	<link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png">' +
+				'	<link rel="apple-touch-startup-image" href="/images/launch-1242.png"' +
+				'		media="(device-width: 414px) and (device-height: 736px)' +
+				'			and (-webkit-device-pixel-ratio: 3)' +
+				'			and (orientation: landscape)">' +
+				'	<link rel="apple-touch-startup-image" href="/images/launch-750.png"' +
+				'		media="(device-width: 375px) and (device-height: 667px)' +
+				'			and (-webkit-device-pixel-ratio: 2)">' +
+				'	<link rel="apple-touch-startup-image" href="/images/launch-640.png"' +
+				'		media="(device-width: 320px) and (device-height: 568px)' +
+				'			and (-webkit-device-pixel-ratio: 2)">' +
 				'	{% for ( var css in o.htmlWebpackPlugin.files.css ) { %}' +
 				'	<link rel="stylesheet" href="{%= o.htmlWebpackPlugin.files.css[ css ] %}">' +
 				'	{% } %}' +
