@@ -32,7 +32,12 @@ export default class RoutineOption extends Component {
 		};
 	}
 
-	toggleSelected() {
+	toggleSelected( event ) {
+		const { actions } = this.refs;
+		if ( actions && actions.contains( event.target ) ) {
+			return;
+		}
+
 		this.setState( {
 			selected: ! this.state.selected
 		} );
@@ -64,7 +69,7 @@ export default class RoutineOption extends Component {
 						{ description }
 					</p>
 					{ this.state.selected && (
-						<div className="add-via-routine__actions">
+						<div ref="actions" className="add-via-routine__actions">
 							<Button
 								to={ `/plan/new?routine=${ this.props.routine }` }
 								success>
