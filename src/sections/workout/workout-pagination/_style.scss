@@ -12,10 +12,8 @@
 	background-color: $color-gray;
 	text-align: center;
 
-	@media screen and ( orientation: portrait ) {
-		html.is-ios.is-standalone & {
-			top: 4.25rem;
-		}
+	@include standalone() {
+		top: 4.25rem;
 	}
 }
 

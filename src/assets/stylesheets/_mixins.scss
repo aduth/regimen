@@ -86,3 +86,11 @@
 	@include bordered;
 	box-shadow: inset 0 0 0.4rem rgba( 0, 0, 0, 0.15 );
 }
+
+@mixin standalone() {
+	@media screen and ( orientation: portrait ) {
+		html.is-ios.is-standalone & {
+			@content;
+		}
+	}
+}
