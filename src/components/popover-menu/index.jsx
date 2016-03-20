@@ -3,16 +3,11 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classNames from 'classnames';
 
 export default class PopoverMenu extends Component {
 	static propTypes = {
-		position: PropTypes.oneOf( [
-			'top left',
-			'top right',
-			'bottom left',
-			'bottom right'
-		] ),
 		visible: PropTypes.bool,
 		className: PropTypes.string,
 		onClose: PropTypes.func,
@@ -20,7 +15,6 @@ export default class PopoverMenu extends Component {
 	};
 
 	static defaultProps = {
-		position: 'bottom right',
 		visible: false,
 		onClose: () => {}
 	};
@@ -55,21 +49,22 @@ export default class PopoverMenu extends Component {
 	}
 
 	render() {
-		const { position, visible, className, children } = this.props;
-		const classes = classNames( 'popover-menu', className, {
-			'is-top-left': 'top left' === position,
-			'is-top-right': 'top right' === position,
-			'is-bottom-left': 'bottom left' === position,
-			'is-bottom-right': 'bottom right' === position,
-			'is-visible': visible
-		} );
+		const { visible, className, children } = this.props;
+		const classes = classNames( 'popover-menu', className );
 
 		return (
-			<nav ref="popover" className={ classes }>
-				<ul className="popover-menu__list">
-					{ children }
-				</ul>
-			</nav>
+			<ReactCSSTransitionGroup
+				transitionName="popover-menu__fade"
+				transitionEnterTimeout={ 120 }
+				transitionLeaveTimeout={ 120 }>
+				{ visible && (
+					<nav ref="popover" className={ classes }>
+						<ul className="popover-menu__list">
+							{ children }
+						</ul>
+					</nav>
+				) }
+			</ReactCSSTransitionGroup>
 		);
 	}
 }

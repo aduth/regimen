@@ -21,8 +21,8 @@ function Notices( { notices, dismissNotice } ) {
 		<ul className="notices">
 			<ReactCSSTransitionGroup
 				transitionName="notices__items"
-				transitionEnterTimeout={ 300 }
-				transitionLeaveTimeout={ 300 }>
+				transitionEnterTimeout={ 120 }
+				transitionLeaveTimeout={ 120 }>
 				{ map( notices, ( notice, id ) => {
 					const itemClasses = classNames( 'notices__notice', {
 						'is-success': notice.success,

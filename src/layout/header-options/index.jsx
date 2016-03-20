@@ -21,10 +21,7 @@ function HeaderOptions( { planId, active, toggleActive, className } ) {
 
 	return (
 		<div className={ classes }>
-			<PopoverMenu
-				position="bottom left"
-				visible={ active }
-				onClose={ toggleActive }>
+			<PopoverMenu visible={ active } onClose={ toggleActive }>
 				{ planId && (
 					<PopoverMenuItem to={ `/plan/new?planId=${ planId }` }>
 						Edit

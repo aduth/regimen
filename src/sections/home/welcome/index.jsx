@@ -20,8 +20,8 @@ function Welcome( { visible, hide } ) {
 	return (
 		<ReactCSSTransitionGroup
 			transitionName="welcome__fade"
-			transitionEnterTimeout={ 300 }
-			transitionLeaveTimeout={ 300 }>
+			transitionEnterTimeout={ 120 }
+			transitionLeaveTimeout={ 120 }>
 			{ visible && (
 				<section className="welcome">
 					<header>
