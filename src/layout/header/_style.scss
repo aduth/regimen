@@ -3,6 +3,17 @@
 
 	@include standalone() {
 		padding-top: 4.25rem;
+
+		&::before {
+			content: '';
+			z-index: 400;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: 1.25rem;
+			background-color: darken( $brand-primary, 20% );
+		}
 	}
 }
 
@@ -20,16 +31,6 @@
 
 	@include standalone() {
 		margin-top: 1.25rem;
-
-		&::before {
-			content: '';
-			position: absolute;
-			top: -1.25rem;
-			right: 0;
-			left: 0;
-			height: 1.25rem;
-			background-color: darken( $brand-primary, 20% );
-		}
 	}
 }
 
