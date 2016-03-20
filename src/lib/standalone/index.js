@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import { push } from 'react-router-redux';
+import { LOCATION_CHANGE, push } from 'react-router-redux';
 
 /**
  * Returns true if navigator is in standalone mode.
@@ -48,14 +48,21 @@ function trackPath( store ) {
 		store.dispatch( push( path ) );
 	}
 
-	// Subscribe to path changes
-	store.subscribe( () => {
-		const state = store.getState();
-		if ( state.routing.path !== path ) {
-			path = state.routing.path;
+	// Enhance store dispatch to monitor path changes
+	const _dispatch = store.dispatch;
+	store.dispatch = ( action ) => {
+		_dispatch( action );
+
+		if ( LOCATION_CHANGE !== action.type ) {
+			return;
+		}
+
+		const nextPath = action.payload.pathname;
+		if ( nextPath !== path ) {
+			path = nextPath;
 			localStorage.setItem( 'path', path );
 		}
-	} );
+	};
 }
 
 /**
