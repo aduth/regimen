@@ -10,7 +10,7 @@ import { LOCATION_CHANGE, push } from 'react-router-redux';
  * @return {Boolean} Whether navigator is in standalone mode
  */
 export function isStandalone() {
-	return navigator.standalone;
+	return !! navigator.standalone;
 }
 
 /**

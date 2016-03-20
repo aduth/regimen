@@ -17,7 +17,7 @@ describe( 'standalone', () => {
 
 	describe( '#isStandalone', () => {
 		it( 'should return false if not standalone navigator', () => {
-			global.navigator.standalone = false;
+			global.navigator.standalone = undefined;
 
 			expect( isStandalone() ).to.be.false;
 		} );
