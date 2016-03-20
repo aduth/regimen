@@ -2,7 +2,22 @@
 	display: none;
 }
 
-.button.settings-form__submit {
+.settings-form__actions {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@include desktop() {
+		flex-direction: row;
+	}
+}
+
+.settings-form__actions .button {
 	display: block;
-	width: 100%;
+	margin-top: 6px;
+	text-align: center;
+
+	@include desktop() {
+		flex-basis: 49%;
+	}
 }

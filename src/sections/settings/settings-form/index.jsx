@@ -3,7 +3,6 @@
  */
 
 import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { goBack } from 'react-router-redux';
 import Form from 'react-jsonschema-form';
@@ -68,13 +67,14 @@ function SettingsForm( { imperial, minPlate, updateProfile, goBack } ) {
 				uiSchema={ uiSchema }
 				formData={ formData }
 				onSubmit={ onSubmit }>
-				<Button
-					type="submit"
-					success
-					large
-					className="settings-form__submit">
-					Submit
-				</Button>
+				<div className="settings-form__actions">
+					<Button type="submit" success large>
+						Submit
+					</Button>
+					<Button large onClick={ () => goBack() }>
+						Cancel
+					</Button>
+				</div>
 			</Form>
 		</Block>
 	);
@@ -88,16 +88,9 @@ SettingsForm.propTypes = {
 };
 
 export default connect(
-	( state ) => {
-		return {
-			imperial: isProfileImperialUnit( state ),
-			minPlate: getProfileMinPlate( state )
-		};
-	},
-	( dispatch ) => {
-		return bindActionCreators( {
-			updateProfile,
-			goBack
-		}, dispatch );
-	}
+	( state ) => ( {
+		imperial: isProfileImperialUnit( state ),
+		minPlate: getProfileMinPlate( state )
+	} ),
+	{ updateProfile, goBack }
 )( SettingsForm );
