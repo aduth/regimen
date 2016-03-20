@@ -68,7 +68,11 @@
 
 .header__brand {
 	@include bold;
-	flex: 5;
+	flex: 4;
 	padding: 0.7rem 0;
 	text-shadow: -1px -1px darken( $brand-primary, 10% );
+
+	@include desktop() {
+		flex: 5;
+	}
 }

@@ -58,10 +58,15 @@
 	z-index: 20;
 	display: block;
 	width: 100%;
-	padding: 0.1rem 0.8rem;
+	padding: 0.3rem 0.8rem;
 	cursor: pointer;
 	font-size: 1rem;
 	white-space: nowrap;
+
+	@include desktop() {
+		padding-top: 0.1rem;
+		padding-bottom: 0.1rem;
+	}
 
 	&:hover {
 		background-color: $hover-color;
