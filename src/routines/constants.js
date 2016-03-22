@@ -22,6 +22,18 @@ export const ProgressionTypes = {
 };
 
 /**
+ * Supported skill levels for a routine.
+ *
+ * @type {Object}
+ * @enum {SkillLevels}
+ */
+export const SkillLevels = {
+	BEGINNER: 'BEGINNER',
+	INTERMEDIATE: 'INTERMEDIATE',
+	ADVANCED: 'ADVANCED'
+};
+
+/**
  * Days of the week.
  *
  * @type {Object}

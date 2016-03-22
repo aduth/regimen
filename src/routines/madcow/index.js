@@ -2,7 +2,7 @@
  * Internal dependencies
  */
 
-import { FocusTypes, ProgressionTypes, Weekdays, Exercises } from 'routines/constants';
+import { SkillLevels, FocusTypes, ProgressionTypes, Weekdays, Exercises } from 'routines/constants';
 import { getWeekday } from 'routines/utils';
 
 /**
@@ -53,6 +53,13 @@ export const description = 'Originally created by Bill Starr, the writer of the 
  * @type {String}
  */
 export const external = 'http://stronglifts.com/madcow/5x5_Program/Linear_5x5.htm';
+
+/**
+ * Program minimum skill level.
+ *
+ * @type {SkillLevel}
+ */
+export const skill = SkillLevels.INTERMEDIATE;
 
 /**
  * Program focus type.

@@ -11,7 +11,7 @@ import classNames from 'classnames';
 
 import Button from 'components/button';
 import FocusTypeLabel from 'components/focus-type-label';
-import ProgressionLabel from 'components/progression-label';
+import SkillLabel from 'components/skill-label';
 import * as routines from 'routines';
 
 export default class RoutineOption extends Component {
@@ -45,7 +45,7 @@ export default class RoutineOption extends Component {
 
 	render() {
 		const routine = routines[ this.props.routine ];
-		const { name, author, description, focus, progression, weekdays } = routine;
+		const { name, author, description, focus, skill, weekdays } = routine;
 		const classes = classNames( 'add-via-routine__option', {
 			'is-selected': this.state.selected
 		} );
@@ -92,15 +92,15 @@ export default class RoutineOption extends Component {
 						className="add-via-routine__option-detail">
 						<thead>
 							<tr>
+								<th>Skill Level</th>
 								<th>Focus</th>
-								<th>Progression</th>
 								<th>Workouts per Week</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
+								<td><SkillLabel skill={ skill } /></td>
 								<td><FocusTypeLabel focus={ focus } /></td>
-								<td><ProgressionLabel progression={ progression } /></td>
 								<td>{ weekdays.length }</td>
 							</tr>
 						</tbody>

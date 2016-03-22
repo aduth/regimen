@@ -2,7 +2,7 @@
  * Internal dependencies
  */
 
-import { FocusTypes, ProgressionTypes, Weekdays, Exercises } from 'routines/constants';
+import { SkillLevels, FocusTypes, ProgressionTypes, Exercises } from 'routines/constants';
 
 /**
  * Program Constants
@@ -35,6 +35,13 @@ export const description = 'Stronglifts 5x5 is the simplest, most effective work
  * @type {String}
  */
 export const external = 'http://stronglifts.com/';
+
+/**
+ * Program minimum skill level.
+ *
+ * @type {SkillLevel}
+ */
+export const skill = SkillLevels.BEGINNER;
 
 /**
  * Program focus type.
