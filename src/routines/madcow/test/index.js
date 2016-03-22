@@ -42,7 +42,6 @@ describe( 'madcow', () => {
 		const plan = {
 			prWeek: 3,
 			setIncrement: 12,
-			minPlateWeight: 2.5,
 			tests: {
 				squat: {
 					weight: 285,

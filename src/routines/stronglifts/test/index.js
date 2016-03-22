@@ -11,7 +11,7 @@ import { expect } from 'chai';
 import { exercises, sets } from '../';
 import { Exercises } from 'routines/constants';
 
-describe( 'madcow', () => {
+describe( 'stronglifts', () => {
 	describe( '#exercises()', () => {
 		it( 'should return squat, bench press, and row for workout A', () => {
 			expect( exercises( 5 ) ).to.eql( [

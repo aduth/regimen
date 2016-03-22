@@ -18,6 +18,7 @@ describe( 'regimen', () => {
 	describe( 'routines', () => {
 		require( 'routines/test/utils' );
 		require( 'routines/madcow/test' );
+		require( 'routines/starting-strength/test' );
 		require( 'routines/stronglifts/test' );
 	} );
 

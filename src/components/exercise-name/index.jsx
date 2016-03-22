@@ -33,6 +33,10 @@ function ExerciseName( { exercise } ) {
 		case Exercises.DEADLIFT:
 			name = 'Deadlift';
 			break;
+
+		case Exercises.POWER_CLEAN:
+			name = 'Power Clean';
+			break;
 	}
 
 	return (
