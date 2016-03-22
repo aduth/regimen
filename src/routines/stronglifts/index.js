@@ -55,18 +55,14 @@ export const focus = FocusTypes.STRENGTH;
  *
  * @type {ProgressionType}
  */
-export const progression = ProgressionTypes.DAILY;
+export const progression = ProgressionTypes.SESSIONS;
 
 /**
- * Days of the week for which the routine is performed.
+ * Number of sessions comprising a progression.
  *
- * @type {Weekday[]}
+ * @type {Number}
  */
-export const weekdays = [
-	Weekdays.MONDAY,
-	Weekdays.WEDNESDAY,
-	Weekdays.FRIDAY
-];
+export const sessions = 2;
 
 /**
  * Form schema and UI schema from which a set of form fields are generated.

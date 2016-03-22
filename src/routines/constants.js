@@ -18,7 +18,8 @@ export const FocusTypes = {
  */
 export const ProgressionTypes = {
 	WEEKLY: 'WEEKLY',
-	DAILY: 'DAILY'
+	DAILY: 'DAILY',
+	SESSIONS: 'SESSIONS'
 };
 
 /**

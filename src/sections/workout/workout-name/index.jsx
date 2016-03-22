@@ -12,23 +12,36 @@ import { connect } from 'react-redux';
 import { getPlanRoutine } from 'state/plans/selectors';
 import { getPlanId, getWorkout } from 'state/ui/selectors';
 import Weekday from 'components/weekday';
+import SessionLabel from 'sections/workout/session-label';
 
 function WorkoutName( { routine, workout } ) {
-	let weekdays;
+	let weekdays, sessions;
 	if ( routine ) {
-		weekdays = routine.weekdays.length;
+		sessions = routine.sessions;
+
+		if ( routine.weekdays ) {
+			weekdays = routine.weekdays.length;
+		}
 	}
 
 	return (
 		<div className="workout-name">
 			<div className="workout-name__title">
-				{ routine && (
+				{ weekdays && (
 					`Week ${ Math.ceil( workout / weekdays ) }`
+				) }
+				{ sessions && (
+					<SessionLabel
+						sessions={ sessions }
+						workout={ workout } />
 				) }
 			</div>
 			<div className="workout-name__subtitle">
-				{ routine && (
+				{ weekdays && (
 					<Weekday weekday={ routine.weekdays[ ( workout - 1 ) % weekdays ] } />
+				) }
+				{ sessions && (
+					`Session ${ workout }`
 				) }
 			</div>
 		</div>

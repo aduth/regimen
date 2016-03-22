@@ -45,7 +45,7 @@ export default class RoutineOption extends Component {
 
 	render() {
 		const routine = routines[ this.props.routine ];
-		const { name, author, description, focus, skill, weekdays } = routine;
+		const { name, author, description, focus, skill, weekdays, sessions } = routine;
 		const classes = classNames( 'add-via-routine__option', {
 			'is-selected': this.state.selected
 		} );
@@ -94,14 +94,20 @@ export default class RoutineOption extends Component {
 							<tr>
 								<th>Skill Level</th>
 								<th>Focus</th>
-								<th>Workouts per Week</th>
+								<th>
+									{ weekdays && 'Workouts per week' }
+									{ sessions && 'Sessions' }
+								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td><SkillLabel skill={ skill } /></td>
 								<td><FocusTypeLabel focus={ focus } /></td>
-								<td>{ weekdays.length }</td>
+								<td>
+									{ weekdays && weekdays.length }
+									{ sessions && sessions }
+								</td>
 							</tr>
 						</tbody>
 					</table>
