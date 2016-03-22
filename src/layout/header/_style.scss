@@ -5,9 +5,8 @@
 		padding-top: 4.25rem;
 
 		&::before {
+			@include fixed( $z-index: 400 );
 			content: '';
-			z-index: 400;
-			position: absolute;
 			top: 0;
 			right: 0;
 			left: 0;
