@@ -30,6 +30,10 @@
 	@extend h4;
 }
 
+.field-description {
+	margin-bottom: 1rem;
+}
+
 .form__inline-flex:not( :first-of-type ) {
 	display: inline-flex;
 	margin: 0 0.5rem;
