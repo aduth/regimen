@@ -22,7 +22,7 @@ module.exports = {
 		}
 	},
 	module: {
-		noParse: /lie\.js/
+		noParse: /(lie\.js|buffertools)/
 	},
 	plugins: [
 		new webpack.DefinePlugin( {
