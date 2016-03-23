@@ -10,13 +10,13 @@ import classNames from 'classnames';
  * Internal dependencies
  */
 
-import { isRequestingProfile, getProfilePlans } from 'state/profile/selectors';
+import { hasProfileLoaded, getProfilePlans } from 'state/profile/selectors';
 import Block from 'components/block';
 import ProfilePlan from './plan';
 
-function ProfilePlans( { requesting, plans } ) {
+function ProfilePlans( { loaded, plans } ) {
 	const classes = classNames( 'profile-plans', {
-		'is-loading': requesting
+		'is-loading': ! loaded
 	} );
 
 	return (
@@ -38,13 +38,13 @@ function ProfilePlans( { requesting, plans } ) {
 }
 
 ProfilePlans.propTypes = {
-	requesting: PropTypes.bool,
+	loaded: PropTypes.bool,
 	plans: PropTypes.arrayOf( PropTypes.string )
 };
 
 export default connect( ( state ) => {
 	return {
-		requesting: isRequestingProfile( state ),
+		loaded: hasProfileLoaded( state ),
 		plans: getProfilePlans( state )
 	};
 } )( ProfilePlans );

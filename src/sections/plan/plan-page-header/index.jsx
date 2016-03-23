@@ -12,9 +12,9 @@ import get from 'lodash/get';
  */
 
 import { getPlanId } from 'state/ui/selectors';
-import { getPlan, isRequestingPlan } from 'state/plans/selectors';
+import { getPlan } from 'state/plans/selectors';
 
-function PlanPageHeader( { title, loading } ) {
+function PlanPageHeader( { loading, title } ) {
 	const classes = classNames( 'plan-page-header', {
 		'is-loading': loading
 	} );
@@ -33,9 +33,10 @@ PlanPageHeader.propTypes = {
 
 export default connect( ( state ) => {
 	const planId = getPlanId( state );
+	const plan = getPlan( state, planId );
 
 	return {
-		title: get( getPlan( state, planId ), 'title', '' ),
-		loading: isRequestingPlan( state, planId )
+		loading: ! plan,
+		title: get( plan, 'title', '' )
 	};
 } )( PlanPageHeader );
