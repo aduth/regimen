@@ -12,13 +12,27 @@ import each from 'lodash/each';
 
 import { COUCHDB_REMOTE_HOST } from 'config';
 import { isDatabaseSyncing } from 'state/databases/selectors';
-import {
-	toggleDatabaseSyncing,
-	receiveDatabaseSyncChange
-} from 'state/databases/actions';
+import { toggleDatabaseSyncing } from 'state/databases/actions';
 
 /**
- * Databases
+ * Constants
+ */
+
+/**
+ * Key-value pair of database name to CouchDB remote URL to which the database
+ * should be replicated.
+ *
+ * @type {Object}
+ */
+const REMOTE_URLS = {};
+if ( COUCHDB_REMOTE_HOST ) {
+	Object.assign( REMOTE_URLS, {
+		plans: `${ COUCHDB_REMOTE_HOST }/plans`
+	} );
+}
+
+/**
+ * Module variables
  */
 
 /**
@@ -29,25 +43,11 @@ import {
 let databases = {};
 
 /**
- * Remote mappings
- */
-
-/**
- * Key-value pair of database name to CouchDB remote URL to which the database
- * should be replicated.
+ * Key-value pair of database name to remote global PouchDB instance.
  *
  * @type {Object}
  */
-const remotes = {};
-if ( COUCHDB_REMOTE_HOST ) {
-	Object.assign( remotes, {
-		plans: `${ COUCHDB_REMOTE_HOST }/plans`
-	} );
-}
-
-/**
- * Module variables
- */
+let remotes = {};
 
 /**
  * Redux store instance, used to maintain state of currently syncing databases.
@@ -82,28 +82,34 @@ export function sync() {
 	}
 
 	const state = _store.getState();
-	each( databases, ( database, name ) => {
+	each( databases, async ( database, name ) => {
 		// If database is already syncing, continue...
-		if ( ! remotes[ name ] || isDatabaseSyncing( state, name ) ) {
+		if ( ! REMOTE_URLS[ name ] || isDatabaseSyncing( state, name ) ) {
 			return;
 		}
-
-		// Otherwise, create an instance of the remote database and fetch
-		// latest document versions. If changes are received, dispatch through
-		// the Redux store so that any concerned reducers can update their
-		// state. Once changes have been fetched, start live replication.
-		const remote = new PouchDB( remotes[ name ] );
-		remote.replicate.to( database )
-			.on( 'change', ( change ) => {
-				_store.dispatch( receiveDatabaseSyncChange( name, change ) );
-			} )
-			.on( 'complete', () => {
-				database.replicate.to( remote, { live: true } );
-			} );
 
 		// Toggle sync state so that this remote initialization is skipped on
 		// next sync.
 		_store.dispatch( toggleDatabaseSyncing( name ) );
+
+		// Begin live replication to remote database
+		const remote = getRemoteDatabase( name );
+		database.replicate.to( remote, { live: true } );
+
+		// If we've not yet received replicated design documents, retrieve
+		// from remote. On subsequent sessions, this will already be persisted
+		// locally.
+		try {
+			await database.get( '_design/replication' );
+		} catch ( error ) {
+			if ( 404 !== error.status ) {
+				throw error;
+			}
+
+			remote.replicate.to( database, {
+				filter: 'replication/get_docs'
+			} );
+		}
 	} );
 }
 
@@ -132,4 +138,24 @@ export function getDatabase( name ) {
 	}
 
 	return databases[ name ];
+}
+
+/**
+ * Returns the global PouchDB instance for the specified remote database name.
+ * If an instance does not yet exist and a remote URL is associated with the
+ * database, it is immediately instantiated before being returned.
+ *
+ * @param  {String} name Database name
+ * @return {Object}      Remote PouchDB instance
+ */
+export function getRemoteDatabase( name ) {
+	if ( ! REMOTE_URLS[ name ] ) {
+		return null;
+	}
+
+	if ( ! remotes[ name ] ) {
+		remotes[ name ] = new PouchDB( REMOTE_URLS[ name ] );
+	}
+
+	return remotes[ name ];
 }

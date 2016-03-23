@@ -8,14 +8,8 @@ import { expect } from 'chai';
  * Internal dependencies
  */
 
-import {
-	DATABASES_TOGGLE_SYNCING,
-	DATABASES_RECEIVE_SYNC_CHANGE
-} from 'state/action-types';
-import {
-	toggleDatabaseSyncing,
-	receiveDatabaseSyncChange
-} from '../actions';
+import { DATABASES_TOGGLE_SYNCING } from 'state/action-types';
+import { toggleDatabaseSyncing } from '../actions';
 
 describe( 'actions', () => {
 	describe( '#toggleDatabaseSyncing', () => {
@@ -26,20 +20,6 @@ describe( 'actions', () => {
 				type: DATABASES_TOGGLE_SYNCING,
 				payload: {
 					database: 'profile'
-				}
-			} );
-		} );
-	} );
-
-	describe( '#receiveDatabaseSyncChange', () => {
-		it( 'should return an action object', () => {
-			const action = receiveDatabaseSyncChange( 'profile', { docs: [] } );
-
-			expect( action ).to.eql( {
-				type: DATABASES_RECEIVE_SYNC_CHANGE,
-				payload: {
-					database: 'profile',
-					change: { docs: [] }
 				}
 			} );
 		} );

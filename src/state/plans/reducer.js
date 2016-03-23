@@ -3,8 +3,6 @@
  */
 
 import { combineReducers } from 'redux';
-import keyBy from 'lodash/keyBy';
-import map from 'lodash/map';
 import omit from 'lodash/omit';
 
 /**
@@ -12,7 +10,6 @@ import omit from 'lodash/omit';
  */
 
 import {
-	DATABASES_RECEIVE_SYNC_CHANGE,
 	PLAN_EDIT,
 	PLAN_RECEIVE,
 	PLAN_REMOVE,
@@ -62,13 +59,6 @@ function errors( state = {}, action ) {
 				]
 			};
 			break;
-
-		case DATABASES_RECEIVE_SYNC_CHANGE:
-			const { database, change } = action.payload;
-			if ( 'plans' === database ) {
-				state = omit( state, map( change.docs, '_id' ) );
-			}
-			break;
 	}
 
 	return state;
@@ -87,17 +77,6 @@ function items( state = {}, action ) {
 			state = {
 				...state,
 				[ action.payload.plan._id ]: action.payload.plan
-			};
-			break;
-
-		case DATABASES_RECEIVE_SYNC_CHANGE:
-			if ( 'plans' !== action.payload.database ) {
-				break;
-			}
-
-			state = {
-				...state,
-				...keyBy( action.payload.change.docs, '_id' )
 			};
 			break;
 

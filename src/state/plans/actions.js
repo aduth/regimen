@@ -9,7 +9,7 @@ import omit from 'lodash/omit';
  * Internal dependencies
  */
 
-import { getDatabase } from 'db';
+import { getDatabase, getRemoteDatabase } from 'db';
 import { setWorkoutRoute } from 'state/routing/actions';
 import {
 	PLAN_CREATE,
@@ -118,19 +118,50 @@ export function requestPlan( planId ) {
 			payload: { planId }
 		} );
 
-		try {
-			const plan = await getDatabase( 'plans' ).get( planId );
-			dispatch( {
-				type: PLAN_REQUEST_SUCCESS,
-				payload: { planId }
-			} );
-			dispatch( receivePlan( plan ) );
-		} catch ( error ) {
-			dispatch( {
-				type: PLAN_REQUEST_FAILURE,
-				payload: { planId },
-				error
-			} );
+		for ( let getImpl of [ getDatabase, getRemoteDatabase ] ) {
+			const isLocal = ( getDatabase === getImpl );
+
+			try {
+				// When retrieving from the local database, perform document
+				// lookup key with `_local/` cache prefix
+				const docId = isLocal ? `_local/${ planId }` : planId;
+
+				// Retrieve document and transform to formatted entity
+				let plan = await getImpl( 'plans' ).get( docId );
+				plan = omit( plan, COUCHDB_SPECIAL_FIELDS );
+				plan._id = planId;
+
+				// If we've reached this point, then we can assume there was
+				// success in retrieving the document. This may or may not be
+				// the case, since the document may not be cached locally.
+				dispatch( receivePlan( plan ) );
+
+				// If the document has not been cached locally, we'll create a
+				// new local document from the remote document.
+				if ( ! isLocal ) {
+					await getDatabase( 'plans' ).put( Object.assign( {}, plan, {
+						_id: `_local/${ planId }`
+					} ) );
+				}
+
+				// Only after the document has been saved locally do we want
+				// to indicate success, as otherwise we might face a race
+				// condition where a subsequent request is still not cached.
+				dispatch( {
+					type: PLAN_REQUEST_SUCCESS,
+					payload: { planId }
+				} );
+
+				break;
+			} catch ( error ) {
+				if ( 404 !== error.status ) {
+					dispatch( {
+						type: PLAN_REQUEST_FAILURE,
+						payload: { planId },
+						error
+					} );
+				}
+			}
 		}
 	};
 }
