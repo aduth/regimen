@@ -25,7 +25,10 @@ export default function Footer() {
 					</Button>
 				</li>
 				<li className="footer__link">
-					<Button plain to="https://github.com/aduth/regimen/issues/new">
+					<Button
+						plain
+						href="https://github.com/aduth/regimen/issues/new"
+						target="_blank">
 						Help
 					</Button>
 				</li>

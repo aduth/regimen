@@ -77,7 +77,7 @@ export default class RoutineOption extends Component {
 							</Button>
 							{ routine.external && (
 								<Button
-									to={ routine.external }
+									href={ routine.external }
 									target="_blank">
 									More Information
 								</Button>
