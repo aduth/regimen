@@ -30,10 +30,16 @@ const _queue = new PromiseQueue( 1 );
  * @return {Promise}           Promise to resolve when put finishes
  */
 export async function queueRevisions( revisions ) {
-	return _queue.add( async () => {
-		const profile = await getProfileOrDefault();
-		const db = getDatabase( 'profile' );
-		return await db.validatingPut( Object.assign( {}, profile, revisions ) );
+	return new Promise( ( resolve ) => {
+		_queue.add( async () => {
+			const profile = {
+				...( await getProfileOrDefault() ),
+				...revisions
+			};
+
+			await getDatabase( 'profile' ).validatingPut( profile );
+			resolve();
+		} );
 	} );
 }
 
