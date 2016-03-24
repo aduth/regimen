@@ -23,7 +23,7 @@
 
 .add-via-routine__actions {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	flex-direction: column;
 	margin-top: 6px;
 
@@ -38,7 +38,7 @@
 	text-align: center;
 
 	@include desktop() {
-		flex-basis: 48%;
+		flex-basis: 49%;
 	}
 }
 
