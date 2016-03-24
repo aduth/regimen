@@ -44,6 +44,8 @@
 
 .add-via-routine__option-name-author {
 	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 0.2rem;
 }
 
 .add-via-routine__option-name,
@@ -53,12 +55,13 @@
 
 .add-via-routine__option-name {
 	font-size: 1.2rem;
+	line-height: 1.4rem;
 }
 
 .add-via-routine__option-author {
 	margin-left: 0.4rem;
 	font-size: 0.9rem;
-	line-height: ( 1.2rem * 1.6 );
+	line-height: 1.4rem;
 }
 
 .add-via-routine__option-detail {
