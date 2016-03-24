@@ -3,6 +3,7 @@
  */
 import includes from 'lodash/includes';
 import without from 'lodash/without';
+import omit from 'lodash/omit';
 
 /**
  * Internal dependencies
@@ -116,7 +117,7 @@ export function updateProfileFailure( error ) {
  *
  * @param  {String}   planId  Plan ID
  * @param  {Number}   workout Workout
- * @return {Function}       Action thunk
+ * @return {Function}         Action thunk
  */
 export function setProfilePlanProgress( planId, workout ) {
 	return async ( dispatch ) => {
@@ -127,9 +128,16 @@ export function setProfilePlanProgress( planId, workout ) {
 
 		try {
 			let profile = await getProfileOrDefault();
-			const progress = Object.assign( {}, profile.progress, {
-				[ planId ]: workout
-			} );
+
+			let progress;
+			if ( undefined === workout ) {
+				progress = omit( profile.progress, planId );
+			} else {
+				progress = Object.assign( {}, profile.progress, {
+					[ planId ]: workout
+				} );
+			}
+
 			await queueRevisions( { progress } );
 			dispatch( updateProfileSuccess( { progress } ) );
 		} catch ( error ) {
@@ -188,7 +196,7 @@ export function removePlanFromProfile( planId ) {
 			}
 
 			const plans = without( profile.plans, planId );
-			await setProfilePlanProgress( planId, undefined );
+			dispatch( setProfilePlanProgress( planId, undefined ) );
 			await queueRevisions( { plans } );
 			dispatch( updateProfileSuccess( { plans } ) );
 		} catch ( error ) {
