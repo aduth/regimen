@@ -156,7 +156,7 @@ export function requestPlan( planId ) {
 
 				break;
 			} catch ( error ) {
-				if ( 404 !== error.status ) {
+				if ( 404 !== error.status || ! isLocal ) {
 					dispatch( {
 						type: PLAN_REQUEST_FAILURE,
 						payload: { planId },
