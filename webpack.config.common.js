@@ -56,7 +56,7 @@ module.exports = {
 					'<link rel="apple-touch-startup-image" href="/images/launch-1242.png" ' +
 						'media="(device-width: 414px) and (device-height: 736px) ' +
 							'and (-webkit-device-pixel-ratio: 3) ' +
-							'and (orientation: landscape)">' +
+							'and (orientation: portrait)">' +
 					'<link rel="apple-touch-startup-image" href="/images/launch-750.png" ' +
 						'media="(device-width: 375px) and (device-height: 667px) ' +
 							'and (-webkit-device-pixel-ratio: 2)">' +
