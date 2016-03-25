@@ -59,7 +59,13 @@ export function createPlan( plan ) {
 
 		dispatch( {
 			type: PLAN_CREATE,
-			payload: { plan }
+			payload: { plan },
+			meta: {
+				analytics: {
+					action: 'Created plan',
+					label: plan.routine
+				}
+			}
 		} );
 
 		const db = getDatabase( 'plans' );
