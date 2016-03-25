@@ -124,6 +124,7 @@ function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, 
 
 		const plan = merge( {
 			sourcePlan: planId,
+			date: ( new Date() ).toISOString(),
 			routine
 		}, normalizeFormDataUnit( formData, false ) );
 
