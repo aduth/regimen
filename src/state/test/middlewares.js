@@ -22,24 +22,33 @@ describe( 'middlewares', () => {
 			expect( next ).to.have.been.calledOnce;
 		} );
 
-		it( 'should track action type', () => {
+		it( 'should not track actions without analytics meta', () => {
 			const ga = spy();
 
 			analytics( ga )()( () => {} )( {
 				type: 'foo'
 			} );
 
-			expect( ga ).to.have.been.calledWith( 'send', 'event', 'Action', 'foo' );
+			expect( ga ).to.not.have.been.called;
 		} );
 
-		it( 'should track internal action types', () => {
+		it( 'should track actions with analytics meta', () => {
 			const ga = spy();
 
 			analytics( ga )()( () => {} )( {
-				type: '@@foo'
+				type: 'foo',
+				meta: {
+					analytics: {
+						action: 'Tested middleware',
+						label: 'Success',
+						value: 1
+					}
+				}
 			} );
 
-			expect( ga ).to.not.have.been.called;
+			expect( ga ).to.have.been.calledWith(
+				'send', 'event', 'Action', 'Tested middleware', 'Success', 1
+			);
 		} );
 	} );
 
