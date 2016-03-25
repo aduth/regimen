@@ -8,7 +8,6 @@
     "lint": "eslint src --ext js,jsx",
     "clean": "rimraf public/dist public/appcache public/index.html public/sw.js",
     "build": "NODE_PATH=src/ NODE_ENV=production npm run clean && webpack --config webpack.config.prod.js",
-    "postinstall": "node bin/postinstall.js",
     "start": "node server.js",
     "test": "NODE_PATH=src/ mocha --compilers js:babel-register --compilers jsx:babel-register"
   },
