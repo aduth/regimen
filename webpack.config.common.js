@@ -81,21 +81,6 @@ module.exports = {
 				'{% for ( var chunk in o.htmlWebpackPlugin.files.chunks ) { %}' +
 				'<script src="{%= o.htmlWebpackPlugin.files.chunks[ chunk ].entry %}"></script>' +
 				'{% } %}' +
-				'<script>' +
-				'( function() {' +
-				'	var script;' +
-				'	if ( \'touch-action\' in document.body.style ) {' +
-				'		return;' +
-				'	}' +
-				'' +
-				'	script = document.createElement( \'script\' );' +
-				'	script.src = \'https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js\';' +
-				'	script.onload = function() {' +
-				'		FastClick.attach( document.body );' +
-				'	};' +
-				'	document.body.appendChild( script );' +
-				'} )();' +
-				'</script>' +
 				'</body>' +
 				'</html>'
 		} )

@@ -17,6 +17,7 @@ import routes from 'routes';
 import Root from 'layout/root';
 import { initializeRemoteSync } from 'db';
 import configureStandalone from 'lib/standalone';
+import touchActionPolyfill from 'lib/touch-action-polyfill';
 
 /**
  * Stylesheets
@@ -39,6 +40,12 @@ configureStandalone( store );
 if ( ! global.__DEV__ ) {
 	installOfflineRuntime();
 }
+
+/**
+ * Polyfills
+ */
+
+touchActionPolyfill();
 
 /**
  * Render
