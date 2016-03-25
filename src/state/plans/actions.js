@@ -62,7 +62,7 @@ export function createPlan( plan ) {
 			payload: { plan },
 			meta: {
 				analytics: {
-					action: 'Created plan',
+					action: `${ plan.sourcePlan ? 'Updated' : 'Created' } plan`,
 					label: plan.routine
 				}
 			}

@@ -123,6 +123,7 @@ function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, 
 		}
 
 		const plan = merge( {
+			sourcePlan: planId,
 			routine
 		}, normalizeFormDataUnit( formData, false ) );
 
