@@ -1,3 +1,8 @@
+/**
+ * Appends polyfill script for browsers where touch-action style is not
+ * supported. Specifically, this polyfills behavior for removing touch
+ * delay on devices.
+ */
 export default function polyfill() {
 	if ( 'touch-action' in document.body.style ) {
 		return;
