@@ -173,34 +173,3 @@ export function requestPlan( planId ) {
 		}
 	};
 }
-
-/**
- * Returns an action thunk, dispatching progress of an attempt to edit a plan.
- *
- * @param  {String}   planId     Plan to edit
- * @param  {Object}   attributes Attribute revisions
- * @return {Function}            Action thunk
- */
-export function editPlan( planId, attributes ) {
-	return async ( dispatch ) => {
-		dispatch( {
-			type: PLAN_EDIT,
-			payload: { planId, attributes }
-		} );
-
-		const db = getDatabase( 'plans' );
-		let originalPlan;
-		try {
-			originalPlan = await db.get( planId );
-		} catch ( error ) {
-			return;
-		}
-
-		try {
-			await db.validatingPut( Object.assign( {}, originalPlan, attributes ) );
-			dispatch( receivePlan( await db.get( planId ) ) );
-		} catch ( error ) {
-			dispatch( receivePlan( originalPlan ) );
-		}
-	};
-}
