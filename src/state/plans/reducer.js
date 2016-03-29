@@ -10,7 +10,6 @@ import omit from 'lodash/omit';
  */
 
 import {
-	PLAN_EDIT,
 	PLAN_RECEIVE,
 	PLAN_REMOVE,
 	PLAN_REQUEST,
@@ -77,16 +76,6 @@ function items( state = {}, action ) {
 			state = {
 				...state,
 				[ action.payload.plan._id ]: action.payload.plan
-			};
-			break;
-
-		case PLAN_EDIT:
-			state = {
-				...state,
-				[ action.payload.planId ]: {
-					...state[ action.payload.planId ],
-					...action.payload.attributes
-				}
 			};
 			break;
 

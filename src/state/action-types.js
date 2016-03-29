@@ -5,7 +5,6 @@ export const PLAN_CONFIGURE = 'PLAN_CONFIGURE';
 export const PLAN_CREATE = 'PLAN_CREATE';
 export const PLAN_CREATE_FAILURE = 'PLAN_CREATE_FAILURE';
 export const PLAN_CREATE_SUCCESS = 'PLAN_CREATE_SUCCESS';
-export const PLAN_EDIT = 'PLAN_EDIT';
 export const PLAN_RECEIVE = 'PLAN_RECEIVE';
 export const PLAN_REMOVE = 'PLAN_REMOVE';
 export const PLAN_REQUEST = 'PLAN_REQUEST';

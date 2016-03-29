@@ -14,7 +14,6 @@ import { setWorkoutRoute } from 'state/routing/actions';
 import {
 	PLAN_CREATE,
 	PLAN_CREATE_SUCCESS,
-	PLAN_EDIT,
 	PLAN_RECEIVE,
 	PLAN_REMOVE,
 	PLAN_REQUEST,
