@@ -4,6 +4,7 @@
 
 import React, { PropTypes } from 'react';
 import values from 'lodash/values';
+import capitalize from 'lodash/capitalize';
 
 /**
  * Internal dependencies
@@ -11,32 +12,27 @@ import values from 'lodash/values';
 
 import { Exercises } from 'routines/constants';
 
+/**
+ * Utility
+ */
+
+function constantToLabel( constant ) {
+	return constant.split( '_' ).map( capitalize ).join( ' ' );
+}
+
 function ExerciseName( { exercise } ) {
 	let name;
 	switch ( exercise ) {
-		case Exercises.SQUAT:
-			name = 'Squat';
+		case Exercises.CURL:
+			name = 'Barbell Curl';
 			break;
 
-		case Exercises.BENCH_PRESS:
-			name = 'Bench Press';
+		case Exercises.DUMBBELL_LAT_RAISE:
+			name = 'Dumbbell Lateral Raise';
 			break;
 
-		case Exercises.ROW:
-			name = 'Row';
-			break;
-
-		case Exercises.OVERHEAD_PRESS:
-			name = 'Overhead Press';
-			break;
-
-		case Exercises.DEADLIFT:
-			name = 'Deadlift';
-			break;
-
-		case Exercises.POWER_CLEAN:
-			name = 'Power Clean';
-			break;
+		default:
+			name = constantToLabel( exercise );
 	}
 
 	return (
