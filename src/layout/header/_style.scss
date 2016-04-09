@@ -64,8 +64,11 @@
 
 .header__brand {
 	@include bold;
+	overflow: hidden;
 	flex: 4;
 	padding: 0.7rem 0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	text-shadow: -1px -1px darken( $brand-primary, 10% );
 
 	@include desktop() {
