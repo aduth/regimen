@@ -18,6 +18,11 @@ function Accessory( { routine, workout } ) {
 		return section;
 	}
 
+	const exercises = routine.accessory( workout );
+	if ( ! exercises.length ) {
+		return section;
+	}
+
 	return React.cloneElement( section, null,
 		<header>
 			<h2 className="accessory__heading">
@@ -25,7 +30,7 @@ function Accessory( { routine, workout } ) {
 			</h2>
 		</header>,
 		<ul className="accessory__exercises">
-			{ routine.accessory( workout ).map( ( exercise, i ) => {
+			{ exercises.map( ( exercise, i ) => {
 				return (
 					<li key={ i }>
 						{ exercise }
