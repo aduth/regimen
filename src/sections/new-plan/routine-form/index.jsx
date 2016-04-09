@@ -73,15 +73,24 @@ function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, 
 				default: routines[ routine ].name
 			}
 		}
-	}, BASE_FORM, {
-		properties: routines[ routine ].form.schema.properties
-	} );
+	}, BASE_FORM );
+
+	if ( routines[ routine ].form ) {
+		merge( form, {
+			properties: routines[ routine ].form.schema.properties
+		} );
+	}
 
 	// Routines can define their own UI schema. Merge with base UI schema.
-	const uiSchema = {
-		...BASE_UI_SCHEMA,
-		...routines[ routine ].form.uiSchema
-	};
+	let uiSchema;
+	if ( routines[ routine ].form ) {
+		uiSchema = {
+			...BASE_UI_SCHEMA,
+			...routines[ routine ].form.uiSchema
+		};
+	} else {
+		uiSchema = BASE_UI_SCHEMA;
+	}
 
 	// Default form state should be derived from plan if editing existing. For
 	// new plans, attempt to find default values in schema.
