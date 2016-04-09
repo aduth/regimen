@@ -8,7 +8,7 @@ import { expect } from 'chai';
  * Internal dependencies
  */
 
-import { exercises, sets, accessory } from '../';
+import { exercises, accessory } from '../';
 import { Exercises } from 'routines/constants';
 
 describe( 'madcow', () => {
