@@ -1,15 +1,36 @@
 .exercise-set {
+	position: relative;
 	display: flex;
 	border-bottom: 1px solid $border-color;
+
+	&.is-optional {
+		background: repeating-linear-gradient(
+			-55deg,
+			mix( $color-gray, white, 80% ),
+			mix( $color-gray, white, 80% ) 0.9rem,
+			white 0.9rem,
+			white 1.3rem
+		);
+	}
 
 	&:last-child {
 		border-bottom-width: 0;
 	}
 }
 
+.exercise-set__optional {
+	@include bold;
+	position: absolute;
+		top: 50%;
+		right: 0.7rem;
+	transform: translateY( -50% );
+	text-transform: uppercase;
+	font-size: 0.6rem;
+}
+
 .exercise-set__weight-label,
 .exercise-set__reps-label {
-	padding: 8px 12px;
+	padding: 0.5rem 0.7rem;
 	color: lighten( $font-color-body, 20% );
 }
 

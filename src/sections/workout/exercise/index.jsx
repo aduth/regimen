@@ -26,8 +26,10 @@ function Exercise( { exercise, plan, routine, workout } ) {
 					return (
 						<ExerciseSet
 							key={ i }
+							minReps={ set.minReps }
 							reps={ set.reps }
-							weight={ set.weight } />
+							weight={ set.weight }
+							optional={ set.optional } />
 					);
 				} ) }
 			</ul>
