@@ -2,7 +2,7 @@
 	margin-bottom: 0.6rem;
 }
 
-.field > label > span {
+.field > .control-label {
 	display: block;
 	padding: 0.2rem 0;
 }
@@ -36,6 +36,7 @@
 
 .form__inline-flex:not( :first-of-type ) {
 	display: inline-flex;
+	flex-direction: column;
 	margin: 0 0.5rem;
 }
 
@@ -43,17 +44,15 @@
 	display: block;
 }
 
+.field .field-radio-group .radio {
+	position: relative;
+	padding-left: 1.2rem;
+}
+
 .field .field-radio-group input[type='radio'] {
-	margin-top: 0;
-	margin-bottom: 0;
-
-	&,
-	& + span {
-		display: inline-block;
-		vertical-align: middle;
-	}
-
-	& + span {
-		margin-left: 4px;
-	}
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY( -50% );
+    margin: 0 0.2rem;
 }
