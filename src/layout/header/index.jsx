@@ -38,7 +38,7 @@ function Header( { title, headerOptionsActive, toggleHeaderOptions } ) {
 					onClick={ toggleOptions }
 					className="header__options">
 					<span>
-						<Icon icon="gear">
+						<Icon icon="cog">
 							Options
 						</Icon>
 						<HeaderOptions
