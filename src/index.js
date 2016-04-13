@@ -17,7 +17,7 @@ import routes from 'routes';
 import Root from 'layout/root';
 import { initializeRemoteSync } from 'db';
 import configureStandalone from 'lib/standalone';
-import touchActionPolyfill from 'lib/touch-action-polyfill';
+import FastClick from 'fastclick';
 
 /**
  * Stylesheets
@@ -42,10 +42,10 @@ if ( ! global.__DEV__ ) {
 }
 
 /**
- * Polyfills
+ * FastClick
  */
 
-touchActionPolyfill();
+FastClick.attach( document.body );
 
 /**
  * Render
