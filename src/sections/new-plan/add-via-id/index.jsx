@@ -54,6 +54,10 @@ class AddViaId extends Component {
 						ref="input"
 						initialValue=""
 						onChange={ this.toggleSubmitDisabled.bind( this ) }
+						autoComplete="off"
+						autoCorrect="off"
+						autoCapitalize="off"
+						spellCheck="false"
 						placeholder="e.g. V1zPDOMvl"
 						className="add-via-id__input" />
 					<Button
