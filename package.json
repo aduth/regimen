@@ -21,7 +21,7 @@
     "url": "https://andrewduthie.com"
   },
   "engines": {
-    "node": "~5.7.0"
+    "node": ">=5.7.0"
   },
   "license": "MIT",
   "bugs": {
