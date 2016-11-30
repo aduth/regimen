@@ -14,7 +14,6 @@ import { createReduxStore } from 'state';
 import Root from 'components/root';
 import { initializeRemoteSync } from 'db';
 import configureStandalone from 'lib/standalone';
-import FastClick from 'fastclick';
 
 /**
  * Stylesheets
@@ -29,12 +28,6 @@ import 'assets/stylesheets/main.scss';
 const store = createReduxStore();
 initializeRemoteSync( store );
 configureStandalone( store );
-
-/**
- * FastClick
- */
-
-FastClick.attach( document.body );
 
 /**
  * Render

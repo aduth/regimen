@@ -15,7 +15,6 @@ module.exports = Object.assign( {}, common, {
 	entry: {
 		vendor: [
 			'classnames',
-			'fastclick',
 			'path-to-regexp',
 			'pouchdb',
 			'pouchdb-validation',
