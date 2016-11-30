@@ -5,6 +5,7 @@
 const webpack = require( 'webpack' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const autoprefixer = require( 'autoprefixer' );
+const map = require( 'lodash/map' );
 
 module.exports = {
 	output: {
@@ -33,7 +34,8 @@ module.exports = {
 		} ),
 		new HtmlWebpackPlugin( {
 			title: 'Regimen',
-			templateContent: '' +
+			inject: false,
+			templateContent: ( { htmlWebpackPlugin } ) => (
 				'<!DOCTYPE html>' +
 				'<html>' +
 				'<head>' +
@@ -46,7 +48,7 @@ module.exports = {
 					'<meta name="apple-mobile-web-app-capable" content="yes">' +
 					'<meta name="apple-mobile-web-app-title" content="Regimen">' +
 					'<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">' +
-					'<title>Regimen</title>' +
+					`<title>${ htmlWebpackPlugin.options.title }</title>` +
 					'<link rel="dns-prefetch" href="https://regimenapp.cloudant.com">' +
 					'<link rel="icon" href="/favicon.ico" type="image/x-icon">' +
 					'<link rel="apple-touch-icon" href="/images/icon-48.png">' +
@@ -62,9 +64,9 @@ module.exports = {
 					'<link rel="apple-touch-startup-image" href="/images/launch-640.png" ' +
 						'media="(device-width: 320px) and (device-height: 568px) ' +
 							'and (-webkit-device-pixel-ratio: 2)">' +
-					'{% for ( var css in o.htmlWebpackPlugin.files.css ) { %}' +
-					'<link rel="stylesheet" href="{%= o.htmlWebpackPlugin.files.css[ css ] %}">' +
-					'{% } %}' +
+					map( htmlWebpackPlugin.files.css, ( stylesheet ) => (
+						`<link rel="stylesheet" href="${ stylesheet }">`
+					) ).join( '' ) +
 				'</head>' +
 				'<body>' +
 				'<div id="app"></div>' +
@@ -77,11 +79,12 @@ module.exports = {
 					'ga(\'create\', \'' + process.env.GA_ACCOUNT_ID + '\', \'auto\');' +
 					'</script>'
 					: '' ) +
-				'{% for ( var chunk in o.htmlWebpackPlugin.files.chunks ) { %}' +
-				'<script src="{%= o.htmlWebpackPlugin.files.chunks[ chunk ].entry %}"></script>' +
-				'{% } %}' +
+				map( htmlWebpackPlugin.files.js, ( script ) => (
+					`<script src="${ script }"></script>`
+				) ).join( '' ) +
 				'</body>' +
 				'</html>'
+			)
 		} )
 	],
 	postcss: function() {
