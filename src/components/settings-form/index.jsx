@@ -56,7 +56,7 @@ function SettingsForm( { imperial, minPlate, updateProfile } ) {
 			minPlate: formData.minPlate
 		}, true );
 
-		goBack();
+		window.history.back();
 	}
 
 	return (
