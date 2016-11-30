@@ -10,7 +10,7 @@ import { spy } from 'sinon';
  */
 
 import { ROUTE_PATH_PUSH } from 'state/action-types';
-import { analytics, pageView } from '../middlewares';
+import { analytics, pageView } from '../middleware';
 
 describe( 'middlewares', () => {
 	describe( '#analytics()', () => {

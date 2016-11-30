@@ -24,7 +24,9 @@ describe( 'regimen', () => {
 	} );
 
 	describe( 'state', () => {
-		require( 'state/test/middlewares' );
+		describe( 'analytics', () => {
+			require( 'state/analytics/test/middleware' );
+		} );
 
 		describe( 'databases', () => {
 			require( 'state/databases/test/actions' );

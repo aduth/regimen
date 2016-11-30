@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
  */
 
 import reducer from './reducer';
-import { analytics, pageView, routing, trackProfilePlans } from './middlewares';
+import middlewares from './middlewares';
 
 /**
  * Returns a Redux store instance with application-specific middleware applied.
@@ -18,15 +18,6 @@ import { analytics, pageView, routing, trackProfilePlans } from './middlewares';
  * @return {Object} Redux store instance
  */
 export function createReduxStore() {
-	const middlewares = [ thunk, routing, trackProfilePlans ];
-
-	if ( global.ga ) {
-		middlewares.push(
-			analytics( global.ga ),
-			pageView( global.ga )
-		);
-	}
-
 	let createStoreWithMiddleware = applyMiddleware( ...middlewares );
 
 	if ( global.__DEV__ && global.devToolsExtension ) {
