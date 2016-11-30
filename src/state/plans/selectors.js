@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import some from 'lodash/some';
+import { some } from 'lodash';
 
 /**
  * Internal dependencies

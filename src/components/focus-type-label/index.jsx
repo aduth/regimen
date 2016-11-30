@@ -3,7 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
-import values from 'lodash/values';
+import { values } from 'lodash';
 
 /**
  * Internal dependencies

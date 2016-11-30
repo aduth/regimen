@@ -4,7 +4,7 @@
 
 import { parse as parseQuerystring } from 'querystring';
 import pathToRegexp from 'path-to-regexp';
-import map from 'lodash/map';
+import { map } from 'lodash';
 
 /**
  * Internal dependencies

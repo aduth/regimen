@@ -1,9 +1,8 @@
 /**
  * External dependencies
  */
-import includes from 'lodash/includes';
-import without from 'lodash/without';
-import omit from 'lodash/omit';
+
+import { includes, without, omit } from 'lodash';
 
 /**
  * Internal dependencies

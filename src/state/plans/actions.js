@@ -3,7 +3,7 @@
  */
 
 import shortid from 'shortid';
-import omit from 'lodash/omit';
+import { omit } from 'lodash';
 
 /**
  * Internal dependencies

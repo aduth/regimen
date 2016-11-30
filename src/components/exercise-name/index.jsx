@@ -3,8 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
-import values from 'lodash/values';
-import capitalize from 'lodash/capitalize';
+import { values, capitalize } from 'lodash';
 
 /**
  * Internal dependencies

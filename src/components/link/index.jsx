@@ -4,8 +4,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import partial from 'lodash/partial';
-import omit from 'lodash/omit';
+import { partial, omit } from 'lodash';
 
 /**
  * Internal dependencies

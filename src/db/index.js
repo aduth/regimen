@@ -4,7 +4,7 @@
 
 import PouchDB from 'pouchdb';
 import PouchDBValidation from 'pouchdb-validation';
-import each from 'lodash/each';
+import { forEach } from 'lodash';
 
 /**
  * Internal dependencies
@@ -82,7 +82,7 @@ export function sync() {
 	}
 
 	const state = _store.getState();
-	each( databases, async ( database, name ) => {
+	forEach( databases, async ( database, name ) => {
 		// If database is already syncing, continue...
 		if ( ! REMOTE_URLS[ name ] || isDatabaseSyncing( state, name ) ) {
 			return;

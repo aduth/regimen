@@ -7,9 +7,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import Form from 'react-jsonschema-form';
 import { getDefaultFormState } from 'react-jsonschema-form/lib/utils';
-import merge from 'lodash/merge';
-import get from 'lodash/get';
-import set from 'lodash/set';
+import { merge, get, set } from 'lodash';
 
 /**
  * Internal dependencies

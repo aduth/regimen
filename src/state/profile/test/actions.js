@@ -5,7 +5,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import proxyquire from 'proxyquire';
-import each from 'lodash/each';
+import { forEach } from 'lodash';
 
 /**
  * Internal dependencies
@@ -50,7 +50,7 @@ describe( 'actions', () => {
 
 	beforeEach( () => {
 		profile = { _id: 'profile' };
-		each( spies, ( spy ) => spy.reset() );
+		forEach( spies, ( spy ) => spy.reset() );
 	} );
 
 	describe( '#requestProfile()', () => {

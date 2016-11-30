@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import map from 'lodash/map';
+import { map } from 'lodash';
 
 /**
  * Internal dependencies
