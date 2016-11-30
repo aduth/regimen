@@ -29,12 +29,14 @@ class WorkoutPagination extends Component {
 		setWorkoutRoute: () => {}
 	};
 
-	constructor( { planId, workout } ) {
-		super( ...arguments );
+	incrementWorkout = ( increment ) => {
+		const { planId, workout } = this.props;
+		this.props.setWorkoutRoute( planId, workout + increment );
+	};
 
-		this.toPreviousWorkout = this.props.setWorkoutRoute.bind( null, planId, workout - 1 );
-		this.toNextWorkout = this.props.setWorkoutRoute.bind( null, planId, workout + 1 );
-	}
+	toPreviousWorkout = () => this.incrementWorkout( -1 );
+
+	toNextWorkout = () => this.incrementWorkout( 1 );
 
 	render() {
 		const { plan, workout } = this.props;
