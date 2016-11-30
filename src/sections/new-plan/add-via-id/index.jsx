@@ -52,7 +52,7 @@ class AddViaId extends Component {
 					className="add-via-id__form">
 					<input
 						ref="input"
-						initialValue=""
+						defaultValue=""
 						onChange={ this.toggleSubmitDisabled.bind( this ) }
 						autoComplete="off"
 						autoCorrect="off"
