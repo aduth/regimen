@@ -15,11 +15,19 @@ module.exports = Object.assign( {}, common, {
 	entry: {
 		vendor: [
 			'classnames',
+			'fastclick',
+			'path-to-regexp',
+			'pouchdb',
+			'pouchdb-validation',
 			'react',
+			'react-addons-css-transition-group',
 			'react-dom',
+			'react-helmet',
+			'react-jsonschema-form',
 			'react-redux',
 			'redux',
-			'redux-thunk'
+			'redux-thunk',
+			'shortid'
 		],
 		app: __dirname + '/src/index.js'
 	},
