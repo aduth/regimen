@@ -1,8 +1,9 @@
 /**
- * External dependencies
+ * Internal dependencies
  */
 
-import { LOCATION_CHANGE, push } from 'react-router-redux';
+import { ROUTE_PATH_PUSH } from 'state/action-types';
+import { pushRoutePath } from 'state/routing/actions';
 
 /**
  * Returns true if navigator is in standalone mode.
@@ -45,7 +46,7 @@ function trackPath( store ) {
 	// Restore path from localStorage
 	let path = localStorage.getItem( 'path' );
 	if ( path && path !== store.getState().routing.path ) {
-		store.dispatch( push( path ) );
+		store.dispatch( pushRoutePath( path ) );
 	}
 
 	// Enhance store dispatch to monitor path changes
@@ -53,11 +54,11 @@ function trackPath( store ) {
 	store.dispatch = ( action ) => {
 		_dispatch( action );
 
-		if ( LOCATION_CHANGE !== action.type ) {
+		if ( ROUTE_PATH_PUSH !== action.type ) {
 			return;
 		}
 
-		const nextPath = action.payload.pathname;
+		const nextPath = action.path;
 		if ( nextPath !== path ) {
 			path = nextPath;
 			localStorage.setItem( 'path', path );

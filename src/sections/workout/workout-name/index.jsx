@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
  * Internal dependencies
  */
 
+import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlanRoutine } from 'state/plans/selectors';
-import { getPlanId, getWorkout } from 'state/ui/selectors';
 import Weekday from 'components/weekday';
 import SessionLabel from 'sections/workout/session-label';
 
@@ -54,8 +54,11 @@ WorkoutName.propTypes = {
 };
 
 export default connect( ( state ) => {
+	const route = getMatchedRoute( state );
+	const { planId, workout } = route.params;
+
 	return {
-		routine: getPlanRoutine( state, getPlanId( state ) ),
-		workout: getWorkout( state )
+		routine: getPlanRoutine( state, planId ),
+		workout: parseInt( workout, 10 )
 	};
 } )( WorkoutName );

@@ -4,7 +4,6 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { goBack } from 'react-router-redux';
 import Form from 'react-jsonschema-form';
 
 /**
@@ -16,7 +15,7 @@ import Button from 'components/button';
 import { updateProfile } from 'state/profile/actions';
 import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
 
-function SettingsForm( { imperial, minPlate, updateProfile, goBack } ) {
+function SettingsForm( { imperial, minPlate, updateProfile } ) {
 	const schema = {
 		title: 'Settings',
 		type: 'object',
@@ -71,7 +70,7 @@ function SettingsForm( { imperial, minPlate, updateProfile, goBack } ) {
 					<Button type="submit" success large>
 						Submit
 					</Button>
-					<Button large onClick={ () => goBack() }>
+					<Button large onClick={ () => window.history.back() }>
 						Cancel
 					</Button>
 				</div>
@@ -83,8 +82,7 @@ function SettingsForm( { imperial, minPlate, updateProfile, goBack } ) {
 SettingsForm.propTypes = {
 	imperial: PropTypes.bool,
 	minPlate: PropTypes.number,
-	updateProfile: PropTypes.func,
-	goBack: PropTypes.func
+	updateProfile: PropTypes.func
 };
 
 export default connect(
@@ -92,5 +90,5 @@ export default connect(
 		imperial: isProfileImperialUnit( state ),
 		minPlate: getProfileMinPlate( state )
 	} ),
-	{ updateProfile, goBack }
+	{ updateProfile }
 )( SettingsForm );

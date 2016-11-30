@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import { push } from 'react-router-redux';
+import { ROUTE_PATH_PUSH, ROUTE_PATH_REPLACE } from 'state/action-types';
 
 /**
  * Returns an action object signalling that the specified path should be pushed
@@ -11,8 +11,25 @@ import { push } from 'react-router-redux';
  * @param  {String} path URL path
  * @return {Object}      Action object
  */
-export function setPath( path ) {
-	return push( path );
+export function pushRoutePath( path ) {
+	return {
+		type: ROUTE_PATH_PUSH,
+		path
+	};
+}
+
+/**
+ * Returns an action object signalling that the specified path should replace
+ * current browser history location.
+ *
+ * @param  {String} path URL path
+ * @return {Object}      Action object
+ */
+export function replaceRoutePath( path ) {
+	return {
+		type: ROUTE_PATH_REPLACE,
+		path
+	};
 }
 
 /**
@@ -24,5 +41,5 @@ export function setPath( path ) {
  * @return {Object}         Action object
  */
 export function setWorkoutRoute( planId, workout ) {
-	return push( `/plan/${ planId }/workout/${ workout }` );
+	return pushRoutePath( `/plan/${ planId }/workout/${ workout }` );
 }

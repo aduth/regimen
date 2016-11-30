@@ -3,16 +3,18 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 /**
  * Internal dependencies
  */
 
+import { getMatchedRoute } from 'state/routing/selectors';
 import { setWorkoutRoute } from 'state/routing/actions';
 import { setProfilePlanProgress } from 'state/profile/actions';
-import { setWorkout } from 'state/ui/actions';
+import QueryPlan from 'components/query-plan';
+import PlanPageHeader from 'sections/plan/plan-page-header';
+import Page from 'layout/page';
 import Content from 'layout/content';
 import Workout from './workout';
 import Accessory from './accessory';
@@ -20,8 +22,8 @@ import WorkoutPagination from './workout-pagination';
 
 class WorkoutRoute extends Component {
 	static propTypes = {
-		params: PropTypes.object.isRequired,
-		setWorkout: PropTypes.func,
+		planId: PropTypes.string.isRequired,
+		workout: PropTypes.string,
 		setProfilePlanProgress: PropTypes.func,
 		setWorkoutRoute: PropTypes.func
 	};
@@ -40,34 +42,38 @@ class WorkoutRoute extends Component {
 	}
 
 	setWorkoutState( props ) {
-		const { params, setWorkout, setProfilePlanProgress, setWorkoutRoute } = props;
-		const workout = parseInt( params.workout, 10 );
+		const { planId, setProfilePlanProgress, setWorkoutRoute } = props;
+		const workout = parseInt( props.workout, 10 );
 
 		if ( workout > 0 ) {
-			setProfilePlanProgress( params.planId, workout );
-			setWorkout( workout );
+			setProfilePlanProgress( planId, workout );
 		} else {
-			setWorkoutRoute( params.planId, 1 );
+			setWorkoutRoute( planId, 1 );
 		}
 	}
 
 	render() {
 		return (
-			<div>
+			<Page title="Plan" header={ <PlanPageHeader /> }>
+				<QueryPlan planId={ this.props.planId } />
 				<WorkoutPagination />
 				<Content>
 					<Workout />
 					<Accessory />
 				</Content>
-			</div>
+			</Page>
 		);
 	}
 }
 
-export default connect( null, ( dispatch ) => {
-	return bindActionCreators( {
+export default connect(
+	( state ) => {
+		const route = getMatchedRoute( state );
+		const { workout, planId } = route.params;
+		return { workout, planId };
+	},
+	{
 		setProfilePlanProgress,
-		setWorkout,
 		setWorkoutRoute
-	}, dispatch );
-} )( WorkoutRoute );
+	}
+)( WorkoutRoute );

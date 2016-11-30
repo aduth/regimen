@@ -11,9 +11,9 @@ import classNames from 'classnames';
  * Internal dependencies
  */
 
+import { getMatchedRoute } from 'state/routing/selectors';
 import { setWorkoutRoute } from 'state/routing/actions';
 import { getPlan } from 'state/plans/selectors';
-import { getPlanId, getWorkout } from 'state/ui/selectors';
 import Icon from 'components/icon';
 import WorkoutName from 'sections/workout/workout-name';
 
@@ -63,10 +63,12 @@ WorkoutPagination.defaultProps = {
 };
 
 export default connect( ( state ) => {
-	const planId = getPlanId( state );
+	const route = getMatchedRoute( state );
+	const { planId, workout } = route.params;
+
 	return {
 		plan: getPlan( state, planId ),
-		workout: getWorkout( state ),
+		workout: parseInt( workout, 10 ),
 		planId
 	};
 }, ( dispatch ) => {

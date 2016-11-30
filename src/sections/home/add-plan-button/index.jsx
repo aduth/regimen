@@ -3,13 +3,13 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router';
 
 /**
  * Internal dependencies
  */
 
 import Icon from 'components/icon';
+import Link from 'components/link';
 
 function AddPlanButton() {
 	return (

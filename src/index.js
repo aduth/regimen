@@ -4,8 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Provider } from 'react-redux';
 import { install as installOfflineRuntime } from 'offline-plugin/runtime';
 
 /**
@@ -13,7 +12,6 @@ import { install as installOfflineRuntime } from 'offline-plugin/runtime';
  */
 
 import { createReduxStore } from 'state';
-import routes from 'routes';
 import Root from 'layout/root';
 import { initializeRemoteSync } from 'db';
 import configureStandalone from 'lib/standalone';
@@ -52,10 +50,6 @@ FastClick.attach( document.body );
  */
 
 ReactDOM.render(
-	<Root store={ store }>
-		<Router
-			history={ syncHistoryWithStore( browserHistory, store ) }
-			routes={ routes } />
-	</Root>,
+	<Provider store={ store }><Root /></Provider>,
 	document.getElementById( 'app' )
 );

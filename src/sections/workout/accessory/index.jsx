@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
  * Internal dependencies
  */
 
-import { getPlanId, getWorkout } from 'state/ui/selectors';
+import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlanRoutine } from 'state/plans/selectors';
 
 function Accessory( { routine, workout } ) {
@@ -47,8 +47,11 @@ Accessory.propTypes = {
 };
 
 export default connect( ( state ) => {
+	const route = getMatchedRoute( state );
+	const { planId, workout } = route.params;
+
 	return {
-		routine: getPlanRoutine( state, getPlanId( state ) ),
-		workout: getWorkout( state )
+		routine: getPlanRoutine( state, planId ),
+		workout: parseInt( workout, 10 )
 	};
 } )( Accessory );

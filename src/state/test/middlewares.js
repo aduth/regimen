@@ -4,12 +4,12 @@
 
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { LOCATION_CHANGE } from 'react-router-redux';
 
 /**
  * Internal dependencies
  */
 
+import { ROUTE_PATH_PUSH } from 'state/action-types';
 import { analytics, pageView } from '../middlewares';
 
 describe( 'middlewares', () => {
@@ -65,10 +65,8 @@ describe( 'middlewares', () => {
 			const ga = spy();
 
 			pageView( ga )()( () => {} )( {
-				type: LOCATION_CHANGE,
-				payload: {
-					pathname: '/foo'
-				}
+				type: ROUTE_PATH_PUSH,
+				path: '/foo'
 			} );
 
 			expect( ga ).to.have.been.calledWith( 'send', 'pageview', '/foo' );

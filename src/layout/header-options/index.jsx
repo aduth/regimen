@@ -11,8 +11,9 @@ import { bindActionCreators } from 'redux';
  * Internal dependencies
  */
 
+import { getMatchedRoute } from 'state/routing/selectors';
 import { toggleHeaderOptionsActive } from 'state/ui/actions';
-import { getPlanId, isHeaderOptionsActive } from 'state/ui/selectors';
+import { isHeaderOptionsActive } from 'state/ui/selectors';
 import PopoverMenu from 'components/popover-menu';
 import PopoverMenuItem from 'components/popover-menu/item';
 
@@ -48,8 +49,11 @@ HeaderOptions.defaultProps = {
 };
 
 export default connect( ( state ) => {
+	const route = getMatchedRoute( state );
+	const { planId } = route.params;
+
 	return {
-		planId: getPlanId( state ),
+		planId,
 		active: isHeaderOptionsActive( state )
 	};
 }, ( dispatch ) => {

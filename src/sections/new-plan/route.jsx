@@ -9,17 +9,18 @@ import { connect } from 'react-redux';
  * Internal dependencies
  */
 
+import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlan } from 'state/plans/selectors';
 import Page from 'layout/page';
 import Content from 'layout/content';
 import RoutineForm from './routine-form';
 import NewPlanSelection from './new-plan-selection';
 import QueryPlan from 'components/query-plan';
+import * as routines from 'routines';
 
-function NewPlanRoute( { location, plan } ) {
-	const planId = location.query.planId;
-	const isFormVisible = location.query.routine || planId;
-	const routine = plan ? plan.routine : location.query.routine;
+function NewPlanRoute( { planId, routine, plan } ) {
+	const isFormVisible = !! ( routine || planId );
+	routine = plan ? plan.routine : routine;
 
 	return (
 		<Page title="Create Plan">
@@ -39,16 +40,18 @@ function NewPlanRoute( { location, plan } ) {
 }
 
 NewPlanRoute.propTypes = {
-	location: PropTypes.object,
+	planId: PropTypes.string,
+	routine: PropTypes.oneOf( Object.keys( routines ) ),
 	plan: PropTypes.object
 };
 
-export default connect( ( state, ownProps ) => {
-	if ( ! ownProps.location.query.planId ) {
-		return {};
-	}
+export default connect( ( state ) => {
+	const route = getMatchedRoute( state );
+	const { planId, routine } = route.query;
 
 	return {
-		plan: getPlan( state, ownProps.location.query.planId )
+		planId,
+		routine,
+		plan: getPlan( state, planId )
 	};
 } )( NewPlanRoute );

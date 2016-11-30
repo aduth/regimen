@@ -3,7 +3,6 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 /**
@@ -11,8 +10,7 @@ import { connect } from 'react-redux';
  */
 
 import { addPlanToProfile } from 'state/profile/actions';
-import { setPlanId } from 'state/ui/actions';
-import { getPlanId } from 'state/ui/selectors';
+import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlan, isPlanNotFound } from 'state/plans/selectors';
 import NotFoundRoute from 'sections/not-found/route';
 import QueryPlan from 'components/query-plan';
@@ -22,44 +20,30 @@ import PlanPageHeader from './plan-page-header';
 class PlanRoute extends Component {
 	static propTypes = {
 		planId: PropTypes.string,
-		params: PropTypes.object.isRequired,
 		plan: PropTypes.object,
 		notFound: PropTypes.bool,
-		setPlanId: PropTypes.func,
-		addPlanToProfile: PropTypes.func,
-		children: PropTypes.node
+		addPlanToProfile: PropTypes.func
 	};
 
 	static defaultProps = {
-		setPlanId: () => {},
 		addPlanToProfile: () => {}
 	};
 
 	componentWillMount() {
-		this.props.setPlanId( this.props.params.planId );
-
 		if ( this.props.plan ) {
-			this.props.addPlanToProfile( this.props.params.planId );
+			this.props.addPlanToProfile( this.props.planId );
 		}
 	}
 
 	componentWillReceiveProps( nextProps ) {
-		if ( nextProps.params.planId !== this.props.params.planId ) {
-			nextProps.setPlanId( nextProps.params.planId );
-		}
-
 		if ( nextProps.plan && ( ! this.props.plan ||
-				nextProps.params.planId !== this.props.params.planId ) ) {
-			nextProps.addPlanToProfile( nextProps.params.planId );
+				nextProps.planId !== this.props.planId ) ) {
+			nextProps.addPlanToProfile( nextProps.planId );
 		}
-	}
-
-	componentWillUnmount() {
-		this.props.setPlanId( null );
 	}
 
 	render() {
-		const { params, children, notFound } = this.props;
+		const { planId, notFound } = this.props;
 
 		if ( notFound ) {
 			return <NotFoundRoute />;
@@ -67,23 +51,22 @@ class PlanRoute extends Component {
 
 		return (
 			<Page title="Plan" header={ <PlanPageHeader /> }>
-				<QueryPlan planId={ params.planId } />
-				{ children }
+				<QueryPlan planId={ planId } />
 			</Page>
 		);
 	}
 }
 
-export default connect( ( state ) => {
-	const planId = getPlanId( state );
+export default connect(
+	( state ) => {
+		const route = getMatchedRoute( state );
+		const { planId } = route.params;
 
-	return {
-		plan: getPlan( state, planId ),
-		notFound: isPlanNotFound( state, planId )
-	};
-}, ( dispatch ) => {
-	return bindActionCreators( {
-		addPlanToProfile,
-		setPlanId
-	}, dispatch );
-} )( PlanRoute );
+		return {
+			planId,
+			plan: getPlan( state, planId ),
+			notFound: isPlanNotFound( state, planId )
+		};
+	},
+	{ addPlanToProfile }
+)( PlanRoute );

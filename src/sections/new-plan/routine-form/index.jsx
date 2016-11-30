@@ -5,7 +5,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { goBack } from 'react-router-redux';
 import Form from 'react-jsonschema-form';
 import { getDefaultFormState } from 'react-jsonschema-form/lib/utils';
 import merge from 'lodash/merge';
@@ -45,7 +44,7 @@ const BASE_UI_SCHEMA = {
 	classNames: 'routine-form__form'
 };
 
-function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, createPlan, goBack } ) {
+function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, createPlan } ) {
 	const classes = classNames( 'routine-form', {
 		'is-loading': ! routine
 	} );
@@ -150,7 +149,7 @@ function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, 
 				<Button type="submit" success large>
 					{ planId ? 'Update' : 'Create' }
 				</Button>
-				<Button large onClick={ () => goBack() }>
+				<Button large onClick={ () => window.history.back() }>
 					Cancel
 				</Button>
 			</div>
@@ -164,8 +163,7 @@ RoutineForm.propTypes = {
 	plan: PropTypes.object,
 	imperial: PropTypes.bool,
 	removePlanFromProfile: PropTypes.func,
-	createPlan: PropTypes.func,
-	goBack: PropTypes.func
+	createPlan: PropTypes.func
 };
 
 export default connect(
@@ -175,7 +173,6 @@ export default connect(
 	} ),
 	{
 		removePlanFromProfile,
-		createPlan,
-		goBack
+		createPlan
 	}
 )( RoutineForm );

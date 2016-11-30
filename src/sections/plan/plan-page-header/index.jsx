@@ -11,7 +11,7 @@ import get from 'lodash/get';
  * Internal dependencies
  */
 
-import { getPlanId } from 'state/ui/selectors';
+import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlan } from 'state/plans/selectors';
 
 function PlanPageHeader( { loading, title } ) {
@@ -32,7 +32,8 @@ PlanPageHeader.propTypes = {
 };
 
 export default connect( ( state ) => {
-	const planId = getPlanId( state );
+	const route = getMatchedRoute( state );
+	const { planId } = route.params;
 	const plan = getPlan( state, planId );
 
 	return {

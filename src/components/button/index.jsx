@@ -4,7 +4,12 @@
 
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router';
+
+/**
+ * Internal dependencies
+ */
+
+import Link from 'components/link';
 
 function Button( props ) {
 	const {

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
  * Internal dependencies
  */
 
-import { getPlanId, getWorkout } from 'state/ui/selectors';
+import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlan, getPlanRoutine } from 'state/plans/selectors';
 import { Exercises } from 'routines/constants';
 import Block from 'components/block';
@@ -49,11 +49,12 @@ Exercise.defaultProps = {
 };
 
 export default connect( ( state ) => {
-	const planId = getPlanId( state );
+	const route = getMatchedRoute( state );
+	const { planId, workout } = route.params;
 
 	return {
 		plan: getPlan( state, planId ),
 		routine: getPlanRoutine( state, planId ),
-		workout: getWorkout( state )
+		workout: parseInt( workout, 10 )
 	};
 } )( Exercise );

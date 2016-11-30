@@ -3,16 +3,14 @@
  */
 
 import { compose, applyMiddleware, createStore } from 'redux';
-import { browserHistory } from 'react-router';
-import { routerMiddleware } from 'react-router-redux'
-import thunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
 
 /**
  * Internal dependencies
  */
 
 import reducer from './reducer';
-import { analytics, pageView } from './middlewares';
+import { analytics, pageView, routing } from './middlewares';
 
 /**
  * Returns a Redux store instance with application-specific middleware applied.
@@ -20,17 +18,13 @@ import { analytics, pageView } from './middlewares';
  * @return {Object} Redux store instance
  */
 export function createReduxStore() {
-	let middlewares = [
-		routerMiddleware( browserHistory ),
-		thunkMiddleware
-	];
+	const middlewares = [ thunk, routing ];
 
 	if ( global.ga ) {
-		middlewares = [
-			...middlewares,
+		middlewares.push(
 			analytics( global.ga ),
 			pageView( global.ga )
-		];
+		);
 	}
 
 	let createStoreWithMiddleware = applyMiddleware( ...middlewares );

@@ -2,20 +2,32 @@
  * External dependencies
  */
 
-import React, { PropTypes } from 'react';
-import { Provider } from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-function Root( { store, children } ) {
+/**
+ * Internal dependencies
+ */
+
+import { getMatchedRoute } from 'state/routing/selectors';
+import QueryProfile from 'components/query-profile';
+
+function Root( { Route } ) {
 	return (
-		<Provider store={ store }>
-			{ children }
-		</Provider>
+		<div>
+			<QueryProfile />
+			<Route />
+		</div>
 	);
 }
 
 Root.propTypes = {
-	store: PropTypes.object,
-	children: PropTypes.node
+	Route: PropTypes.oneOfType( [
+		PropTypes.func,
+		PropTypes.instanceOf( Component )
+	] )
 };
 
-export default Root;
+export default connect( ( state ) => ( {
+	Route: getMatchedRoute( state ).Route
+} ) )( Root );

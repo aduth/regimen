@@ -9,44 +9,8 @@ import { combineReducers } from 'redux';
  */
 
 import {
-	WORKOUT_SET,
-	PLAN_ID_SET,
 	HEADER_OPTIONS_ACTIVE_TOGGLE
 } from 'state/action-types';
-
-/**
- * Returns the updated plan ID state after an action has been dispatched.
- *
- * @param  {?String} state  Current state
- * @param  {Object}  action Action object
- * @return {?String}        Updated state
- */
-function planId( state = null, action ) {
-	switch ( action.type ) {
-		case PLAN_ID_SET:
-			state = action.payload.planId;
-			break;
-	}
-
-	return state;
-}
-
-/**
- * Returns the updated workout state after an action has been dispatched.
- *
- * @param  {?Number} state  Current state
- * @param  {Object}  action Action object
- * @return {?Number}        Updated state
- */
-function workout( state = null, action ) {
-	switch ( action.type ) {
-		case WORKOUT_SET:
-			state = action.payload.workout;
-			break;
-	}
-
-	return state;
-}
 
 /**
  * Returns the updated header options active state after an action has been
@@ -67,7 +31,5 @@ function headerOptionsActive( state = false, action ) {
 }
 
 export default combineReducers( {
-	planId,
-	workout,
 	headerOptionsActive
 } );
