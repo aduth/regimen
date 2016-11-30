@@ -6,51 +6,35 @@ import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
-import classNames from 'classnames';
 
 /**
  * Internal dependencies
  */
 
 import { getNotices } from 'state/notices/selectors';
-import { dismissNotice } from 'state/notices/actions';
+import NoticesNotice from './notice';
 
-function Notices( { notices, dismissNotice } ) {
+function Notices( { notices } ) {
 	return (
 		<ul className="notices">
 			<ReactCSSTransitionGroup
 				transitionName="notices__items"
 				transitionEnterTimeout={ 120 }
 				transitionLeaveTimeout={ 120 }>
-				{ map( notices, ( notice, id ) => {
-					const itemClasses = classNames( 'notices__notice', {
-						'is-success': notice.success,
-						'is-error': notice.error,
-						'is-info': notice.info
-					} );
-
-					return (
-						<li
-							key={ id }
-							onClick={ () => dismissNotice( id ) }
-							className={ itemClasses }>
-							{ notice.text }
-						</li>
-					);
-				} ) }
+				{ map( notices, ( notice, id ) => (
+					<NoticesNotice key={ id } id={ id } />
+				) ) }
 			</ReactCSSTransitionGroup>
 		</ul>
 	);
 }
 
 Notices.propTypes = {
-	notices: PropTypes.object,
-	dismissNotice: PropTypes.func.isRequired
+	notices: PropTypes.object
 };
 
 export default connect(
 	( state ) => ( {
 		notices: getNotices( state )
-	} ),
-	{ dismissNotice }
+	} )
 )( Notices );
