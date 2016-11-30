@@ -33,7 +33,6 @@ function Header( { title, headerOptionsActive, toggleHeaderOptions } ) {
 					{ title }
 				</span>
 				<span
-					aria-role="button"
 					aria-pressed={ headerOptionsActive }
 					onClick={ toggleOptions }
 					className="header__options">
