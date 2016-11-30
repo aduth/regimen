@@ -21,6 +21,16 @@ export function getRoutePath( state ) {
  * @param  {Object} state Global state
  * @return {Object}       Current route details
  */
-export function getMatchedRoute( state ) {
-	return getRouteMatch( getRoutePath( state ) );
-}
+export const getMatchedRoute = ( () => {
+	let lastPath, lastMatched;
+
+	return ( state ) => {
+		const nextPath = getRoutePath( state );
+		if ( nextPath !== lastPath ) {
+			lastMatched = getRouteMatch( getRoutePath( state ) );
+		}
+
+		lastPath = nextPath;
+		return lastMatched;
+	};
+} )();
