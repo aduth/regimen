@@ -11,7 +11,6 @@ import { map } from 'lodash';
  */
 
 import HomeRoute from 'sections/home/route';
-import PlanRoute from 'sections/plan/route';
 import NewPlanRoute from 'sections/new-plan/route';
 import WorkoutRoute from 'sections/workout/route';
 import AboutRoute from 'sections/about/route';
@@ -22,7 +21,7 @@ import NotFoundRoute from 'sections/not-found/route';
 export const routes = {
 	'/': HomeRoute,
 	'/plan(/new)?': NewPlanRoute,
-	'/plan/:planId': PlanRoute,
+	'/plan/:planId': WorkoutRoute,
 	'/plan/:planId/workout/:workout': WorkoutRoute,
 	'/about': AboutRoute,
 	'/privacy': PrivacyRoute,
