@@ -10,7 +10,7 @@ import React from 'react';
 
 import Page from 'components/page';
 import Content from 'components/content';
-import NotFoundWarning from './not-found-warning';
+import NotFoundWarning from 'components/not-found-warning';
 
 export default function NotFoundRoute() {
 	return (

@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlanRoutine } from 'state/plans/selectors';
 import Weekday from 'components/weekday';
-import SessionLabel from 'sections/workout/session-label';
+import SessionLabel from 'components/session-label';
 
 function WorkoutName( { routine, workout } ) {
 	let weekdays, sessions;

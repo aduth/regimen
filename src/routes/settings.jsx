@@ -10,7 +10,7 @@ import React from 'react';
 
 import Page from 'components/page';
 import Content from 'components/content';
-import SettingsForm from './settings-form';
+import SettingsForm from 'components/settings-form';
 
 export default function SettingsRoute() {
 	return (

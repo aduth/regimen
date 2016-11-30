@@ -13,13 +13,13 @@ import { getMatchedRoute } from 'state/routing/selectors';
 import { setWorkoutRoute } from 'state/routing/actions';
 import { isPlanNotFound } from 'state/plans/selectors';
 import QueryPlan from 'components/query-plan';
-import NotFoundRoute from 'sections/not-found/route';
-import PlanPageHeader from 'sections/plan/plan-page-header';
+import PlanPageHeader from 'components/plan-page-header';
 import Page from 'components/page';
 import Content from 'components/content';
-import Workout from './workout';
-import Accessory from './accessory';
-import WorkoutPagination from './workout-pagination';
+import Workout from 'components/workout';
+import Accessory from 'components/accessory';
+import WorkoutPagination from 'components/workout-pagination';
+import NotFoundRoute from './not-found';
 
 class WorkoutRoute extends Component {
 	static propTypes = {

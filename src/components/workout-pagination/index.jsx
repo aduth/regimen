@@ -14,7 +14,7 @@ import { getMatchedRoute } from 'state/routing/selectors';
 import { setWorkoutRoute } from 'state/routing/actions';
 import { getPlan } from 'state/plans/selectors';
 import Icon from 'components/icon';
-import WorkoutName from 'sections/workout/workout-name';
+import WorkoutName from 'components/workout-name';
 
 function WorkoutPagination( { planId, plan, workout, setWorkoutRoute } ) {
 	const classes = classNames( 'workout-pagination', {

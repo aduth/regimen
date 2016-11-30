@@ -10,9 +10,9 @@ import React from 'react';
 
 import Page from 'components/page';
 import Content from 'components/content';
-import Welcome from './welcome';
-import ProfilePlans from './profile-plans';
-import AddPlanButton from './add-plan-button';
+import Welcome from 'components/welcome';
+import ProfilePlans from 'components/profile-plans';
+import AddPlanButton from 'components/add-plan-button';
 
 export default function HomeRoute() {
 	return (

@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { removePlanFromProfile } from 'state/profile/actions';
 import { getProfilePlanProgress } from 'state/profile/selectors';
-import PlanName from 'sections/home/plan-name';
+import PlanName from 'components/plan-name';
 import Button from 'components/button';
 import Icon from 'components/icon';
 

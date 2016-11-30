@@ -14,7 +14,7 @@ import { getPlan, getPlanRoutine } from 'state/plans/selectors';
 import { Exercises } from 'routines/constants';
 import Block from 'components/block';
 import ExerciseName from 'components/exercise-name';
-import ExerciseSet from 'sections/workout/exercise-set';
+import ExerciseSet from 'components/exercise-set';
 
 function Exercise( { exercise, plan, routine, workout } ) {
 	return (

@@ -10,13 +10,13 @@ import { map } from 'lodash';
  * Internal dependencies
  */
 
-import HomeRoute from 'sections/home/route';
-import NewPlanRoute from 'sections/new-plan/route';
-import WorkoutRoute from 'sections/workout/route';
-import AboutRoute from 'sections/about/route';
-import PrivacyRoute from 'sections/privacy/route';
-import SettingsRoute from 'sections/settings/route';
-import NotFoundRoute from 'sections/not-found/route';
+import HomeRoute from './home';
+import NewPlanRoute from './new-plan';
+import WorkoutRoute from './workout';
+import AboutRoute from './about';
+import PrivacyRoute from './privacy';
+import SettingsRoute from './settings';
+import NotFoundRoute from './not-found';
 
 export const routes = {
 	'/': HomeRoute,

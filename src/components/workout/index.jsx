@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlanRoutine } from 'state/plans/selectors';
-import Exercise from 'sections/workout/exercise';
+import Exercise from 'components/exercise';
 
 function Workout( { routine, workout } ) {
 	return (

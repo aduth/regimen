@@ -13,8 +13,8 @@ import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlan } from 'state/plans/selectors';
 import Page from 'components/page';
 import Content from 'components/content';
-import RoutineForm from './routine-form';
-import NewPlanSelection from './new-plan-selection';
+import RoutineForm from 'components/routine-form';
+import NewPlanSelection from 'components/new-plan-selection';
 import QueryPlan from 'components/query-plan';
 import * as routines from 'routines';
 
