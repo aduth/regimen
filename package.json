@@ -7,7 +7,7 @@
     "dev": "NODE_PATH=src/ npm run clean && node webpack.server.js",
     "lint": "eslint src --ext js,jsx",
     "clean": "rimraf public/dist public/index.html",
-    "build": "NODE_PATH=src/ NODE_ENV=production npm run clean && webpack --config webpack.config.prod.js",
+    "build": "npm run clean && NODE_PATH=src/ NODE_ENV=production webpack --config webpack.config.prod.js",
     "start": "node server.js",
     "test": "NODE_PATH=src/ mocha --compilers js:babel-register --compilers jsx:babel-register"
   },
