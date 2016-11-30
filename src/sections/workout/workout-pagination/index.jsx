@@ -3,7 +3,6 @@
  */
 
 import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
@@ -62,15 +61,16 @@ WorkoutPagination.defaultProps = {
 	setWorkoutRoute: () => {}
 };
 
-export default connect( ( state ) => {
-	const route = getMatchedRoute( state );
-	const { planId, workout } = route.params;
+export default connect(
+	( state ) => {
+		const route = getMatchedRoute( state );
+		const { planId, workout } = route.params;
 
-	return {
-		plan: getPlan( state, planId ),
-		workout: parseInt( workout, 10 ),
-		planId
-	};
-}, ( dispatch ) => {
-	return bindActionCreators( { setWorkoutRoute }, dispatch );
-} )( WorkoutPagination );
+		return {
+			plan: getPlan( state, planId ),
+			workout: parseInt( workout, 10 ),
+			planId
+		};
+	},
+	{ setWorkoutRoute }
+)( WorkoutPagination );

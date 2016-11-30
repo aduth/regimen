@@ -5,7 +5,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 /**
  * Internal dependencies
@@ -48,16 +47,15 @@ HeaderOptions.defaultProps = {
 	toggleActive: () => {}
 };
 
-export default connect( ( state ) => {
-	const route = getMatchedRoute( state );
-	const { planId } = route.params;
+export default connect(
+	( state ) => {
+		const route = getMatchedRoute( state );
+		const { planId } = route.params;
 
-	return {
-		planId,
-		active: isHeaderOptionsActive( state )
-	};
-}, ( dispatch ) => {
-	return bindActionCreators( {
-		toggleActive: toggleHeaderOptionsActive
-	}, dispatch );
-} )( HeaderOptions );
+		return {
+			planId,
+			active: isHeaderOptionsActive( state )
+		};
+	},
+	{ toggleActive: toggleHeaderOptionsActive }
+)( HeaderOptions );

@@ -4,7 +4,6 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 /**
  * Internal dependencies
@@ -60,14 +59,8 @@ Header.defaultProps = {
 };
 
 export default connect(
-	( state ) => {
-		return {
-			headerOptionsActive: isHeaderOptionsActive( state )
-		};
-	},
-	( dispatch ) => {
-		return bindActionCreators( {
-			toggleHeaderOptions: toggleHeaderOptionsActive
-		}, dispatch );
-	}
+	( state ) => ( {
+		headerOptionsActive: isHeaderOptionsActive( state )
+	} ),
+	{ toggleHeaderOptions: toggleHeaderOptionsActive }
 )( Header );

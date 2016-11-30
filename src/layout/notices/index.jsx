@@ -4,7 +4,6 @@
 
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
 import classNames from 'classnames';
@@ -50,14 +49,8 @@ Notices.propTypes = {
 };
 
 export default connect(
-	( state ) => {
-		return {
-			notices: getNotices( state )
-		};
-	},
-	( dispatch ) => {
-		return bindActionCreators( {
-			dismissNotice
-		}, dispatch );
-	}
+	( state ) => ( {
+		notices: getNotices( state )
+	} ),
+	{ dismissNotice }
 )( Notices );

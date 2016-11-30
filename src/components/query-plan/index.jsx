@@ -3,7 +3,6 @@
  */
 
 import { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 /**
@@ -46,12 +45,9 @@ class QueryPlan extends Component {
 	}
 }
 
-export default connect( ( state ) => {
-	return {
+export default connect(
+	( state ) => ( {
 		isRequestingPlan: isRequestingPlan( state )
-	};
-}, ( dispatch ) => {
-	return bindActionCreators( {
-		requestPlan
-	}, dispatch );
-} )( QueryPlan );
+	} ),
+	{ requestPlan }
+)( QueryPlan );

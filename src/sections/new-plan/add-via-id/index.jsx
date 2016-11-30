@@ -3,7 +3,6 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 /**
@@ -72,8 +71,4 @@ class AddViaId extends Component {
 	}
 }
 
-export default connect( null, ( dispatch ) => {
-	return bindActionCreators( {
-		setWorkoutRoute
-	}, dispatch );
-} )( AddViaId );
+export default connect( null, { setWorkoutRoute } )( AddViaId );

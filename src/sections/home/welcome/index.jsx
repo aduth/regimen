@@ -4,7 +4,6 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 /**
@@ -57,7 +56,5 @@ export default connect(
 	( state ) => ( {
 		visible: hasProfileLoaded( state ) && ! isWelcomeHidden( state )
 	} ),
-	( dispatch ) => bindActionCreators( {
-		hide: updateProfile.bind( null, { hideWelcome: true } )
-	}, dispatch )
+	{ hide: updateProfile.bind( null, { hideWelcome: true } ) }
 )( Welcome );

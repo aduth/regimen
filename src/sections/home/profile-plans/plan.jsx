@@ -3,7 +3,6 @@
  */
 
 import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 /**
@@ -52,12 +51,9 @@ ProfilePlan.defaultProps = {
 	removePlanFromProfile: () => {}
 };
 
-export default connect( ( state, ownProps ) => {
-	return {
-		workout: getProfilePlanProgress( state, ownProps.planId )
-	};
-}, ( dispatch ) => {
-	return bindActionCreators( {
-		removePlanFromProfile
-	}, dispatch );
-} )( ProfilePlan );
+export default connect(
+	( state, { planId } ) => ( {
+		workout: getProfilePlanProgress( state, planId )
+	} ),
+	{ removePlanFromProfile }
+)( ProfilePlan );

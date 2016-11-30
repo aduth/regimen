@@ -3,7 +3,6 @@
  */
 
 import { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 /**
@@ -34,12 +33,9 @@ class QueryProfile extends Component {
 	}
 }
 
-export default connect( ( state ) => {
-	return {
+export default connect(
+	( state ) => ( {
 		isRequestingProfile: isRequestingProfile( state )
-	};
-}, ( dispatch ) => {
-	return bindActionCreators( {
-		requestProfile
-	}, dispatch );
-} )( QueryProfile );
+	} ),
+	{ requestProfile }
+)( QueryProfile );
