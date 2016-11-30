@@ -7,7 +7,8 @@ new WebpackDevServer( webpack( config ), {
 	hot: true,
 	historyApiFallback: true,
 	stats: {
-		colors: true
+		colors: true,
+		chunks: false
 	}
 } ).listen( 3000, 'localhost', function( err ) {
 	/* eslint-disable no-console */
