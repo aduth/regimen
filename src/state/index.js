@@ -3,7 +3,6 @@
  */
 
 import { compose, applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
 
 /**
  * Internal dependencies
