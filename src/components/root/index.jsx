@@ -10,11 +10,13 @@ import { connect } from 'react-redux';
  */
 
 import { getMatchedRoute } from 'state/routing/selectors';
+import DocumentHead from 'components/document-head';
 import QueryProfile from 'components/query-profile';
 
 function Root( { Route } ) {
 	return (
 		<div>
+			<DocumentHead />
 			<QueryProfile />
 			<Route />
 		</div>

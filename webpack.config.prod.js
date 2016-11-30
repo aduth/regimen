@@ -22,7 +22,6 @@ module.exports = Object.assign( {}, common, {
 			'react',
 			'react-addons-css-transition-group',
 			'react-dom',
-			'react-helmet',
 			'react-jsonschema-form',
 			'react-redux',
 			'redux',
