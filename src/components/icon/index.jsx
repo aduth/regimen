@@ -4,14 +4,14 @@
 
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import IconCaretLeft from 'react-icons/fa/caret-left';
-import IconCaretRight from 'react-icons/fa/caret-right';
-import IconPlus from 'react-icons/fa/plus';
-import IconHome from 'react-icons/fa/home';
-import IconCog from 'react-icons/fa/cog';
-import IconPlay from 'react-icons/fa/play';
-import IconTrash from 'react-icons/fa/trash';
-import IconClose from 'react-icons/fa/close';
+import IconCaretLeft from 'react-icons/lib/fa/caret-left';
+import IconCaretRight from 'react-icons/lib/fa/caret-right';
+import IconPlus from 'react-icons/lib/fa/plus';
+import IconHome from 'react-icons/lib/fa/home';
+import IconCog from 'react-icons/lib/fa/cog';
+import IconPlay from 'react-icons/lib/fa/play';
+import IconTrash from 'react-icons/lib/fa/trash';
+import IconClose from 'react-icons/lib/fa/close';
 
 function Icon( { icon, children } ) {
 	const classes = classNames( 'icon', 'is-' + icon );

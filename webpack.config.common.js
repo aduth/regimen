@@ -16,10 +16,7 @@ module.exports = {
 		extensions: [ '', '.json', '.js', '.jsx' ],
 		root: [
 			__dirname + '/src'
-		],
-		alias: {
-			'react-icons': 'react-icons/lib'
-		}
+		]
 	},
 	module: {
 		noParse: /(lie\.js|buffertools)/
