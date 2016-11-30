@@ -2,16 +2,16 @@
  * External dependencies
  */
 
-var webpack = require( 'webpack' ),
-	ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
-	OfflinePlugin = require( 'offline-plugin' ),
-	assign = require( 'lodash/assign' );
+const webpack = require( 'webpack' );
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const OfflinePlugin = require( 'offline-plugin' );
+const assign = require( 'lodash/assign' );
 
 /**
  * Internal dependencies
  */
 
-var common = require( './webpack.config.common' );
+const common = require( './webpack.config.common' );
 
 module.exports = assign( {}, common, {
 	entry: __dirname + '/src/index.js',

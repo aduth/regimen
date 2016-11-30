@@ -1,6 +1,6 @@
-var webpack = require( 'webpack' ),
-	WebpackDevServer = require( 'webpack-dev-server' ),
-	config = require( './webpack.config.dev' );
+const webpack = require( 'webpack' );
+const WebpackDevServer = require( 'webpack-dev-server' );
+const config = require( './webpack.config.dev' );
 
 new WebpackDevServer( webpack( config ), {
 	contentBase: __dirname + '/public',

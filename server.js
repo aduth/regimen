@@ -2,23 +2,23 @@
  * External dependencies
  */
 
-var express = require( 'express' ),
-	compression = require( 'compression' ),
-	http = require( 'http' );
+const express = require( 'express' );
+const compression = require( 'compression' );
+const http = require( 'http' );
 
 /**
  * App initialization
  */
 
-var app = express(),
-	server = http.Server( app );
+const app = express();
+const server = http.Server( app );
 
 /**
  * Constants
  */
 
-var REGEXP_VALID_PATH = /^\/($|plan\/(new|\w+(\/workout(\/\d+)?)?)|settings|privacy|about)$/,
-	PORT = process.env.PORT || 3000;
+const REGEXP_VALID_PATH = /^\/($|plan\/(new|\w+(\/workout(\/\d+)?)?)|settings|privacy|about)$/;
+const PORT = process.env.PORT || 3000;
 
 /**
  * Middlewares

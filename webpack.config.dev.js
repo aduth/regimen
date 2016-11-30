@@ -2,16 +2,15 @@
  * External dependencies
  */
 
-var webpack = require( 'webpack' ),
-	assign = require( 'lodash/assign' );
+const webpack = require( 'webpack' );
 
 /**
  * Internal dependencies
  */
 
-var common = require( './webpack.config.common' );
+const common = require( './webpack.config.common' );
 
-module.exports = assign( {}, common, {
+module.exports = Object.assign( {}, common, {
 	cache: true,
 	entry: [
 		'webpack-dev-server/client?/',
@@ -19,7 +18,7 @@ module.exports = assign( {}, common, {
 		__dirname + '/src/index.js'
 	],
 	devtool: 'source-map',
-	module: assign( {}, common.module, {
+	module: Object.assign( {}, common.module, {
 		loaders: [
 			{
 				test: /\.jsx?$/,
