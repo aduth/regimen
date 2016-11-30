@@ -9,7 +9,7 @@ const autoprefixer = require( 'autoprefixer' );
 module.exports = {
 	output: {
 		path: __dirname + '/public',
-		filename: 'dist/app-[hash].js',
+		filename: 'dist/[name]-[hash].js',
 		publicPath: '/'
 	},
 	resolve: {

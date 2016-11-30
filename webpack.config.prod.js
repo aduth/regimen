@@ -4,7 +4,6 @@
 
 const webpack = require( 'webpack' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-const assign = require( 'lodash/assign' );
 
 /**
  * Internal dependencies
@@ -12,9 +11,22 @@ const assign = require( 'lodash/assign' );
 
 const common = require( './webpack.config.common' );
 
-module.exports = assign( {}, common, {
-	entry: __dirname + '/src/index.js',
-	module: assign( {}, common.module, {
+module.exports = Object.assign( {}, common, {
+	entry: {
+		vendor: [
+			'classnames',
+			'react',
+			'react-dom',
+			'react-redux',
+			'redux',
+			'redux-thunk'
+		],
+		app: __dirname + '/src/index.js'
+	},
+	output: Object.assign( {}, common.output, {
+		filename: 'dist/[name]-[hash].min.js'
+	} ),
+	module: Object.assign( {}, common.module, {
 		loaders: [
 			{
 				test: /\.jsx?$/,
@@ -28,12 +40,13 @@ module.exports = assign( {}, common, {
 		]
 	} ),
 	plugins: common.plugins.concat( [
+		new webpack.optimize.CommonsChunkPlugin( 'vendor', 'dist/[name]-[hash].min.js', Infinity ),
 		new webpack.optimize.UglifyJsPlugin( {
 			compress: {
 				warnings: false
 			}
 		} ),
-		new ExtractTextPlugin( 'dist/app-[hash].css', {
+		new ExtractTextPlugin( 'dist/[name]-[hash].css', {
 			allChunks: true
 		} )
 	] )
