@@ -1,5 +1,14 @@
+/**
+ * External dependencies
+ */
+
 const webpack = require( 'webpack' );
 const WebpackDevServer = require( 'webpack-dev-server' );
+
+/**
+ * Internal dependencies
+ */
+
 const config = require( './webpack.config.dev' );
 
 new WebpackDevServer( webpack( config ), {
