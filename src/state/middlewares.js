@@ -10,6 +10,7 @@ import { get } from 'lodash';
 
 import { ROUTE_PATH_PUSH } from './action-types';
 export { default as routing } from './routing/middleware';
+export { trackProfilePlans } from './profile/middleware';
 
 /**
  * Given a Google Analytics analytics.js instance, returns a Redux middleware

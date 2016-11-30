@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { getMatchedRoute } from 'state/routing/selectors';
 import { setWorkoutRoute } from 'state/routing/actions';
 import { isPlanNotFound } from 'state/plans/selectors';
-import { setProfilePlanProgress } from 'state/profile/actions';
 import QueryPlan from 'components/query-plan';
 import NotFoundRoute from 'sections/not-found/route';
 import PlanPageHeader from 'sections/plan/plan-page-header';
@@ -27,12 +26,10 @@ class WorkoutRoute extends Component {
 		planId: PropTypes.string.isRequired,
 		workout: PropTypes.number,
 		notFound: PropTypes.bool,
-		setProfilePlanProgress: PropTypes.func,
 		setWorkoutRoute: PropTypes.func
 	};
 
 	static defaultProps = {
-		setProfilePlanProgress: () => {},
 		setWorkoutRoute: () => {}
 	};
 
@@ -46,11 +43,8 @@ class WorkoutRoute extends Component {
 
 	setWorkoutState( props ) {
 		const { planId, workout } = props;
-
-		if ( workout > 0 ) {
-			this.props.setProfilePlanProgress( planId, workout );
-		} else {
-			this.props.setWorkoutRoute( planId, 1 );
+		if ( ! ( workout > 0 ) ) {
+			props.setWorkoutRoute( planId, 1 );
 		}
 	}
 
@@ -85,8 +79,5 @@ export default connect(
 			notFound: isPlanNotFound( state, planId )
 		};
 	},
-	{
-		setProfilePlanProgress,
-		setWorkoutRoute
-	}
+	{ setWorkoutRoute }
 )( WorkoutRoute );
