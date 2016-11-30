@@ -12,7 +12,7 @@ import { install as installOfflineRuntime } from 'offline-plugin/runtime';
  */
 
 import { createReduxStore } from 'state';
-import Root from 'layout/root';
+import Root from 'components/root';
 import { initializeRemoteSync } from 'db';
 import configureStandalone from 'lib/standalone';
 import FastClick from 'fastclick';

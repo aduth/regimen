@@ -8,8 +8,8 @@ import React from 'react';
  * Internal dependencies
  */
 
-import Page from 'layout/page';
-import Content from 'layout/content';
+import Page from 'components/page';
+import Content from 'components/content';
 import NotFoundWarning from './not-found-warning';
 
 export default function NotFoundRoute() {

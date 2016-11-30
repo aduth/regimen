@@ -8,8 +8,8 @@ import React from 'react';
  * Internal dependencies
  */
 
-import Page from 'layout/page';
-import Content from 'layout/content';
+import Page from 'components/page';
+import Content from 'components/content';
 import Welcome from './welcome';
 import ProfilePlans from './profile-plans';
 import AddPlanButton from './add-plan-button';

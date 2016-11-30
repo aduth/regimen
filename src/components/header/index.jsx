@@ -13,7 +13,7 @@ import { toggleHeaderOptionsActive } from 'state/ui/actions';
 import { isHeaderOptionsActive } from 'state/ui/selectors';
 import Button from 'components/button';
 import Icon from 'components/icon';
-import HeaderOptions from 'layout/header-options';
+import HeaderOptions from 'components/header-options';
 
 function Header( { title, headerOptionsActive, toggleHeaderOptions } ) {
 	function toggleOptions( event ) {

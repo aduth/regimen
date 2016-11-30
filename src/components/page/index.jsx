@@ -9,9 +9,9 @@ import Helmet from 'react-helmet';
  * Internal dependencies
  */
 
-import Header from 'layout/header';
-import Notices from 'layout/notices';
-import Footer from 'layout/footer';
+import Header from 'components/header';
+import Notices from 'components/notices';
+import Footer from 'components/footer';
 
 function Page( { title, header, children } ) {
 	return (
