@@ -5,7 +5,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { install as installOfflineRuntime } from 'offline-plugin/runtime';
 
 /**
  * Internal dependencies
@@ -30,14 +29,6 @@ import 'assets/stylesheets/main.scss';
 const store = createReduxStore();
 initializeRemoteSync( store );
 configureStandalone( store );
-
-/**
- * Offline capability
- */
-
-if ( ! global.__DEV__ ) {
-	installOfflineRuntime();
-}
 
 /**
  * FastClick

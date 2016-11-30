@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_PATH=src/ npm run clean && node webpack.server.js",
     "lint": "eslint src --ext js,jsx",
-    "clean": "rimraf public/dist public/appcache public/index.html public/sw.js",
+    "clean": "rimraf public/dist public/index.html",
     "build": "NODE_PATH=src/ NODE_ENV=production npm run clean && webpack --config webpack.config.prod.js",
     "start": "node server.js",
     "test": "NODE_PATH=src/ mocha --compilers js:babel-register --compilers jsx:babel-register"
@@ -51,7 +51,6 @@
     "imports-loader": "^0.6.5",
     "lodash": "^4.2.1",
     "node-sass": "^3.4.2",
-    "offline-plugin": "^2.0.3",
     "path-to-regexp": "^1.7.0",
     "postcss-loader": "^0.8.0",
     "pouchdb": "^6.0.7",
