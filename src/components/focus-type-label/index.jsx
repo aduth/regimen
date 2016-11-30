@@ -39,6 +39,6 @@ function FocusTypeLabel( { focus } ) {
 
 FocusTypeLabel.propTypes = {
 	focus: PropTypes.oneOf( values( FocusTypes ) )
-}
+};
 
 export default FocusTypeLabel;

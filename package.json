@@ -31,7 +31,6 @@
   "dependencies": {
     "autoprefixer": "^6.3.1",
     "babel-core": "^6.7.2",
-    "babel-eslint": "^6.0.0-beta.6",
     "babel-loader": "^6.2.4",
     "babel-plugin-lodash": "^3.2.10",
     "babel-plugin-transform-runtime": "^6.6.0",
@@ -44,8 +43,6 @@
     "classnames": "^2.2.1",
     "compression": "^1.6.0",
     "css-loader": "^0.23.0",
-    "eslint": "^2.2.0",
-    "eslint-plugin-react": "^4.1.0",
     "exports-loader": "^0.6.2",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -80,9 +77,14 @@
     "webpack-dev-server": "^1.14.0"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
     "deep-freeze": "0.0.1",
+    "eslint": "^3.11.1",
+    "eslint-config-wpcalypso": "^0.6.0",
+    "eslint-plugin-react": "^6.7.1",
+    "eslint-plugin-wpcalypso": "^3.0.2",
     "mocha": "^2.4.5",
     "proxyquire": "^1.7.4",
     "sinon": "^1.17.3",

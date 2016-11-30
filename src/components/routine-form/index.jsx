@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import Form from 'react-jsonschema-form';
@@ -42,61 +42,15 @@ const BASE_UI_SCHEMA = {
 	classNames: 'routine-form__form'
 };
 
-function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, createPlan } ) {
-	const classes = classNames( 'routine-form', {
-		'is-loading': ! routine
-	} );
-
-	const block = (
-		<Block
-			title={ planId ? 'Update Plan' : 'Create New Plan' }
-			padded
-			className={ classes } />
-	);
-
-	// Routine may be unknown while loading an edit form for an existing plan.
-	// In these cases, display a placeholder until the plan has loaded.
-	if ( ! routine ) {
-		return React.cloneElement( block, null, (
-			<div className="routine-form__placeholder" />
-		) );
-	}
-
-	// Generate a form object containing the routine title, base form, and
-	// routine-defined form schema
-	const form = merge( {
-		properties: {
-			title: {
-				default: routines[ routine ].name
-			}
-		}
-	}, BASE_FORM );
-
-	if ( routines[ routine ].form ) {
-		merge( form, {
-			properties: routines[ routine ].form.schema.properties
-		} );
-	}
-
-	// Routines can define their own UI schema. Merge with base UI schema.
-	let uiSchema;
-	if ( routines[ routine ].form ) {
-		uiSchema = {
-			...BASE_UI_SCHEMA,
-			...routines[ routine ].form.uiSchema
-		};
-	} else {
-		uiSchema = BASE_UI_SCHEMA;
-	}
-
-	// Default form state should be derived from plan if editing existing. For
-	// new plans, attempt to find default values in schema.
-	let formState;
-	if ( planId ) {
-		formState = plan;
-	} else {
-		formState = getDefaultFormState( form );
-	}
+class RoutineForm extends Component {
+	static propTypes = {
+		routine: PropTypes.oneOf( Object.keys( routines ) ),
+		planId: PropTypes.string,
+		plan: PropTypes.object,
+		imperial: PropTypes.bool,
+		removePlanFromProfile: PropTypes.func,
+		createPlan: PropTypes.func
+	};
 
 	/**
 	 * Normalizes a form's units to conform to a standard imperial weight.
@@ -105,7 +59,8 @@ function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, 
 	 * @param  {Boolean} toDisplay Whether values are to be normalized for display
 	 * @return {Object}            Normalized form values
 	 */
-	function normalizeFormDataUnit( formData, toDisplay ) {
+	normalizeFormDataUnit = ( formData, toDisplay ) => {
+		const { routine, imperial } = this.props;
 		if ( ! imperial ) {
 			formData = Object.assign( {}, formData );
 			routines[ routine ].form.weights.forEach( ( path ) => {
@@ -123,46 +78,101 @@ function RoutineForm( { routine, planId, plan, imperial, removePlanFromProfile, 
 	 *
 	 * @param {Object} form.formData Form values
 	 */
-	function onSubmit( { formData } ) {
+	submit = ( { formData } ) => {
+		const { planId, routine } = this.props;
 		if ( planId ) {
-			removePlanFromProfile( planId );
+			this.props.removePlanFromProfile( planId );
 		}
 
 		const plan = merge( {
 			sourcePlan: planId,
 			date: ( new Date() ).toISOString(),
 			routine
-		}, normalizeFormDataUnit( formData, false ) );
+		}, this.normalizeFormDataUnit( formData, false ) );
 
-		createPlan( plan );
+		this.props.createPlan( plan );
+	};
+
+	cancel() {
+		window.history.back();
 	}
 
-	return React.cloneElement( block, null, (
-		<Form
-			schema={ form }
-			formData={ normalizeFormDataUnit( formState, true ) }
-			uiSchema={ uiSchema }
-			onSubmit={ onSubmit }>
-			<div className="routine-form__actions">
-				<Button type="submit" success large>
-					{ planId ? 'Update' : 'Create' }
-				</Button>
-				<Button large onClick={ () => window.history.back() }>
-					Cancel
-				</Button>
-			</div>
-		</Form>
-	) );
-}
+	render() {
+		const { routine, planId, plan } = this.props;
 
-RoutineForm.propTypes = {
-	routine: PropTypes.oneOf( Object.keys( routines ) ),
-	planId: PropTypes.string,
-	plan: PropTypes.object,
-	imperial: PropTypes.bool,
-	removePlanFromProfile: PropTypes.func,
-	createPlan: PropTypes.func
-};
+		const classes = classNames( 'routine-form', {
+			'is-loading': ! routine
+		} );
+
+		const block = (
+			<Block
+				title={ planId ? 'Update Plan' : 'Create New Plan' }
+				padded
+				className={ classes } />
+		);
+
+		// Routine may be unknown while loading an edit form for an existing plan.
+		// In these cases, display a placeholder until the plan has loaded.
+		if ( ! routine ) {
+			return React.cloneElement( block, null, (
+				<div className="routine-form__placeholder" />
+			) );
+		}
+
+		// Generate a form object containing the routine title, base form, and
+		// routine-defined form schema
+		const form = merge( {
+			properties: {
+				title: {
+					'default': routines[ routine ].name
+				}
+			}
+		}, BASE_FORM );
+
+		if ( routines[ routine ].form ) {
+			merge( form, {
+				properties: routines[ routine ].form.schema.properties
+			} );
+		}
+
+		// Routines can define their own UI schema. Merge with base UI schema.
+		let uiSchema;
+		if ( routines[ routine ].form ) {
+			uiSchema = {
+				...BASE_UI_SCHEMA,
+				...routines[ routine ].form.uiSchema
+			};
+		} else {
+			uiSchema = BASE_UI_SCHEMA;
+		}
+
+		// Default form state should be derived from plan if editing existing. For
+		// new plans, attempt to find default values in schema.
+		let formState;
+		if ( planId ) {
+			formState = plan;
+		} else {
+			formState = getDefaultFormState( form );
+		}
+
+		return React.cloneElement( block, null, (
+			<Form
+				schema={ form }
+				formData={ this.normalizeFormDataUnit( formState, true ) }
+				uiSchema={ uiSchema }
+				onSubmit={ this.submit }>
+				<div className="routine-form__actions">
+					<Button type="submit" success large>
+						{ planId ? 'Update' : 'Create' }
+					</Button>
+					<Button large onClick={ this.cancel }>
+						Cancel
+					</Button>
+				</div>
+			</Form>
+		) );
+	}
+}
 
 export default connect(
 	( state, ownProps ) => ( {

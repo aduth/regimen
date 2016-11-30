@@ -43,7 +43,9 @@ export const author = 'Mark Rippetoe';
  *
  * @type {String}
  */
-export const description = 'The Starting Strength System is a distillation of Mark Rippetoe\'s experiences over three and a half decades as a competitive powerlifter, Olympic weightlifting coach, and gym owner.';
+export const description = 'The Starting Strength System is a distillation of Mark Rippetoe\'s' +
+	' experiences over three and a half decades as a competitive powerlifter, Olympic' +
+	' weightlifting coach, and gym owner.';
 
 /**
  * Program external resource URL.
@@ -94,7 +96,8 @@ export const form = {
 		properties: {
 			exercises: {
 				title: 'Exercise settings',
-				description: 'For each exercise, provide your current maximum weight and repetitions. Then, configure the desired increment pace.',
+				description: 'For each exercise, provide your current maximum weight and' +
+					' repetitions. Then, configure the desired increment pace.',
 				type: 'object',
 				properties: {
 					squat: {
@@ -105,17 +108,17 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							increment: {
 								title: 'Weight increase',
 								type: 'integer',
-								default: 5
+								'default': 5
 							}
 						}
 					},
@@ -127,17 +130,17 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							increment: {
 								title: 'Weight increase',
 								type: 'integer',
-								default: 5
+								'default': 5
 							}
 						}
 					},
@@ -149,17 +152,17 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							increment: {
 								title: 'Weight increase',
 								type: 'integer',
-								default: 10
+								'default': 10
 							}
 						}
 					},
@@ -171,17 +174,17 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							increment: {
 								title: 'Weight increase',
 								type: 'integer',
-								default: 5
+								'default': 5
 							}
 						}
 					},
@@ -193,17 +196,17 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							increment: {
 								title: 'Weight increase',
 								type: 'integer',
-								default: 5
+								'default': 5
 							}
 						}
 					}
@@ -282,12 +285,12 @@ export function exercises( workout ) {
  * @return {Object[]}          Array of set objects to be performed
  */
 export function sets( plan, workout, exercise ) {
-	const { exercises } = plan;
+	const { squat, bench, deadlift, press, clean } = plan.exercises;
 
 	switch ( exercise ) {
 		case Exercises.SQUAT:
-			const squat5rm = getFiveRepMax( exercises.squat.weight, exercises.squat.reps );
-			const squatWeight = squat5rm + ( ( workout - 1 ) * exercises.squat.increment );
+			const squat5rm = getFiveRepMax( squat.weight, squat.reps );
+			const squatWeight = squat5rm + ( ( workout - 1 ) * squat.increment );
 			return [
 				{ reps: 5, weight: 45 },
 				{ reps: 5, weight: 45 },
@@ -300,8 +303,8 @@ export function sets( plan, workout, exercise ) {
 			];
 
 		case Exercises.BENCH_PRESS:
-			const bench5rm = getFiveRepMax( exercises.bench.weight, exercises.bench.reps );
-			const benchWeight = bench5rm + ( ( workout - 1 ) * 0.5 * exercises.bench.increment );
+			const bench5rm = getFiveRepMax( bench.weight, bench.reps );
+			const benchWeight = bench5rm + ( ( workout - 1 ) * 0.5 * bench.increment );
 			return [
 				{ reps: 5, weight: 45 },
 				{ reps: 5, weight: 45 },
@@ -314,8 +317,8 @@ export function sets( plan, workout, exercise ) {
 			];
 
 		case Exercises.DEADLIFT:
-			const deadlift5rm = getFiveRepMax( exercises.deadlift.weight, exercises.deadlift.reps );
-			const deadliftWeight = deadlift5rm + ( ( workout - 1 ) * 0.5 * exercises.deadlift.increment );
+			const deadlift5rm = getFiveRepMax( deadlift.weight, deadlift.reps );
+			const deadliftWeight = deadlift5rm + ( ( workout - 1 ) * 0.5 * deadlift.increment );
 			return [
 				{ reps: 5, weight: 0.4 * deadliftWeight },
 				{ reps: 5, weight: 0.4 * deadliftWeight },
@@ -325,8 +328,8 @@ export function sets( plan, workout, exercise ) {
 			];
 
 		case Exercises.OVERHEAD_PRESS:
-			const press5rm = getFiveRepMax( exercises.press.weight, exercises.press.reps );
-			const pressWeight = press5rm + ( ( workout - 2 ) * 0.5 * exercises.press.increment );
+			const press5rm = getFiveRepMax( press.weight, press.reps );
+			const pressWeight = press5rm + ( ( workout - 2 ) * 0.5 * press.increment );
 			return [
 				{ reps: 5, weight: 45 },
 				{ reps: 5, weight: 45 },
@@ -339,8 +342,8 @@ export function sets( plan, workout, exercise ) {
 			];
 
 		case Exercises.POWER_CLEAN:
-			const clean5rm = getFiveRepMax( exercises.clean.weight, exercises.clean.reps );
-			const cleanWeight = clean5rm + ( ( workout - 2 ) * 0.5 * exercises.clean.increment );
+			const clean5rm = getFiveRepMax( clean.weight, clean.reps );
+			const cleanWeight = clean5rm + ( ( workout - 2 ) * 0.5 * clean.increment );
 			return [
 				{ reps: 5, weight: 45 },
 				{ reps: 5, weight: 45 },

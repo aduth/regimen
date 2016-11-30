@@ -1,22 +1,22 @@
-.welcome__fade-enter-active,
-.welcome__fade-leave-active {
+.welcome-enter-active,
+.welcome-leave-active {
 	transition: $transition-duration opacity ease-in-out;
 }
 
-.welcome__fade-enter {
+.welcome-enter {
 	opacity: 0;
 }
 
-.welcome__fade-enter-active,
-.welcome__fade-leave {
+.welcome-enter-active,
+.welcome-leave {
 	opacity: 1;
 }
 
-.welcome__fade-leave-active {
+.welcome-leave-active {
 	opacity: 0;
 }
 
-.welcome {
+.welcome__content {
 	@include well;
 	position: relative;
 	padding: 1rem;
@@ -41,7 +41,7 @@
 	}
 }
 
-.welcome,
+.welcome__content,
 .welcome__heading,
 .welcome__dismiss .icon {
 	color: white;

@@ -30,29 +30,32 @@ class AddViaId extends Component {
 		};
 	}
 
-	setWorkoutRoute( event ) {
+	setWorkoutRoute = ( event ) => {
 		const planId = this.refs.input.value;
 		this.props.setWorkoutRoute( planId, 1 );
 		event.preventDefault();
-	}
+	};
 
-	toggleSubmitDisabled( event ) {
+	toggleSubmitDisabled = ( event ) => {
 		this.setState( {
 			isSubmitDisabled: ! event.target.value.length
 		} );
-	}
+	};
 
 	render() {
 		return (
 			<Block title="Add Plan by ID" className="add-via-id" padded>
-				<p>If you have a URL to an existing plan, you can enter the plan ID below to add it to your profile. The plan ID is found in the URL path.</p>
+				<p>
+					If you have a URL to an existing plan, you can enter the plan ID below to add it to your profile.
+					The plan ID is found in the URL path.
+				</p>
 				<form
-					onSubmit={ this.setWorkoutRoute.bind( this ) }
+					onSubmit={ this.setWorkoutRoute }
 					className="add-via-id__form">
 					<input
 						ref="input"
 						defaultValue=""
-						onChange={ this.toggleSubmitDisabled.bind( this ) }
+						onChange={ this.toggleSubmitDisabled }
 						autoComplete="off"
 						autoCorrect="off"
 						autoCapitalize="off"

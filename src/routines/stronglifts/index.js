@@ -27,7 +27,9 @@ export const author = 'Mehdi';
  *
  * @type {String}
  */
-export const description = 'Stronglifts 5x5 is the simplest, most effective workout to get stronger, build muscle and burn fat. The program is easy to follow and only takes three workouts a week of about 45 minutes.';
+export const description = 'Stronglifts 5x5 is the simplest, most effective workout to get' +
+	' stronger, build muscle and burn fat. The program is easy to follow and only takes three' +
+	' workouts a week of about 45 minutes.';
 
 /**
  * Program external resource URL.
@@ -85,31 +87,31 @@ export const form = {
 						title: 'Squat',
 						type: 'integer',
 						minimum: 1,
-						default: 45
+						'default': 45
 					},
 					bench: {
 						title: 'Bench Press',
 						type: 'integer',
 						minimum: 1,
-						default: 45
+						'default': 45
 					},
 					row: {
 						title: 'Row',
 						type: 'integer',
 						minimum: 1,
-						default: 65
+						'default': 65
 					},
 					deadlift: {
 						title: 'Deadlift',
 						type: 'integer',
 						minimum: 1,
-						default: 95
+						'default': 95
 					},
 					press: {
 						title: 'Overhead Press',
 						type: 'integer',
 						minimum: 1,
-						default: 45
+						'default': 45
 					}
 				}
 			}

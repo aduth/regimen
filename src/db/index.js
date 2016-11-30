@@ -40,14 +40,14 @@ if ( COUCHDB_REMOTE_HOST ) {
  *
  * @type {Object}
  */
-let databases = {};
+const databases = {};
 
 /**
  * Key-value pair of database name to remote global PouchDB instance.
  *
  * @type {Object}
  */
-let remotes = {};
+const remotes = {};
 
 /**
  * Redux store instance, used to maintain state of currently syncing databases.

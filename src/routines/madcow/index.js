@@ -19,7 +19,11 @@ import { getWeekday } from 'routines/utils';
  * @return {Number}            Day's maximum weight
  */
 export function getMax( testWeight, testReps, week, prWeek ) {
-	return ( ( ( testWeight / ( 1.0278 - ( 0.0278 * testReps ) ) ) * ( 1.0278 - ( 0.0278 * 5 ) ) ) * Math.pow( 1 / 1.025, prWeek - 1 ) ) * Math.pow( 1.025, week - 1 );
+	return (
+		( ( testWeight / ( 1.0278 - ( 0.0278 * testReps ) ) ) * ( 1.0278 - ( 0.0278 * 5 ) ) ) *
+		Math.pow( 1 / 1.025, prWeek - 1 ) *
+		Math.pow( 1.025, week - 1 )
+	);
 }
 
 /**
@@ -45,7 +49,9 @@ export const author = 'Bill Starr';
  *
  * @type {String}
  */
-export const description = 'Originally created by Bill Starr, the writer of the book "The Strongest Shall Survive" this program is great for adding muscle mass and increasing overall strength and fitness levels.';
+export const description = 'Originally created by Bill Starr, the writer of the book "The' +
+	' Strongest Shall Survive" this program is great for adding muscle mass and increasing' +
+	' overall strength and fitness levels.';
 
 /**
  * Program external resource URL.
@@ -102,14 +108,14 @@ export const form = {
 				title: 'Personal record week',
 				description: 'Week during which you should reach your current personal record',
 				type: 'integer',
-				default: 4,
+				'default': 4,
 				minimum: 1
 			},
 			setIncrement: {
 				title: 'Set increment percentage',
 				description: 'Weight increase percentage between sets',
 				type: 'number',
-				default: 12,
+				'default': 12,
 				minimum: 1,
 				maximum: 100,
 				multipleOf: 1
@@ -127,12 +133,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							}
 						}
 					},
@@ -144,12 +150,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							}
 						}
 					},
@@ -161,12 +167,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							}
 						}
 					},
@@ -178,12 +184,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							}
 						}
 					},
@@ -195,12 +201,12 @@ export const form = {
 							weight: {
 								title: 'Weight',
 								type: 'integer',
-								default: 0
+								'default': 0
 							},
 							reps: {
 								title: 'Repetitions',
 								type: 'integer',
-								default: 0
+								'default': 0
 							}
 						}
 					}

@@ -24,15 +24,11 @@ export default class RoutineOption extends Component {
 		onSelect: () => {}
 	};
 
-	constructor( props ) {
-		super( props );
+	state = {
+		selected: false
+	};
 
-		this.state = {
-			selected: false
-		};
-	}
-
-	toggleSelected( event ) {
+	toggleSelected = ( event ) => {
 		const { actions } = this.refs;
 		if ( actions && actions.contains( event.target ) ) {
 			return;
@@ -41,7 +37,7 @@ export default class RoutineOption extends Component {
 		this.setState( {
 			selected: ! this.state.selected
 		} );
-	}
+	};
 
 	render() {
 		const routine = routines[ this.props.routine ];
@@ -52,7 +48,7 @@ export default class RoutineOption extends Component {
 
 		return (
 			<div
-				onClick={ this.toggleSelected.bind( this ) }
+				onClick={ this.toggleSelected }
 				className={ classes }>
 				<div className="add-via-routine__option-overview">
 					<header className="add-via-routine__option-name-author">

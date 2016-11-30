@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
@@ -16,50 +16,60 @@ import { getPlan } from 'state/plans/selectors';
 import Icon from 'components/icon';
 import WorkoutName from 'components/workout-name';
 
-function WorkoutPagination( { planId, plan, workout, setWorkoutRoute } ) {
-	const classes = classNames( 'workout-pagination', {
-		'is-loading': ! plan
-	} );
+class WorkoutPagination extends Component {
+	static propTypes = {
+		planId: PropTypes.string,
+		plan: PropTypes.object,
+		workout: PropTypes.number,
+		setWorkoutRoute: PropTypes.func
+	};
 
-	return (
-		<nav className={ classes }>
-			<div className="workout-pagination__content">
-				<button
-					disabled={ 1 === workout }
-					onClick={ () => setWorkoutRoute( planId, workout - 1 ) }
-					className="workout-pagination__button is-previous">
-					<span className="workout-pagination__button-label">
-						Previous
-					</span>
-					<Icon icon="caret-left" />
-				</button>
-				<header className="workout-pagination__header">
-					<WorkoutName />
-				</header>
-				<button
-					onClick={ () => setWorkoutRoute( planId, workout + 1 ) }
-					className="workout-pagination__button is-next">
-					<span className="workout-pagination__button-label">
-						Next
-					</span>
-					<Icon icon="caret-right" />
-				</button>
-			</div>
-		</nav>
-	);
+	static defaultProps = {
+		workout: 1,
+		setWorkoutRoute: () => {}
+	};
+
+	constructor( { planId, workout } ) {
+		super( ...arguments );
+
+		this.toPreviousWorkout = this.props.setWorkoutRoute.bind( null, planId, workout - 1 );
+		this.toNextWorkout = this.props.setWorkoutRoute.bind( null, planId, workout + 1 );
+	}
+
+	render() {
+		const { plan, workout } = this.props;
+		const classes = classNames( 'workout-pagination', {
+			'is-loading': ! plan
+		} );
+
+		return (
+			<nav className={ classes }>
+				<div className="workout-pagination__content">
+					<button
+						disabled={ 1 === workout }
+						onClick={ this.toPreviousWorkout }
+						className="workout-pagination__button is-previous">
+						<span className="workout-pagination__button-label">
+							Previous
+						</span>
+						<Icon icon="caret-left" />
+					</button>
+					<header className="workout-pagination__header">
+						<WorkoutName />
+					</header>
+					<button
+						onClick={ this.toNextWorkout }
+						className="workout-pagination__button is-next">
+						<span className="workout-pagination__button-label">
+							Next
+						</span>
+						<Icon icon="caret-right" />
+					</button>
+				</div>
+			</nav>
+		);
+	}
 }
-
-WorkoutPagination.propTypes = {
-	planId: PropTypes.string,
-	plan: PropTypes.object,
-	workout: PropTypes.number,
-	setWorkoutRoute: PropTypes.func
-};
-
-WorkoutPagination.defaultProps = {
-	workout: 1,
-	setWorkoutRoute: () => {}
-};
 
 export default connect(
 	( state ) => {

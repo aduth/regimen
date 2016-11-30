@@ -18,18 +18,18 @@ import Icon from 'components/icon';
 function Welcome( { visible, hide } ) {
 	return (
 		<ReactCSSTransitionGroup
-			transitionName="welcome__fade"
+			transitionName="welcome"
 			transitionEnterTimeout={ 120 }
 			transitionLeaveTimeout={ 120 }>
 			{ visible && (
-				<section className="welcome">
+				<section className="welcome__content">
 					<header>
 						<h1 className="welcome__heading">
 							Welcome to Regimen!
 						</h1>
 						<Button
 							plain
-							onClick={ () => hide() }
+							onClick={ hide }
 							className="welcome__dismiss">
 							<Icon icon="close">Dismiss</Icon>
 						</Button>

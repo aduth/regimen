@@ -13,31 +13,32 @@ import { getMatchedRoute } from 'state/routing/selectors';
 import { getPlanRoutine } from 'state/plans/selectors';
 
 function Accessory( { routine, workout } ) {
-	let section = <section className="accessory" />;
 	if ( ! routine || ! routine.accessory ) {
-		return section;
+		return null;
 	}
 
 	const exercises = routine.accessory( workout );
 	if ( ! exercises.length ) {
-		return section;
+		return null;
 	}
 
-	return React.cloneElement( section, null,
-		<header>
-			<h2 className="accessory__heading">
-				Recommended Accessory Work
-			</h2>
-		</header>,
-		<ul className="accessory__exercises">
-			{ exercises.map( ( exercise, i ) => {
-				return (
-					<li key={ i }>
-						{ exercise }
-					</li>
-				);
-			} ) }
-		</ul>
+	return (
+		<section className="accessory">
+			<header>
+				<h2 className="accessory__heading">
+					Recommended Accessory Work
+				</h2>
+			</header>
+			<ul className="accessory__exercises">
+				{ exercises.map( ( exercise, i ) => {
+					return (
+						<li key={ i }>
+							{ exercise }
+						</li>
+					);
+				} ) }
+			</ul>
+		</section>
 	);
 }
 

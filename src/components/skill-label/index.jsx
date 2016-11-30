@@ -39,6 +39,6 @@ function SkillLabel( { skill } ) {
 
 SkillLabel.propTypes = {
 	skill: PropTypes.oneOf( values( SkillLevels ) )
-}
+};
 
 export default SkillLabel;

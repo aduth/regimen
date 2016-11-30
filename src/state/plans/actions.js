@@ -123,7 +123,7 @@ export function requestPlan( planId ) {
 			payload: { planId }
 		} );
 
-		for ( let getImpl of [ getDatabase, getRemoteDatabase ] ) {
+		for ( const getImpl of [ getDatabase, getRemoteDatabase ] ) {
 			const isLocal = ( getDatabase === getImpl );
 
 			try {
@@ -145,7 +145,7 @@ export function requestPlan( planId ) {
 				if ( ! isLocal ) {
 					getImpl( 'plans' ).replicate.to( getDatabase( 'plans' ), {
 						filter: 'replication/get_by_id',
-						query_params: {
+						query_params: { // eslint-disable-line camelcase
 							_id: planId
 						}
 					} );

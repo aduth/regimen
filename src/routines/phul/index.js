@@ -28,7 +28,9 @@ export const author = 'Brandon Campbell';
  *
  * @type {String}
  */
-export const description = 'The PHUL routine focuses on the principles of both strength and size. It is a four-day adaptable program emphasizing frequency, compound movements, power, and hypertrophy.';
+export const description = 'The PHUL routine focuses on the principles of both strength and' +
+	' size. It is a four-day adaptable program emphasizing frequency, compound movements, power,' +
+	' and hypertrophy.';
 
 /**
  * Program external resource URL.

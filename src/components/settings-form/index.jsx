@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Form from 'react-jsonschema-form';
 
@@ -15,34 +15,11 @@ import Button from 'components/button';
 import { updateProfile } from 'state/profile/actions';
 import { isProfileImperialUnit, getProfileMinPlate } from 'state/profile/selectors';
 
-function SettingsForm( { imperial, minPlate, updateProfile } ) {
-	const schema = {
-		title: 'Settings',
-		type: 'object',
-		properties: {
-			unit: {
-				title: 'Unit',
-				type: 'string',
-				enum: [ 'Pounds', 'Kilograms' ]
-			},
-			minPlate: {
-				title: 'Minimum plate weight',
-				type: 'number',
-				multipleOf: 0.25
-			}
-		}
-	};
-
-	const uiSchema = {
-		classNames: 'settings-form__form',
-		unit: {
-			'ui:widget': 'radio'
-		}
-	};
-
-	const formData = {
-		unit: imperial ? 'Pounds' : 'Kilograms',
-		minPlate
+class SettingsForm extends Component {
+	static propTypes = {
+		imperial: PropTypes.bool,
+		minPlate: PropTypes.number,
+		updateProfile: PropTypes.func
 	};
 
 	/**
@@ -50,40 +27,70 @@ function SettingsForm( { imperial, minPlate, updateProfile } ) {
 	 *
 	 * @param {Object} form.formData Form values
 	 */
-	function onSubmit( { formData } ) { // eslint-disable-line react/prop-types
-		updateProfile( {
+	submit = ( { formData } ) => {
+		this.props.updateProfile( {
 			imperial: 'Pounds' === formData.unit,
 			minPlate: formData.minPlate
 		}, true );
 
 		window.history.back();
+	};
+
+	cancel() {
+		window.history.back();
 	}
 
-	return (
-		<Block title="Profile Settings" padded className="settings-form">
-			<Form
-				schema={ schema }
-				uiSchema={ uiSchema }
-				formData={ formData }
-				onSubmit={ onSubmit }>
-				<div className="settings-form__actions">
-					<Button type="submit" success large>
-						Submit
-					</Button>
-					<Button large onClick={ () => window.history.back() }>
-						Cancel
-					</Button>
-				</div>
-			</Form>
-		</Block>
-	);
-}
+	render() {
+		const { imperial, minPlate } = this.props;
+		const schema = {
+			title: 'Settings',
+			type: 'object',
+			properties: {
+				unit: {
+					title: 'Unit',
+					type: 'string',
+					'enum': [ 'Pounds', 'Kilograms' ]
+				},
+				minPlate: {
+					title: 'Minimum plate weight',
+					type: 'number',
+					multipleOf: 0.25
+				}
+			}
+		};
 
-SettingsForm.propTypes = {
-	imperial: PropTypes.bool,
-	minPlate: PropTypes.number,
-	updateProfile: PropTypes.func
-};
+		const uiSchema = {
+			classNames: 'settings-form__form',
+			unit: {
+				'ui:widget': 'radio'
+			}
+		};
+
+		const formData = {
+			unit: imperial ? 'Pounds' : 'Kilograms',
+			minPlate
+		};
+
+		return (
+			<Block title="Profile Settings" padded className="settings-form">
+				<Form
+					schema={ schema }
+					uiSchema={ uiSchema }
+					formData={ formData }
+					onSubmit={ this.submit }>
+					<div className="settings-form__actions">
+						<Button type="submit" success large>
+							Submit
+						</Button>
+						<Button large onClick={ this.cancel }>
+							Cancel
+						</Button>
+					</div>
+				</Form>
+			</Block>
+		);
+	}
+}
 
 export default connect(
 	( state ) => ( {

@@ -36,10 +36,14 @@ export default function PrivacyRoute() {
 							not a transfer of title, and under this license you may not:
 							<ol type="i">
 								<li>modify or copy the materials;</li>
-								<li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
-								<li>attempt to decompile or reverse engineer any software contained on Regimen's web site;</li>
-								<li>remove any copyright or other proprietary notations from the materials; or</li>
-								<li>transfer the materials to another person or "mirror" the materials on any other server.</li>
+								<li>use the materials for any commercial purpose, or for any public
+								display (commercial or non-commercial);</li>
+								<li>attempt to decompile or reverse engineer any software contained
+								on Regimen's web site;</li>
+								<li>remove any copyright or other proprietary notations from the
+								materials; or</li>
+								<li>transfer the materials to another person or "mirror" the
+								materials on any other server.</li>
 							</ol>
 						</li>
 						<li>

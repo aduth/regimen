@@ -62,7 +62,7 @@ describe( 'selectors', () => {
 				}
 			}, 'kTidUd2g4' );
 
-			expect( progress ).to.be.null
+			expect( progress ).to.be.null;
 		} );
 
 		it( 'should return profile progress for specified plan', () => {

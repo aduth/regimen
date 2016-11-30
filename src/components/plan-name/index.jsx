@@ -38,5 +38,5 @@ export default connect( ( state, ownProps ) => {
 	return {
 		name: get( plan, 'title', '' ),
 		loading: ! plan
-	}
+	};
 } )( PlanName );

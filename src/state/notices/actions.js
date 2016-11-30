@@ -38,7 +38,7 @@ export function addNotice( options ) {
 		setTimeout( () => {
 			dispatch( dismissNotice( options.id ) );
 		}, options.duration || DEFAULT_DURATION );
-	}
+	};
 }
 
 /**
@@ -93,5 +93,5 @@ export function dismissNotice( noticeId ) {
 	return {
 		type: NOTICE_REMOVE,
 		payload: { noticeId }
-	}
+	};
 }

@@ -42,7 +42,7 @@ export function trackProfilePlans( { dispatch, getState } ) {
 
 		// Check to make sure that we don't add to profile unless we're certain
 		// that the plan is valid
-		const plan = getPlan( state, planId )
+		const plan = getPlan( state, planId );
 		if ( ! plan ) {
 			return result;
 		}

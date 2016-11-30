@@ -126,7 +126,7 @@ export function setProfilePlanProgress( planId, workout ) {
 		} );
 
 		try {
-			let profile = await getProfileOrDefault();
+			const profile = await getProfileOrDefault();
 
 			let progress;
 			if ( undefined === workout ) {
@@ -160,7 +160,7 @@ export function addPlanToProfile( planId ) {
 		} );
 
 		try {
-			let profile = await getProfileOrDefault();
+			const profile = await getProfileOrDefault();
 			if ( profile.plans && planId === profile.plans[ 0 ] ) {
 				return;
 			}
@@ -189,7 +189,7 @@ export function removePlanFromProfile( planId ) {
 		} );
 
 		try {
-			let profile = await getProfileOrDefault();
+			const profile = await getProfileOrDefault();
 			if ( ! includes( profile.plans, planId ) ) {
 				return;
 			}
