@@ -18,19 +18,31 @@ module.exports = Object.assign( {}, common, {
 		__dirname + '/src/index.js'
 	],
 	devtool: 'source-map',
-	module: Object.assign( {}, common.module, {
-		loaders: [
+	module: {
+		rules: [
 			{
 				test: /\.jsx?$/,
 				include: __dirname + '/src',
-				loaders: [ 'react-hot', 'babel?cacheDirectory' ]
+				use: [
+					{
+						loader: 'babel-loader',
+						query: {
+							cacheDirectory: true
+						}
+					}
+				]
 			},
 			{
 				test: /\.scss$/,
-				loaders: [ 'style', 'css', 'postcss', 'sass' ]
+				use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' },
+					{ loader: 'postcss-loader' },
+					{ loader: 'sass-loader' }
+				]
 			}
 		]
-	} ),
+	},
 	plugins: common.plugins.concat( [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin()

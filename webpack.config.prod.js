@@ -32,27 +32,50 @@ module.exports = Object.assign( {}, common, {
 	output: Object.assign( {}, common.output, {
 		filename: 'dist/[name]-[hash].min.js'
 	} ),
-	module: Object.assign( {}, common.module, {
-		loaders: [
+	module: {
+		rules: [
 			{
 				test: /\.jsx?$/,
 				include: __dirname + '/src',
-				loaders: [ 'babel' ]
+				use: [
+					{ loader: 'babel-loader' }
+				]
 			},
 			{
 				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract( 'raw!postcss!sass?outputStyle=compressed' )
+				loader: ExtractTextPlugin.extract( {
+					loader: [
+						{ loader: 'raw-loader' },
+						{ loader: 'postcss-loader' },
+						{
+							loader: 'sass-loader',
+							query: {
+								outputStyle: 'compressed'
+							}
+						}
+					]
+				} )
 			}
 		]
-	} ),
+	},
 	plugins: common.plugins.concat( [
-		new webpack.optimize.CommonsChunkPlugin( 'vendor', 'dist/[name]-[hash].min.js', Infinity ),
+		new webpack.optimize.CommonsChunkPlugin( {
+			name: 'vendor',
+			filename: 'dist/[name]-[hash].min.js',
+			minChunks: Infinity
+		} ),
+		new webpack.LoaderOptionsPlugin( {
+			minimize: true,
+			debug: false
+		} ),
 		new webpack.optimize.UglifyJsPlugin( {
 			compress: {
 				warnings: false
 			}
 		} ),
-		new ExtractTextPlugin( 'dist/[name]-[hash].css', {
+		new ExtractTextPlugin( {
+			filename: 'dist/[name]-[hash].css',
+			disable: false,
 			allChunks: true
 		} )
 	] )

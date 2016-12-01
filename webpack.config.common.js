@@ -4,7 +4,6 @@
 
 const webpack = require( 'webpack' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const autoprefixer = require( 'autoprefixer' );
 const map = require( 'lodash/map' );
 
 module.exports = {
@@ -14,13 +13,8 @@ module.exports = {
 		publicPath: '/'
 	},
 	resolve: {
-		extensions: [ '', '.json', '.js', '.jsx' ],
-		root: [
-			__dirname + '/src'
-		]
-	},
-	module: {
-		noParse: /(lie\.js|buffertools)/
+		extensions: [ '.json', '.js', '.jsx' ],
+		modules: [ 'src', 'node_modules' ]
 	},
 	plugins: [
 		new webpack.DefinePlugin( {
@@ -86,14 +80,5 @@ module.exports = {
 				'</html>'
 			)
 		} )
-	],
-	postcss: function() {
-		return [ autoprefixer ];
-	},
-	node: {
-		console: true,
-		fs: 'empty',
-		net: 'empty',
-		tls: 'empty'
-	}
+	]
 };
