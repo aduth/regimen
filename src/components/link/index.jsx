@@ -31,8 +31,10 @@ class Link extends Component {
 	};
 
 	render() {
+		const { to } = this.props;
 		const props = omit( this.props, 'to', 'pushRoutePath' );
-		return <a { ...props } onClick={ this.onClick } />;
+
+		return <a { ...props } href={ to } onClick={ this.onClick } />;
 	}
 }
 
