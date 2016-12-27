@@ -9,7 +9,7 @@
     "clean": "rm -rf public/dist public/index.html",
     "build": "npm run clean && NODE_PATH=src/ NODE_ENV=production webpack --config webpack.config.prod.js",
     "start": "node server.js",
-    "test": "NODE_PATH=src/ mocha --compilers js:babel-register --compilers jsx:babel-register"
+    "test": "NODE_ENV=test NODE_PATH=src/ mocha --compilers js:babel-register --compilers jsx:babel-register"
   },
   "repository": {
     "type": "git",
