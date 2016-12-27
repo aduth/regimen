@@ -2,7 +2,7 @@
  * External dependencies
  */
 
-import { includes } from 'lodash';
+import { includes, get } from 'lodash';
 
 /**
  * Internal dependencies
@@ -10,7 +10,6 @@ import { includes } from 'lodash';
 
 import { ROUTE_PATH_PUSH, ROUTE_PATH_REPLACE } from 'state/action-types';
 import { replaceRoutePath } from './actions';
-import { getRoutePath } from './selectors';
 
 /**
  * Action types which affect route location.
@@ -26,7 +25,7 @@ const ROUTE_CHANGE_TYPES = [ ROUTE_PATH_PUSH, ROUTE_PATH_REPLACE ];
  * @param  {Function} store.getState Store instance state getter
  * @return {Function}                Redux middleware
  */
-export default ( { dispatch, getState } ) => {
+export default ( { dispatch } ) => {
 	window.addEventListener( 'popstate', function( event ) {
 		if ( event.state && event.state.path ) {
 			dispatch( replaceRoutePath( event.state.path ) );
@@ -35,11 +34,12 @@ export default ( { dispatch, getState } ) => {
 
 	return ( next ) => ( action ) => {
 		const { type, path } = action;
-		if ( ROUTE_PATH_PUSH === type && path !== getRoutePath( getState() ) ) {
-			history.pushState( { path }, null, path );
-		}
+		if ( includes( ROUTE_CHANGE_TYPES, type ) ) {
+			const historyFn = ROUTE_PATH_PUSH === type ? 'pushState' : 'replaceState';
+			if ( 'ROUTE_PATH_PUSH' !== type || path !== get( history.state, 'path' ) ) {
+				history[ historyFn ]( { path }, null, path );
+			}
 
-		if ( includes( ROUTE_CHANGE_TYPES, action.type ) ) {
 			window.scrollTo( 0, 0 );
 		}
 

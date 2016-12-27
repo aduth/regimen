@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
  */
 
 import { createReduxStore } from 'state';
+import { replaceRoutePath } from 'state/routing/actions';
 import Root from 'components/root';
 import { initializeRemoteSync } from 'db';
 import configureStandalone from 'lib/standalone';
@@ -28,6 +29,13 @@ import 'assets/stylesheets/main.scss';
 const store = createReduxStore();
 initializeRemoteSync( store );
 configureStandalone( store );
+
+/**
+ * Initialize routing state
+ */
+
+const { pathname, search } = window.location;
+store.dispatch( replaceRoutePath( pathname + search ) );
 
 /**
  * Render
