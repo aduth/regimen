@@ -28,10 +28,6 @@ export default function PrivacyRoute() {
 						appreciative as possible in attributing to the original authors. Copyright
 						concerns should be directed to the contact email listed below.
 					</p>
-					<p>
-						For comments, concerns, or other inquiries, direct emails to{ ' ' }
-						<a href="mailto:info@regimenapp.com">info@regimenapp.com</a>.
-					</p>
 				</Block>
 			</Content>
 		</Page>

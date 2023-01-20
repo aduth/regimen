@@ -20,11 +20,7 @@ module.exports = {
 		new webpack.DefinePlugin( {
 			'global.__DEV__': 'production' !== process.env.NODE_ENV,
 			'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
-			'process.env.COUCHDB_REMOTE_HOST': JSON.stringify(
-				'COUCHDB_REMOTE_HOST' in process.env
-					? process.env.COUCHDB_REMOTE_HOST
-					: 'https://regimenapp.cloudant.com'
-			)
+			'process.env.COUCHDB_REMOTE_HOST': JSON.stringify( process.env.COUCHDB_REMOTE_HOST )
 		} ),
 		new HtmlWebpackPlugin( {
 			title: 'Regimen',
@@ -43,7 +39,6 @@ module.exports = {
 					'<meta name="apple-mobile-web-app-title" content="Regimen">' +
 					'<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">' +
 					`<title>${ htmlWebpackPlugin.options.title }</title>` +
-					'<link rel="dns-prefetch" href="https://regimenapp.cloudant.com">' +
 					'<link rel="icon" href="/favicon.ico" type="image/x-icon">' +
 					'<link rel="apple-touch-icon" href="/images/icon-48.png">' +
 					'<link rel="apple-touch-icon" sizes="96x96" href="/images/icon-96.png">' +

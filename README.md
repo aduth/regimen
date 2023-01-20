@@ -8,8 +8,6 @@ A workout progression planning web app.
 
 Regimen helps you plan the progression of your workouts. Choose from a number of popular weightlifting routines to generate a customized plan to help you achieve your goals.
 
-Interested? Create your plan at https://regimenapp.com to get started.
-
 ## Contributing
 
 If you'd like to run your own instance of Regimen or contribute to the project, you must first ensure that Node.js is installed. You can download the latest version of Node from their [download page](https://nodejs.org/en/download/).
