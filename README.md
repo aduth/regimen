@@ -2,8 +2,6 @@
 
 A workout progression planning web app.
 
-<img src="https://cldup.com/mFLAsBL11n.png">
-
 ## About
 
 Regimen helps you plan the progression of your workouts. Choose from a number of popular weightlifting routines to generate a customized plan to help you achieve your goals.
